@@ -25,8 +25,7 @@ namespace RacketSpeed.Core.Services
             this.repository = repository;
 		}
 
-        /// <inheritdoc></inheritdoc>
-        public async Task AddAsync(PostViewModel model)
+        public async Task AddAsync(PostFormModel model)
         {
             var post = new Post()
             {
@@ -39,12 +38,12 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        /// <inheritdoc></inheritdoc>
         public async Task<ICollection<PostViewModel>> AllAsync()
         {
             var allPosts = this.repository.AllReadonly<Post>();
 
             return await allPosts
+                .Where(p => p.IsDeleted == false)
                 .Select(p => new PostViewModel()
                 {
                     Id = p.Id,
@@ -54,7 +53,6 @@ namespace RacketSpeed.Core.Services
                 .ToListAsync();
         }
 
-        /// <inheritdoc></inheritdoc>
         public async Task<PostViewModel> GetByIdAsync(Guid id)
         {
             var post = await this.repository.GetByIdAsync<Post>(id);
@@ -74,10 +72,14 @@ namespace RacketSpeed.Core.Services
             return model;
         }
 
-        /// <inheritdoc></inheritdoc>
-        public async Task EditAsync(PostViewModel model)
+        public async Task EditAsync(PostFormModel model)
         {
             var post = await this.repository.GetByIdAsync<Post>(model.Id);
+
+            if (post == null)
+            {
+                return;
+            }
 
             post.Title = model.Title;
             post.Content = model.Content;
@@ -85,14 +87,13 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        /// <inheritdoc></inheritdoc>
         public async Task DeleteAsync(Guid id)
         {
             var post = await this.repository.GetByIdAsync<Post>(id);
 
             if (post == null)
             {
-                throw new InvalidCastException(); // might need fix
+                return;
             } 
 
             post.IsDeleted = true;

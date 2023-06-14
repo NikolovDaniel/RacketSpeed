@@ -45,14 +45,14 @@ namespace RacketSpeed.Infrastructure.Data
                 .WithOne(r => r.User)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //Seeding the relation between our user and role to AspNetUserRoles table
-            builder.Entity<IdentityRole>()
-                .HasData(new IdentityRole
-                {
-                    Id = new Guid().ToString(),
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
-                });
+            ////Seeding the relation between our user and role to AspNetUserRoles table
+            //builder.Entity<IdentityRole>()
+            //    .HasData(new IdentityRole
+            //    {
+            //        Id = new Guid().ToString(),
+            //        Name = "Administrator",
+            //        NormalizedName = "ADMINISTRATOR"
+            //    });
 
 
             base.OnModelCreating(builder);

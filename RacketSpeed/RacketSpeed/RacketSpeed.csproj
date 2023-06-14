@@ -32,10 +32,14 @@
   <ItemGroup>
     <None Remove="Views\News\" />
     <None Remove="Views\Booking\" />
+    <None Remove="Views\Coach\" />
+    <None Remove="TestStrings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\News\" />
     <Folder Include="Views\Booking\" />
+    <Folder Include="Views\Coach\" />
+    <Folder Include="TestStrings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Achievements\Achievements\Add.cshtml" />

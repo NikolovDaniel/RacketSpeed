@@ -9,10 +9,19 @@ namespace RacketSpeed.Core.Models.Post
     /// </summary>
     public class PostViewModel
     {
+        /// <summary>
+        /// Identificator.
+        /// </summary>
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// Title of the post.
+        /// </summary>
         public string Title { get; set; } = null!;
 
+        /// <summary>
+        /// Content of the post.
+        /// </summary>
         public string Content { get; set; } = null!;
     }
 }

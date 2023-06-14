@@ -1,18 +1,17 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using RacketSpeed.Infrastructure.Utilities;
+using System.ComponentModel.DataAnnotations;
 
-namespace RacketSpeed.Infrastructure.Data.Entities
+namespace RacketSpeed.Core.Models.Player
 {
     /// <summary>
-    /// Player.
+    /// Player form model, holds validation for CRUD operations.
     /// </summary>
-    public class Player
-    {
+    public class PlayerFormModel
+	{
         /// <summary>
         /// Identificator.
         /// </summary>
-        [Key]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -57,10 +56,6 @@ namespace RacketSpeed.Infrastructure.Data.Entities
             ErrorMessage = DataConstants.PlayerBiographyErrorMessage)]
         public string Biography { get; set; } = null!;
 
-        /// <summary>
-        /// Delete flag.
-        /// </summary>
-        public bool IsDeleted { get; set; } = false;
     }
 }
 

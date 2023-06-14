@@ -1,0 +1,22 @@
+﻿@model ICollection<PostViewModel>
+
+<a asp-controller="News" asp-action="Add" style="width:100%;" class="btn btn-lg btn-primary btn-block">Add a Post</a>
+<hr />
+<h2 class="text-center">Recent News</h2>
+<div class="row row-cols-auto mt-5">
+    @foreach (var post in Model)
+    {
+        <div class="col col-md-6 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">@post.Title</h3>
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-primary">Details</a>
+                    <a asp-controller="News" asp-action="Edit" asp-route-postId="@post.Id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="News" asp-action="Delete" asp-route-postId="@post.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
