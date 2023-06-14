@@ -23,14 +23,14 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to add an Entity to the Database.
         /// </summary>
-        /// <param name="model">Post View Model.</param>
-        Task AddAsync(PostViewModel model);
+        /// <param name="model">Post Form Model.</param>
+        Task AddAsync(PostFormModel model);
 
         /// <summary>
         /// Async method to Edit an Entity.
         /// </summary>
-        /// <param name="model">Post View Model.</param>
-        Task EditAsync(PostViewModel model);
+        /// <param name="model">Post Form Model.</param>
+        Task EditAsync(PostFormModel model);
 
         /// <summary>
         /// Async method to Delete an Entity.
