@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
 using RacketSpeed.Infrastructure.Utilities;
+using System.ComponentModel.DataAnnotations;
 
-namespace RacketSpeed.Infrastructure.Data.Entities
+namespace RacketSpeed.Core.Models.Achievement
 {
     /// <summary>
-    /// Achievement.
+    /// Achievement form model, holds validation for CRUD operations.
     /// </summary>
-    public class Achievement
-    {
+    public class AchievementFormModel
+	{
         /// <summary>
         /// Identificator.
         /// </summary>
-        [Key]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -38,10 +38,6 @@ namespace RacketSpeed.Infrastructure.Data.Entities
             ErrorMessage = DataConstants.AchievementContentErrorMessage)]
         public string Content { get; set; } = null!;
 
-        /// <summary>
-        /// Delete flag.
-        /// </summary>
-        public bool IsDeleted { get; set; }
     }
 }
 

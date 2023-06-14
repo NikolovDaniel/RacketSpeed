@@ -3,6 +3,9 @@ using RacketSpeed.Infrastructure.Utilities;
 
 namespace RacketSpeed.Core.Models.Post
 {
+    /// <summary>
+    /// Post form model, holds validation for CRUD operations.
+    /// </summary>
     public class PostFormModel
 	{
         /// <summary>
