@@ -1,23 +1,23 @@
-﻿@model ICollection<PlayerViewModel>
+﻿@model ICollection<CoachViewModel>
 
 @if (User?.IsInRole("Administrator") ?? false)
 {
-    <a role="button">Add new Player</a>
+    <a role="button">Add new Coach</a>
 }
 
 @if (Model.Count > 0)
 {
-    foreach (var player in Model)
+    foreach (var coach in Model)
     {
         <div class="row">
             <div class="card">
                 <div class="card-title">
-                    @player.FirstName @player.LastName @player.BirthDate.ToShortDateString()
+                    @coach.FirstName @coach.LastName
                 </div>
                 <div class="card-body">
-                    @player.Biography
+                    @coach.Biography
                 </div>
-                @if (Context.User.IsInRole("Administrator"))
+                @if (User?.IsInRole("Administrator") ?? false)
                 {
                     <div class="card-footer">
                         <a role="button">Edit</a>
@@ -30,11 +30,12 @@
                         <a role="button">Details</a>
                     </div>
                 }
+                 
             </div>
         </div>
     }
 }
 else
 {
-    <p>There are no players!</p>
+    <p>There are no coaches!</p>
 }

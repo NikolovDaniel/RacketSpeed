@@ -24,9 +24,9 @@ namespace RacketSpeed.Infrastructure.Utilities
         public const int AchievementLocationMaxLength = 100;
         public const string AchievementLocationErrorMessage = "Location should be between 3 and 100 characters.";
 
-        public const int AchievementContentMinLength = 30;
-        public const int AchievementContentMaxLength = 1000;
-        public const string AchievementContentErrorMessage = "Content should be between 30 and 1000 characters.";
+        public const int AchievementContentMinLength = 5;
+        public const int AchievementContentMaxLength = 100;
+        public const string AchievementContentErrorMessage = "Content should be between 5 and 100 characters.";
 
         /// <summary>
         /// Data constants for Player Entity.

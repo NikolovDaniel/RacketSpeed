@@ -2,33 +2,36 @@
 
 @if (User?.IsInRole("Administrator") ?? false)
 {
-    <a role="button">Add new Post</a>
+    ViewData["Title"] = "News (Admin)";
+    @await Html.PartialAsync(@"~/Views/Shared/_NewsAdminPartial.cshtml", Model);
 }
-
-@if (Model.Count > 0)
+else
 {
-    foreach (var post in Model)
+    @if (Model.Count > 0)
     {
-        <div class="row">
-            <div class="card">
-                <div class="card-title">
-                    @post.Title
-                </div>
-                <div class="card-body">
-                    @post.Content
-                </div>
-                @if (User?.IsInRole("Administrator") ?? false)
-                {
+        foreach (var post in Model)
+        {
+            <div class="row">
+                <div class="card">
+                    <div class="card-title">
+                        @post.Title
+                    </div>
+                    <div class="card-body">
+                        @post.Content
+                    </div>
+                    @if (User?.IsInRole("Administrator") ?? false)
+                    {
                         <div class="card-footer">
                             <a role="button">Edit</a>
                             <a role="button">Delete</a>
                         </div>
-                }
+                    }
+                </div>
             </div>
-        </div>
+        }
     }
-}
-else
-{
-    <p>There are no posts!</p>
+    else
+    {
+        <p>There are no posts!</p>
+    }
 }
