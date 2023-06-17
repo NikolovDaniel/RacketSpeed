@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
 	/// <summary>
-	/// Court.
+	/// Court Entity.
 	/// </summary>
 	public class Court
 	{

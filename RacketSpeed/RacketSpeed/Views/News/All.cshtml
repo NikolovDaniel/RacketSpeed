@@ -19,13 +19,6 @@ else
                     <div class="card-body">
                         @post.Content
                     </div>
-                    @if (User?.IsInRole("Administrator") ?? false)
-                    {
-                        <div class="card-footer">
-                            <a role="button">Edit</a>
-                            <a role="button">Delete</a>
-                        </div>
-                    }
                 </div>
             </div>
         }
