@@ -39,35 +39,7 @@ namespace RacketSpeed.Controllers
         {
             var posts = await postService.AllAsync();
 
-            var models = new List<PostViewModel>()
-            {
-                new PostViewModel()
-                {
-                   Id = Guid.NewGuid(),
-                   Title = TestStrings.TestStrings.PostTitle,
-                   Content = TestStrings.TestStrings.PostContent
-                },
-                new PostViewModel()
-                {
-                   Id = Guid.NewGuid(),
-                   Title = TestStrings.TestStrings.PostTitle,
-                   Content = TestStrings.TestStrings.PostContent
-                },
-                new PostViewModel()
-                {
-                   Id = Guid.NewGuid(),
-                   Title = TestStrings.TestStrings.PostTitle,
-                   Content = TestStrings.TestStrings.PostContent
-                },
-                new PostViewModel()
-                {
-                   Id = Guid.NewGuid(),
-                   Title = TestStrings.TestStrings.PostTitle,
-                   Content = TestStrings.TestStrings.PostContent
-                }
-            };
-
-            return View(models);
+            return View(posts);
         }
 
         /// <summary>
@@ -111,9 +83,9 @@ namespace RacketSpeed.Controllers
         /// <param name="id">Identificator for Post Entity.</param>
         /// <returns>/News/Edit/Id Page.</returns>
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid postId)
         {
-            var post = await this.postService.GetByIdAsync(id);
+            var post = await this.postService.GetByIdAsync(postId);
 
             if (post == null)
             {
@@ -164,6 +136,24 @@ namespace RacketSpeed.Controllers
             await this.postService.DeleteAsync(postId);
 
             return RedirectToAction("All", "News");
+        }
+
+        /// <summary>
+        /// Display a /News/Details/Id Page.
+        /// </summary>
+        /// <param name="postId">Identificator for Post Entity.</param>
+        /// <returns>/News/Details/Id Page.</returns>
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid postId)
+        {
+            var post = await this.postService.GetByIdAsync(postId);
+
+            if (post == null)
+            {
+                return RedirectToAction("All", "News");
+            }
+
+            return View(post);
         }
     }
 }

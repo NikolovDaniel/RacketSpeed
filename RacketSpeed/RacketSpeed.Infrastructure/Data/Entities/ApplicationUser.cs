@@ -6,7 +6,7 @@ using RacketSpeed.Infrastructure.Utilities;
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
     /// <summary>
-    /// Applicaiton User which extends IdentityUser.
+    /// Applicaiton User Entity which extends IdentityUser.
     /// </summary>
     public class ApplicationUser : IdentityUser
     {

@@ -4,7 +4,7 @@ using RacketSpeed.Infrastructure.Utilities;
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
     /// <summary>
-    /// Achievement.
+    /// Achievement Entity.
     /// </summary>
     public class Achievement
     {

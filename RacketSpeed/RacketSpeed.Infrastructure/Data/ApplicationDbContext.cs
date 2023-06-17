@@ -28,6 +28,10 @@ namespace RacketSpeed.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // Fluent API to create composite key for mapping table.
+            builder.Entity<PostImageUrl>()
+                .HasKey(piu => new { piu.ImageUrlId, piu.PostId });
+
             // Fluent API to configure Court and Schedule Entities for Many-To-Many.
             builder.Entity<CourtSchedule>()
                .HasOne(ur => ur.Court)

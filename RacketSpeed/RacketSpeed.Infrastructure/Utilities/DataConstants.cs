@@ -10,8 +10,8 @@ namespace RacketSpeed.Infrastructure.Utilities
         /// Data constants for Post Entity.
         /// </summary>
         public const int PostTitleMinLength = 5;
-        public const int PostTitleMaxLength = 20;
-        public const string PostTitleErrorMessage = "Title should be between 5 and 20 characters.";
+        public const int PostTitleMaxLength = 50;
+        public const string PostTitleErrorMessage = "Title should be between 5 and 50 characters.";
 
         public const int PostContentMinLength = 30;
         public const int PostContentMaxLength = 1000;
