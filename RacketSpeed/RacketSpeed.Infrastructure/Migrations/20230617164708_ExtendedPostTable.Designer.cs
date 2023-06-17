@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RacketSpeed.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RacketSpeed.Infrastructure.Data;
 namespace RacketSpeed.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230617164708_ExtendedPostTable")]
+    partial class ExtendedPostTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,21 +327,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.ToTable("CourtSchedules");
                 });
 
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.ImageUrl", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ImageUrl");
-                });
-
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Player", b =>
                 {
                     b.Property<Guid>("Id")
@@ -397,21 +384,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PostImageUrl", b =>
-                {
-                    b.Property<Guid>("ImageUrlId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ImageUrlId", "PostId");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("PostImageUrl");
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Reservation", b =>
@@ -568,25 +540,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.Navigation("Schedule");
                 });
 
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PostImageUrl", b =>
-                {
-                    b.HasOne("RacketSpeed.Infrastructure.Data.Entities.ImageUrl", "ImageUrl")
-                        .WithMany("PostImageUrls")
-                        .HasForeignKey("ImageUrlId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RacketSpeed.Infrastructure.Data.Entities.Post", "Post")
-                        .WithMany("PostImageUrls")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ImageUrl");
-
-                    b.Navigation("Post");
-                });
-
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Reservation", b =>
                 {
                     b.HasOne("RacketSpeed.Infrastructure.Data.Entities.CourtSchedule", "CourtSchedule")
@@ -630,16 +583,6 @@ namespace RacketSpeed.Infrastructure.Migrations
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Court", b =>
                 {
                     b.Navigation("CourtSchedules");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.ImageUrl", b =>
-                {
-                    b.Navigation("PostImageUrls");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Post", b =>
-                {
-                    b.Navigation("PostImageUrls");
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Schedule", b =>

@@ -5,7 +5,7 @@ using RacketSpeed.Infrastructure.Utilities;
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
 	/// <summary>
-	/// Post.
+	/// Post Entity.
 	/// </summary>
 	public class Post
 	{
@@ -32,6 +32,11 @@ namespace RacketSpeed.Infrastructure.Data.Entities
             MinimumLength = DataConstants.PostContentMinLength,
             ErrorMessage = DataConstants.PostContentErrorMessage)]
         public string Content { get; set; } = null!;
+
+		/// <summary>
+		/// Collection of PostImageUrl.
+		/// </summary>
+		public ICollection<PostImageUrl> PostImageUrls { get; set; } = null!;
 
 		/// <summary>
 		/// Delete flag.

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
 	/// <summary>
-	/// Reservation.
+	/// Reservation Entity.
 	/// </summary>
 	public class Reservation
 	{
