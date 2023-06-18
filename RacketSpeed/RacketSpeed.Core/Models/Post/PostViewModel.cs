@@ -23,5 +23,10 @@ namespace RacketSpeed.Core.Models.Post
         /// Content of the post.
         /// </summary>
         public string Content { get; set; } = null!;
+
+        /// <summary>
+        /// Collection of ImageUrl.
+        /// </summary>
+        public string[] ImageUrls { get; set; } = null!;
     }
 }

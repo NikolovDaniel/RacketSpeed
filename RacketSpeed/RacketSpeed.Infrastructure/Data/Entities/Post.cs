@@ -34,9 +34,9 @@ namespace RacketSpeed.Infrastructure.Data.Entities
         public string Content { get; set; } = null!;
 
 		/// <summary>
-		/// Collection of PostImageUrl.
+		/// Collection of ImageUrl.
 		/// </summary>
-		public ICollection<PostImageUrl> PostImageUrls { get; set; } = null!;
+		public ICollection<ImageUrl> ImageUrls { get; set; } = null!;
 
 		/// <summary>
 		/// Delete flag.

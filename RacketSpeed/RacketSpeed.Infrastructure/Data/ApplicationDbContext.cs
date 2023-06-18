@@ -25,12 +25,12 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<Reservation> Reservations { get; set; } = null!;
         public DbSet<Schedule> Schedules { get; set; } = null!;
         public DbSet<Training> Trainings { get; set; } = null!;
+        public DbSet<ImageUrl> ImageUrls { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            // Fluent API to create composite key for mapping table.
-            builder.Entity<PostImageUrl>()
-                .HasKey(piu => new { piu.ImageUrlId, piu.PostId });
+            // Fluent API to configure a Post to always come with its ImageUrls.
+            builder.Entity<Post>().Navigation(img => img.ImageUrls).AutoInclude();
 
             // Fluent API to configure Court and Schedule Entities for Many-To-Many.
             builder.Entity<CourtSchedule>()
