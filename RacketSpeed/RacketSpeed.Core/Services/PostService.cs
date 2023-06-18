@@ -10,7 +10,7 @@ namespace RacketSpeed.Core.Services
     /// Service class for Post Entity.
     /// </summary>
     public class PostService : IPostService
-	{
+    {
         /// <summary>
         /// Repository.
         /// </summary>
@@ -21,19 +21,30 @@ namespace RacketSpeed.Core.Services
         /// </summary>
         /// <param name="repository"></param>
 		public PostService(IRepository repository)
-		{
+        {
             this.repository = repository;
-		}
+        }
 
         public async Task AddAsync(PostFormModel model)
         {
+            if (model.ImageUrls == null)
+            {
+                return;
+            }
+
             var post = new Post()
             {
                 Title = model.Title,
                 Content = model.Content,
-                IsDeleted = false
+                IsDeleted = false,
+                ImageUrls = model.ImageUrls
+                .Select(img => new ImageUrl()
+                {
+                    Url = img
+                })
+                .ToList(),
             };
-
+          
             await this.repository.AddAsync<Post>(post);
             await this.repository.SaveChangesAsync();
         }
@@ -48,7 +59,8 @@ namespace RacketSpeed.Core.Services
                 {
                     Id = p.Id,
                     Title = p.Title,
-                   Content = p.Content
+                    Content = p.Content,
+                    ImageUrls = p.ImageUrls.Select(img => img.Url).ToArray()
                 })
                 .ToListAsync();
         }
@@ -66,7 +78,8 @@ namespace RacketSpeed.Core.Services
             {
                 Id = post.Id,
                 Title = post.Title,
-                Content = post.Content
+                Content = post.Content,
+                ImageUrls = post.ImageUrls.Select(img => img.Url).ToArray()
             };
 
             return model;
@@ -74,6 +87,11 @@ namespace RacketSpeed.Core.Services
 
         public async Task EditAsync(PostFormModel model)
         {
+            if (model.ImageUrls == null)
+            {
+                return;
+            }
+
             var post = await this.repository.GetByIdAsync<Post>(model.Id);
 
             if (post == null)
@@ -83,6 +101,18 @@ namespace RacketSpeed.Core.Services
 
             post.Title = model.Title;
             post.Content = model.Content;
+            var images = model.ImageUrls.Select(img => new ImageUrl() { Url = img }).ToList();
+
+            int counter = 0;
+
+            foreach (var item in post.ImageUrls)
+            {
+                if (item.Url != images[counter].Url)
+                {
+                    item.Url = images[counter].Url;
+                }
+                counter++;
+            }
 
             await this.repository.SaveChangesAsync();
         }
@@ -94,7 +124,7 @@ namespace RacketSpeed.Core.Services
             if (post == null)
             {
                 return;
-            } 
+            }
 
             post.IsDeleted = true;
 

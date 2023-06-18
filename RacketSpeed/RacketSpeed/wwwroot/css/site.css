@@ -16,3 +16,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.titleRow {
+    background-color: red;
+    border-radius: 25px;
+}
+
+.contentRow {
+    background-color: black;
+    border-radius: 25px;
+}
+
+.imagesRow {
+    padding: 10px 0px 10px 0px;
+    background-color: blue;
+    border-radius: 25px;
+}
+

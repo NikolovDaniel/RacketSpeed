@@ -13,9 +13,9 @@ namespace RacketSpeed.Infrastructure.Utilities
         public const int PostTitleMaxLength = 50;
         public const string PostTitleErrorMessage = "Title should be between 5 and 50 characters.";
 
-        public const int PostContentMinLength = 30;
+        public const int PostContentMinLength = 100;
         public const int PostContentMaxLength = 1000;
-        public const string PostContentErrorMessage = "Content should be between 30 and 1000 characters.";
+        public const string PostContentErrorMessage = "Content should be between 100 and 1000 characters.";
 
         /// <summary>
         /// Data constants for Achievement Entity.

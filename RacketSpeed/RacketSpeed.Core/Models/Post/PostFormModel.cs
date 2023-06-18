@@ -30,6 +30,11 @@ namespace RacketSpeed.Core.Models.Post
             MinimumLength = DataConstants.PostContentMinLength,
             ErrorMessage = DataConstants.PostContentErrorMessage)]
         public string Content { get; set; } = null!;
+
+        /// <summary>
+        /// Collection of image urls.
+        /// </summary>
+        public string[] ImageUrls { get; set; }
     }
 }
 

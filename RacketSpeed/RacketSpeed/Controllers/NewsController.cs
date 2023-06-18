@@ -72,6 +72,13 @@ namespace RacketSpeed.Controllers
                 return View(model);
             }
 
+            if (model.ImageUrls.Contains(null))
+            {
+                ModelState.AddModelError("UrlEmpty", "All URLs should be filled.");
+
+                return View(model);
+            }
+
             await this.postService.AddAsync(model);
 
             return RedirectToAction("All", "News");
@@ -96,7 +103,8 @@ namespace RacketSpeed.Controllers
             {
                 Id = post.Id,
                 Title = post.Title,
-                Content = post.Content
+                Content = post.Content,
+                ImageUrls = post.ImageUrls
             };
 
             return View(model);
