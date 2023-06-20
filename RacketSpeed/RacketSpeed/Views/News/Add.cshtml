@@ -4,11 +4,11 @@
     ViewData["Title"] = "Add News (Admin)";
 }
 
-<h2 class="text-center">Add new Post</h2>
 <div class="container">
     <div class="row justify-content-center">
-        <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
-        <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+        <div class="col-12 col-md-8">
+            <h4 class="text-center">Add new Post</h4>
+            <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
             <form asp-controller="News" asp-action="Add" method="post">
                 <div class="mb-3">
                     <div class="form-floating mb-3">
@@ -22,7 +22,7 @@
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Title Image Url #1
                                 </button>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                     Body Image Url #2
                                 </button>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="true"
                                         aria-controls="collapseThree">
                                     Body Image Url #3
@@ -80,14 +80,30 @@
                 <div class="mb-3">
                     <label class="fs-5">Content</label>
                     <textarea asp-for="@Model.Content" class="form-control" aria-required="true"
-                              rows="5"></textarea>
+                              rows="10"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-warning mb-2 w-100 p-3 fw-bold text-white" type="submit" value="Add"
-                           style="background-color: #5777E9;" />
+                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Add" />
                 </div>
             </form>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <h4>
+                Fast buttons
+            </h4>
+            <div class="fastButtons">
+                <a asp-controller="News" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Post</a>
+                <hr>
+                <a asp-controller="Achievement" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Achievement</a>
+                <hr>
+                <a asp-controller="Player" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Player</a>
+                <hr>
+                <a asp-controller="Coach" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Coach</a>
+                <hr>
+                <a asp-controller="User" asp-action="UserReservations" class="form-control btn btn-large btn-danger fs-5">User Reservations</a>
+                <hr>
+            </div>
         </div>
     </div>
 </div>
