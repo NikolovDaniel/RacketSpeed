@@ -10,7 +10,7 @@
         <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6">
             <form asp-controller="News" asp-action="Edit" method="post">
-                <input type="hidden" asp-for="@Model.Id"/>
+                <input type="hidden" asp-for="@Model.Id" />
                 <div class="mb-3">
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.Title" placeholder="Title" class="form-control" aria-required="true"
@@ -23,7 +23,7 @@
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Title Image Url #1
                                 </button>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                     Body Image Url #2
                                 </button>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="true"
                                         aria-controls="collapseThree">
                                     Body Image Url #3
@@ -81,12 +81,11 @@
                 <div class="mb-3">
                     <label class="fs-5">Content</label>
                     <textarea asp-for="@Model.Content" class="form-control" aria-required="true"
-                              rows="5"></textarea>
+                              rows="10"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-warning mb-2 w-100 p-3 fw-bold text-white" type="submit" value="Edit"
-                           style="background-color: #5777E9;" />
+                    <input class="btn btn-danger mb-2 w-100 p-3 fw-bold text-white" type="submit" value="Edit" />
                 </div>
             </form>
         </div>
