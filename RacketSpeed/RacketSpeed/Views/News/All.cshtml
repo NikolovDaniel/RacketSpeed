@@ -13,29 +13,60 @@ else
         <section>
             <h2 class="text-center">News</h2>
             <div class="container">
-                <div class="row justify-content-center text-center">
-                    @foreach (var post in Model)
+                @{
+                    int i = 1;
+
+                    <hr />
+                    foreach (var post in Model)
                     {
-                        <div class="col-12 col-sm-6 col-lg-5 g-2">
-                            <div class="card h-100" style="background-color: #F04152;">
-                                <div class="ratio ratio-4x3">
-                                    <img class="card-img-top" src="@post.ImageUrls[0]" alt="Title Image">
+                        <div class="row row-cols-auto mt-5">
+                            @if (i % 2 == 1)
+                            {
+                                <div class="col-12 col-lg-4">
+                                    <div class="image ratio ratio-4x3">
+                                        <img class="img-fluid rounded" src="@post.ImageUrls[0]" />
+                                    </div>
                                 </div>
-                                <div class="card-title text-center mt-1">
-                                    <h5>@post.Title</h5>
+                                <div class="d-flex flex-column col-12 col-lg-8 align-items-center mt-2 mt-lg-0">
+                                    <div class="title shadow-sm">
+                                        <p class="fw-bold text-center fs-4">@post.Title</p>
+                                    </div>
+                                    <div class="content">
+                                        <p class="lead text-center">
+                                            @post.Content.Substring(0, 400)...
+                                        </p>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-link">Read More</a>
+                                    </div>
                                 </div>
-                                <div class="card-body" style="background-color: #0E121B;">
-                                    <p class="card-text text-white">
-                                        @post.Content.Substring(0, post.Content.Length > 100 ? 100 : post.Content.Length)...
-                                    </p>
+                            }
+                            else
+                            {
+                                <div class="d-flex flex-column col-12 col-lg-8">
+                                    <div class="title shadow-sm">
+                                        <p class="fw-bold text-center fs-4">@post.Title</p>
+                                    </div>
+                                    <div class="content">
+                                        <p class="lead text-center">
+                                            @post.Content.Substring(0, 400)...
+                                        </p>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-link">Read More</a>
+                                    </div>
                                 </div>
-                                <div class="card-footer" style="background-color: #0E121B;">
-                                    <button asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn bg-white">Read More</button>
+                                <div class="col-12 col-lg-4 mt-2">
+                                    <div class="image ratio ratio-4x3">
+                                        <img class="img-fluid rounded" src="@post.ImageUrls[0]" />
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
+                        <hr />
+                        i++;
                     }
-                </div>
+                }
             </div>
         </section>
     }

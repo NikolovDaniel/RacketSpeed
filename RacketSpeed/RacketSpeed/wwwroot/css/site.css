@@ -1,35 +1,63 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #F4F9FF;
+    margin-bottom: 60px;
 }
 
+/*News/Details/{Id} Page CSS*/
 .titleRow {
-    background-color: red;
+    padding: 10px 0px 5px 0px;
     border-radius: 25px;
 }
 
+    .titleRow p {
+        font-family: Courier New, Courier, monospace;
+    }
+
 .contentRow {
-    background-color: black;
+    white-space: pre-wrap;
     border-radius: 25px;
 }
 
 .imagesRow {
-    padding: 10px 0px 10px 0px;
-    background-color: blue;
+    margin: 0px 10px 0px 0px;
+    padding: 10px 0px 10px 04px;
     border-radius: 25px;
 }
+
+/*News/All Page CSS*/
+.title {
+    background-color: #F5F7FD;
+    border-radius: 25px;
+    padding: 5px 20px 5px 20px;
+}
+
+    .title p {
+        font-family: Courier New, Courier, monospace;
+    }
+
+.content {
+    margin-top: 5px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 25px;
+}
+
+p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 
