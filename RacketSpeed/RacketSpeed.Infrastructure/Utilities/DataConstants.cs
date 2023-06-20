@@ -9,13 +9,13 @@ namespace RacketSpeed.Infrastructure.Utilities
         /// <summary>
         /// Data constants for Post Entity.
         /// </summary>
-        public const int PostTitleMinLength = 5;
-        public const int PostTitleMaxLength = 50;
-        public const string PostTitleErrorMessage = "Title should be between 5 and 50 characters.";
+        public const int PostTitleMinLength = 100;
+        public const int PostTitleMaxLength = 200;
+        public const string PostTitleErrorMessage = "Title should be between 100 and 200 characters.";
 
-        public const int PostContentMinLength = 100;
-        public const int PostContentMaxLength = 1000;
-        public const string PostContentErrorMessage = "Content should be between 100 and 1000 characters.";
+        public const int PostContentMinLength = 800;
+        public const int PostContentMaxLength = 5000;
+        public const string PostContentErrorMessage = "Content should be between 800 and 5000 characters.";
 
         /// <summary>
         /// Data constants for Achievement Entity.
@@ -24,9 +24,9 @@ namespace RacketSpeed.Infrastructure.Utilities
         public const int AchievementLocationMaxLength = 100;
         public const string AchievementLocationErrorMessage = "Location should be between 3 and 100 characters.";
 
-        public const int AchievementContentMinLength = 5;
-        public const int AchievementContentMaxLength = 100;
-        public const string AchievementContentErrorMessage = "Content should be between 5 and 100 characters.";
+        public const int AchievementContentMinLength = 50;
+        public const int AchievementContentMaxLength = 500;
+        public const string AchievementContentErrorMessage = "Content should be between 50 and 500 characters.";
 
         /// <summary>
         /// Data constants for Player Entity.

@@ -152,6 +152,7 @@ namespace RacketSpeed.Controllers
         /// <param name="postId">Identificator for Post Entity.</param>
         /// <returns>/News/Details/Id Page.</returns>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(Guid postId)
         {
             var post = await this.postService.GetByIdAsync(postId);
