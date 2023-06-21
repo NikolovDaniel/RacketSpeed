@@ -17,8 +17,8 @@ namespace RacketSpeed.Core.Contracts
         /// Async method to retrieve a single Player.
         /// </summary>
         /// <param name="id">Entity Identificator.</param>
-        /// <returns>PlayerViewModel.</returns>
-        Task<PlayerViewModel> GetByIdAsync(Guid id);
+        /// <returns>PlayerDetailsViewModel.</returns>
+        Task<PlayerFormModel> GetByIdAsync(Guid id);
 
         /// <summary>
         /// Async method to add an Entity to the Database.

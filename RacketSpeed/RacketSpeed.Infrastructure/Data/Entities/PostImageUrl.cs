@@ -1,30 +1,33 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
-	/// <summary>
-	/// Mapping class for Post and ImageUrl.
-	/// </summary>
-	public class PostImageUrl
-	{
-		/// <summary>
-		/// Identificator for Post.
-		/// </summary>
-		public Guid PostId { get; set; }
+    /// <summary>
+    /// PostImageUrl Entity.
+    /// </summary>
+    public class PostImageUrl
+    {
+        /// <summary>
+        /// Identificator.
+        /// </summary>
+        public Guid Id { get; set; }
 
-		/// <summary>
-		/// Navigation property for Post.
-		/// </summary>
-		public Post Post { get; set; } = null!;
+        /// <summary>
+        /// Url for image resource.
+        /// </summary>
+        [Required]
+        public string Url { get; set; } = null!;
 
-		/// <summary>
-		/// Identificator for ImageUrl.
-		/// </summary>
-		public Guid ImageUrlId { get; set; }
+        /// <summary>
+        /// Foreign key for Post.
+        /// </summary>
+        [ForeignKey(nameof(Post))]
+        public Guid PostId { get; set; }
 
-		/// <summary>
-		/// Navigation property for ImageUrl.
-		/// </summary>
-		public ImageUrl ImageUrl { get; set; } = null!;
-	}
+        /// <summary>
+        /// Navigation property.
+        /// </summary>
+        public Post Post { get; set; } = null!;
+    }
 }
-
