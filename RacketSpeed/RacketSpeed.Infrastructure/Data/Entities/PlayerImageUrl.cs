@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
     /// <summary>
-    /// ImageUrl Entity.
+    /// PlayerImageUrl Entity.
     /// </summary>
-    public class ImageUrl
+    public class PlayerImageUrl
     {
         /// <summary>
         /// Identificator.
@@ -20,14 +21,15 @@ namespace RacketSpeed.Infrastructure.Data.Entities
         public string Url { get; set; } = null!;
 
         /// <summary>
-        /// Foreign key for Post.
+        /// Foreign key for Player.
         /// </summary>
-        [ForeignKey(nameof(Post))]
-        public Guid PostId { get; set; }
+        [ForeignKey(nameof(Player))]
+        public Guid PlayerId { get; set; }
 
         /// <summary>
         /// Navigation property.
         /// </summary>
-        public Post Post { get; set; } = null!;
+        public Player Player { get; set; } = null!;
     }
 }
+

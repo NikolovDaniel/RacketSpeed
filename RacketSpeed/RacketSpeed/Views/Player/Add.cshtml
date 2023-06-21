@@ -1,1 +1,127 @@
-﻿
+﻿@model PlayerFormModel
+
+@{
+    ViewData["Title"] = "Add Player (Admin)";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <h4 class="text-center">Add new Player</h4>
+            <form asp-controller="Player" asp-action="Add" method="post">
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.FirstName" placeholder="FirstName" class="form-control" aria-required="true"
+                               id="firstNameFloatingInput" />
+                        <label for="firstNameFloatingInput" class="form-label-add-edit">First Name</label>
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.LastName" placeholder="LastName" class="form-control" aria-required="true"
+                               id="lastNameFloatingInput" />
+                        <label for="lastNameFloatingInput" class="form-label-add-edit">Last Name</label>
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating">
+                            @{
+                                Model.BirthDate = DateTime.Now;
+                            }
+                            <input asp-for="@Model.BirthDate" placeholder="BirthDate" class="form-control" aria-required="true"
+                                   type="date" id="birthDateFloatingInput" />
+                            <label for="birthDateFloatingInput" class="form-label-add-edit">Birthdate</label>
+                            <span asp-validation-for="@Model.BirthDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                        <div class="form-floating">
+                            <input asp-for="@Model.BirthPlace" placeholder="BirthPlace" class="form-control" aria-required="true"
+                                   id="birthPlaceFloatingInput" />
+                            <label for="birthPlaceFloatingInput" class="form-label-add-edit">Birth place</label>
+                            <span asp-validation-for="@Model.BirthPlace" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating">
+                            <input asp-for="@Model.Height" placeholder="Height" class="form-control" aria-required="true"
+                                   id="heightFloatingInput" value="" />
+                            <label for="heightFloatingInput" class="form-label-add-edit">Height</label>
+                            <span asp-validation-for="@Model.Height" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                        <div class="form-floating">
+                            <select asp-for="@Model.PlayingHand" class="form-select">
+                                <option value="Right-Handed" selected>Right-Handed</option>
+                                <option value="Left-Handed">Left-Handed</option>
+                            </select>
+                            <label class="form-label-add-edit">Playing Hand</label>
+                            <span asp-validation-for="@Model.PlayingHand" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating">
+                            <input asp-for="@Model.WorldRanking" placeholder="WorldRankig" class="form-control" aria-required="true"
+                                   id="worldRankingFloatingInput" value="" />
+                            <label for="worldRankingFloatingInput" class="form-label-add-edit">World Ranking</label>
+                            <span asp-validation-for="@Model.WorldRanking" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                        <div class="form-floating">
+                            <input asp-for="@Model.NationalRanking" placeholder="NationalRanking" class="form-control" aria-required="true"
+                                   id="nationalRankingFloatingInput" value="" />
+                            <label for="nationalRankingFloatingInput" class="form-label-add-edit">National Ranking</label>
+                            <span asp-validation-for="@Model.NationalRanking" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.ImageUrl" placeholder="ImageUrl" class="form-control" aria-required="true"
+                               id="imageUrlFloatingInput" />
+                        <label for="imageUrlFloatingInput" class="form-label-add-edit">Image Url</label>
+                        <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fs-5">Biography</label>
+                    <textarea asp-for="@Model.Biography" class="form-control" aria-required="true"
+                              rows="10"></textarea>
+                    <span asp-validation-for="Biography" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Add" />
+                </div>
+            </form>
+            <hr />
+        </div>
+        <div class="col-12 col-lg-4 text-center">
+            <h4>
+                Fast buttons
+            </h4>
+            <div class="fastButtons">
+                <a asp-controller="News" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Post</a>
+                <hr>
+                <a asp-controller="Achievement" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Achievement</a>
+                <hr>
+                <a asp-controller="Coach" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Coach</a>
+                <hr>
+                <a asp-controller="User" asp-action="UserReservations" class="form-control btn btn-large btn-danger fs-5">User Reservations</a>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

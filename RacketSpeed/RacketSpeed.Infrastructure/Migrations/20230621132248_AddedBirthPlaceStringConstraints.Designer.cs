@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RacketSpeed.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RacketSpeed.Infrastructure.Data;
 namespace RacketSpeed.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230621132248_AddedBirthPlaceStringConstraints")]
+    partial class AddedBirthPlaceStringConstraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,9 +354,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -365,10 +364,6 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.Property<int>("NationalRanking")
                         .HasColumnType("int");
-
-                    b.Property<string>("PlayingHand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WorldRanking")
                         .HasColumnType("int");

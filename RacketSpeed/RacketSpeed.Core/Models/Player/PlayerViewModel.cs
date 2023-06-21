@@ -20,6 +20,31 @@ namespace RacketSpeed.Core.Models.Player
         public DateTime BirthDate { get; set; }
 
         /// <summary>
+        /// Birth place of the player.
+        /// </summary>
+        public string BirthPlace { get; set; } = null!;
+
+        /// <summary>
+        /// Biography of the player.
+        /// </summary>
+        public string Biography { get; set; } = null!;
+
+        /// <summary>
+        /// Playing hand of the player.
+        /// </summary>
+        public string PlayingHand { get; set; } = null!;
+
+        /// <summary>
+        /// Height of the player.
+        /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        /// Date of when the player has entered the club.
+        /// </summary>
+        public DateTime CreatedOn { get; set; }
+
+        /// <summary>
         /// First name of the player.
         /// </summary>
         public string FirstName { get; set; } = null!;
@@ -32,12 +57,17 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// World Ranking of the player.
         /// </summary>
-        public int Ranking { get; set; }
+        public int WorldRanking { get; set; }
 
         /// <summary>
-        /// Biography of the player.
+        /// National Ranking of the player.
         /// </summary>
-        public string Biography { get; set; } = null!;
+        public int NationalRanking { get; set; }
+
+        /// <summary>
+        /// Player image url.
+        /// </summary>
+        public string ImageUrl { get; set; } = null!;
     }
 }
 
