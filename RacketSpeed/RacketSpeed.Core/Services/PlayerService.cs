@@ -11,7 +11,7 @@ namespace RacketSpeed.Core.Services
     /// Service class for Player Entity.
     /// </summary>
     public class PlayerService : IPlayerService
-	{
+    {
         /// <summary>
         /// Repository.
         /// </summary>
@@ -34,7 +34,16 @@ namespace RacketSpeed.Core.Services
                 LastName = model.LastName,
                 Biography = model.Biography,
                 BirthDate = model.BirthDate,
-                Ranking = model.Ranking
+                BirthPlace = model.BirthPlace,
+                PlayingHand = model.PlayingHand,
+                Height = model.Height,
+                WorldRanking = model.WorldRanking,
+                NationalRanking = model.NationalRanking,
+                CreatedOn = model.CreatedOn,
+                PlayerImageUrl = new PlayerImageUrl()
+                {
+                    Url = model.ImageUrl
+                }
             };
 
             await this.repository.AddAsync<Player>(post);
@@ -52,9 +61,15 @@ namespace RacketSpeed.Core.Services
                     Id = p.Id,
                     FirstName = p.FirstName,
                     LastName = p.LastName,
-                    Biography = p.Biography,
                     BirthDate = p.BirthDate,
-                    Ranking = p.Ranking
+                    BirthPlace = p.BirthPlace,
+                    CreatedOn = p.CreatedOn,
+                    Biography = p.Biography,
+                    WorldRanking = p.WorldRanking,
+                    NationalRanking = p.NationalRanking,
+                    PlayingHand = p.PlayingHand,
+                    Height = p.Height,
+                    ImageUrl = p.PlayerImageUrl.Url
                 })
                 .ToListAsync();
         }
@@ -75,7 +90,7 @@ namespace RacketSpeed.Core.Services
 
         public async Task EditAsync(PlayerFormModel model)
         {
-            var player = await this.repository.GetByIdAsync<Player>(model);
+            var player = await this.repository.GetByIdAsync<Player>(model.Id);
 
             if (player == null)
             {
@@ -84,14 +99,19 @@ namespace RacketSpeed.Core.Services
 
             player.FirstName = model.FirstName;
             player.LastName = model.LastName;
-            player.BirthDate = model.BirthDate;
-            player.Ranking = model.Ranking;
+            player.WorldRanking = model.WorldRanking;
+            player.NationalRanking = model.NationalRanking;
             player.Biography = model.Biography;
+            player.BirthDate = model.BirthDate;
+            player.BirthPlace = model.BirthPlace;
+            player.PlayingHand = model.PlayingHand;
+            player.Height = model.Height;
+            player.PlayerImageUrl.Url = model.ImageUrl;
 
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<PlayerViewModel> GetByIdAsync(Guid id)
+        public async Task<PlayerFormModel> GetByIdAsync(Guid id)
         {
             var player = await this.repository.GetByIdAsync<Player>(id);
 
@@ -100,13 +120,20 @@ namespace RacketSpeed.Core.Services
                 return null;
             }
 
-            var model = new PlayerViewModel()
+            var model = new PlayerFormModel()
             {
+                Id = player.Id,
                 FirstName = player.FirstName,
                 LastName = player.LastName,
                 Biography = player.Biography,
                 BirthDate = player.BirthDate,
-                Ranking = player.Ranking
+                BirthPlace = player.BirthPlace,
+                WorldRanking = player.WorldRanking,
+                Height = player.Height,
+                PlayingHand = player.PlayingHand,
+                NationalRanking = player.NationalRanking,
+                CreatedOn = player.CreatedOn,
+                ImageUrl = player.PlayerImageUrl.Url
             };
 
             return model;

@@ -36,19 +36,6 @@ namespace RacketSpeed.Controllers
         {
             var models = await this.playerService.AllAsync();
 
-
-            models = new List<PlayerViewModel>()
-            {
-                new PlayerViewModel()
-                {
-                    FirstName = "Daniel",
-                    LastName = "Nikolov",
-                    Biography = "I am the best palyer ever the wolrd has seen",
-                    Ranking = 15,
-                    BirthDate = DateTime.Parse("26/08/1998"),
-                }
-            };
-
             return View(models);
         }
 
@@ -72,6 +59,8 @@ namespace RacketSpeed.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(PlayerFormModel model)
         {
+            model.CreatedOn = DateTime.Now;
+
             if (!ModelState.IsValid)
             {
                 foreach (var error in ModelState)
@@ -90,29 +79,19 @@ namespace RacketSpeed.Controllers
         /// <summary>
         /// Displays an /Player/Edit/Id Page.
         /// </summary>
-        /// <param name="id">Identificator for Player Entity.</param>
+        /// <param name="playerId">Identificator for Player Entity.</param>
         /// <returns>/Player/Edit/Id Page.</returns>
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid playerId)
         {
-            var player = await this.playerService.GetByIdAsync(id);
+            var player = await this.playerService.GetByIdAsync(playerId);
 
             if (player == null)
             {
                 return RedirectToAction("All", "Player");
             }
 
-            PlayerFormModel model = new PlayerFormModel()
-            {
-                Id = player.Id,
-                FirstName = player.FirstName,
-                LastName = player.LastName,
-                Biography = player.Biography,
-                BirthDate = player.BirthDate,
-                Ranking = player.Ranking
-            };
-
-            return View(model);
+            return View(player);
         }
 
         /// <summary>
@@ -141,12 +120,12 @@ namespace RacketSpeed.Controllers
         /// <summary>
         /// Deletes an Player Entity.
         /// </summary>
-        /// <param name="id">Identificator for Player Entity.</param>
+        /// <param name="playerId">Identificator for Player Entity.</param>
         /// <returns>/Player/All Page.</returns>
         [HttpPost]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid playerId)
         {
-            await this.playerService.DeleteAsync(id);
+            await this.playerService.DeleteAsync(playerId);
 
             return RedirectToAction("All", "Player");
         }

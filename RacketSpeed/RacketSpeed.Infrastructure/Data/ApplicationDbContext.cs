@@ -25,12 +25,15 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<Reservation> Reservations { get; set; } = null!;
         public DbSet<Schedule> Schedules { get; set; } = null!;
         public DbSet<Training> Trainings { get; set; } = null!;
-        public DbSet<ImageUrl> ImageUrls { get; set; } = null!;
+        public DbSet<PostImageUrl> PostImageUrls { get; set; } = null!;
+        public DbSet<PlayerImageUrl> PlayerImageUrls { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // Fluent API to configure a Player to always come with its ImageUrls.
+            builder.Entity<Player>().Navigation(img => img.PlayerImageUrl).AutoInclude();
             // Fluent API to configure a Post to always come with its ImageUrls.
-            builder.Entity<Post>().Navigation(img => img.ImageUrls).AutoInclude();
+            builder.Entity<Post>().Navigation(img => img.PostImageUrls).AutoInclude();
 
             // Fluent API to configure Court and Schedule Entities for Many-To-Many.
             builder.Entity<CourtSchedule>()
