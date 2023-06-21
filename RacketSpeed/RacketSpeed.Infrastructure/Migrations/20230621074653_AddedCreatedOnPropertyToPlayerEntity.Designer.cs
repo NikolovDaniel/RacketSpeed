@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RacketSpeed.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RacketSpeed.Infrastructure.Data;
 namespace RacketSpeed.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230621074653_AddedCreatedOnPropertyToPlayerEntity")]
+    partial class AddedCreatedOnPropertyToPlayerEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,6 +327,26 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.ToTable("CourtSchedules");
                 });
 
+            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.ImageUrl", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("ImageUrls");
+                });
+
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Player", b =>
                 {
                     b.Property<Guid>("Id")
@@ -339,11 +361,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("BirthPlace")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -351,9 +368,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -363,40 +377,12 @@ namespace RacketSpeed.Infrastructure.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("NationalRanking")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PlayingHand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("WorldRanking")
+                    b.Property<int>("Ranking")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PlayerImageUrl", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PlayerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
-
-                    b.ToTable("PlayerImageUrls");
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Post", b =>
@@ -421,26 +407,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PostImageUrl", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("PostImageUrls");
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Reservation", b =>
@@ -597,21 +563,10 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.Navigation("Schedule");
                 });
 
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PlayerImageUrl", b =>
-                {
-                    b.HasOne("RacketSpeed.Infrastructure.Data.Entities.Player", "Player")
-                        .WithOne("PlayerImageUrl")
-                        .HasForeignKey("RacketSpeed.Infrastructure.Data.Entities.PlayerImageUrl", "PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PostImageUrl", b =>
+            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.ImageUrl", b =>
                 {
                     b.HasOne("RacketSpeed.Infrastructure.Data.Entities.Post", "Post")
-                        .WithMany("PostImageUrls")
+                        .WithMany("ImageUrls")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -664,15 +619,9 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.Navigation("CourtSchedules");
                 });
 
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Player", b =>
-                {
-                    b.Navigation("PlayerImageUrl")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Post", b =>
                 {
-                    b.Navigation("PostImageUrls");
+                    b.Navigation("ImageUrls");
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Schedule", b =>

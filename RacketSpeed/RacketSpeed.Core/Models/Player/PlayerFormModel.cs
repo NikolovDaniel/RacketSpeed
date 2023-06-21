@@ -21,6 +21,15 @@ namespace RacketSpeed.Core.Models.Player
         public DateTime BirthDate { get; set; }
 
         /// <summary>
+        /// Birth place of the player.
+        /// </summary>
+        [Required]
+        [StringLength(DataConstants.PlayerBirthPlaceMaxLength,
+            MinimumLength = DataConstants.PlayerBirthPlaceMinLength,
+            ErrorMessage = DataConstants.PlayerBirthPlaceErrorMessage)]
+        public string BirthPlace { get; set; } = null!;
+
+        /// <summary>
         /// First name of the player.
         /// </summary>
         [Required]
@@ -39,13 +48,37 @@ namespace RacketSpeed.Core.Models.Player
         public string LastName { get; set; } = null!;
 
         /// <summary>
+        /// Playing hand of the player.
+        /// </summary>
+        [Required]
+        public string PlayingHand { get; set; } = null!;
+
+        /// <summary>
+        /// Height of the player.
+        /// </summary>
+        [Required]
+        [Range(DataConstants.PlayerHeightMinValue,
+            DataConstants.PlayerHeightMaxValue,
+            ErrorMessage = DataConstants.PlayerHeightErrorMessage)]
+        public int Height { get; set; }
+
+        /// <summary>
+        /// National Ranking of the player.
+        /// </summary>
+        [Required]
+        [Range(DataConstants.PlayerRankingMinValue,
+            DataConstants.PlayerRankingMaxValue,
+            ErrorMessage = DataConstants.PlayerNationalRankingErrorMessage)]
+        public int NationalRanking { get; set; }
+
+        /// <summary>
         /// World Ranking of the player.
         /// </summary>
         [Required]
         [Range(DataConstants.PlayerRankingMinValue,
             DataConstants.PlayerRankingMaxValue,
-            ErrorMessage = DataConstants.PlayerRankingErrorMessage)]
-        public int Ranking { get; set; }
+            ErrorMessage = DataConstants.PlayerWorldRankingErrorMessage)]
+        public int WorldRanking { get; set; }
 
         /// <summary>
         /// Biography of the player.
@@ -56,6 +89,16 @@ namespace RacketSpeed.Core.Models.Player
             ErrorMessage = DataConstants.PlayerBiographyErrorMessage)]
         public string Biography { get; set; } = null!;
 
+        /// <summary>
+        /// Date for when the player has entered the club.
+        /// </summary>
+        public DateTime CreatedOn { get; set; }
+
+        /// <summary>
+        /// ImageUrl for player's image.
+        /// </summary>
+        [Required]
+        public string ImageUrl { get; set; } = null!;
     }
 }
 

@@ -37,8 +37,8 @@ namespace RacketSpeed.Core.Services
                 Title = model.Title,
                 Content = model.Content,
                 IsDeleted = false,
-                ImageUrls = model.ImageUrls
-                .Select(img => new ImageUrl()
+                PostImageUrls = model.ImageUrls
+                .Select(img => new PostImageUrl()
                 {
                     Url = img
                 })
@@ -60,7 +60,7 @@ namespace RacketSpeed.Core.Services
                     Id = p.Id,
                     Title = p.Title,
                     Content = p.Content,
-                    ImageUrls = p.ImageUrls.Select(img => img.Url).ToArray()
+                    ImageUrls = p.PostImageUrls.Select(img => img.Url).ToArray()
                 })
                 .ToListAsync();
         }
@@ -79,7 +79,7 @@ namespace RacketSpeed.Core.Services
                 Id = post.Id,
                 Title = post.Title,
                 Content = post.Content,
-                ImageUrls = post.ImageUrls.Select(img => img.Url).ToArray()
+                ImageUrls = post.PostImageUrls.Select(img => img.Url).ToArray()
             };
 
             return model;
@@ -101,11 +101,11 @@ namespace RacketSpeed.Core.Services
 
             post.Title = model.Title;
             post.Content = model.Content;
-            var images = model.ImageUrls.Select(img => new ImageUrl() { Url = img }).ToList();
+            var images = model.ImageUrls.Select(img => new PostImageUrl() { Url = img }).ToList();
 
             int counter = 0;
 
-            foreach (var item in post.ImageUrls)
+            foreach (var item in post.PostImageUrls)
             {
                 if (item.Url != images[counter].Url)
                 {

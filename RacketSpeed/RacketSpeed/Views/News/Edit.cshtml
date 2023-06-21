@@ -10,8 +10,8 @@
         <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6">
             <form asp-controller="News" asp-action="Edit" method="post">
-                <input type="hidden" asp-for="@Model.Id" />
                 <div class="mb-3">
+                    <input type="hidden" asp-for="@Model.Id" />
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.Title" placeholder="Title" class="form-control" aria-required="true"
                                id="titleFloatingInput" />

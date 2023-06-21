@@ -138,7 +138,7 @@ namespace RacketSpeed.Controllers
         /// </summary>
         /// <param name="postId">Identificator for Post Entity.</param>
         /// <returns>/News/All Page.</returns>
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Delete(Guid postId)
         {
             await this.postService.DeleteAsync(postId);
@@ -151,6 +151,7 @@ namespace RacketSpeed.Controllers
         /// </summary>
         /// <param name="postId">Identificator for Post Entity.</param>
         /// <returns>/News/Details/Id Page.</returns>
+        /// 
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Details(Guid postId)

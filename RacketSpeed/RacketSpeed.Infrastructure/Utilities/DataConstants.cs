@@ -45,16 +45,24 @@ namespace RacketSpeed.Infrastructure.Utilities
 
         public const int PlayerRankingMinValue = 1;
         public const int PlayerRankingMaxValue = 5000;
-        public const string PlayerRankingErrorMessage = "Ranking should be between 1 and 5000th place.";
+        public const string PlayerNationalRankingErrorMessage = "National Ranking should be between 1st and 5000th place.";
+        public const string PlayerWorldRankingErrorMessage = "World Ranking should be between 1st and 5000th place.";
 
         public const int PlayerBiographyMinLength = 20;
         public const int PlayerBiographyMaxLength = 1000;
         public const string PlayerBiographyErrorMessage = "Biography should be between 20 and 1000 characters";
 
+        public const int PlayerBirthPlaceMinLength = 5;
+        public const int PlayerBirthPlaceMaxLength = 200;
+        public const string PlayerBirthPlaceErrorMessage = "Birth place should be between 5 and 200 characters";
+
+        public const int PlayerHeightMinValue = 90;
+        public const int PlayerHeightMaxValue = 230;
+        public const string PlayerHeightErrorMessage = "Height should be between 90cm and 230cm.";
+
         /// <summary>
         /// Data constants for Coach Entity.
         /// </summary>
-
         public const int CoachFirstNameMinLength = 3;
         public const int CoachFirstNameMaxLength = 30;
         public const string CoachFirstNameErrorMessage = "First name should be between 3 and 30 characters.";
