@@ -19,7 +19,7 @@ namespace RacketSpeed.Core.Services
         /// <summary>
         /// DI repository.
         /// </summary>
-        /// <param name="repository"></param>
+        /// <param name="repository">Repository.</param>
 		public PostService(IRepository repository)
         {
             this.repository = repository;
@@ -49,12 +49,18 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<PostViewModel>> AllAsync()
+        public async Task<ICollection<PostViewModel>> AllAsync(int start, int postsPerPage)
         {
-            var allPosts = this.repository.AllReadonly<Post>();
+            int currPage = start;
+            start = (currPage - 1) * postsPerPage;
+
+            var allPosts = this.repository
+                .AllReadonly<Post>()
+                .Where(p => p.IsDeleted == false)
+                .Skip(start)
+                .Take(postsPerPage);
 
             return await allPosts
-                .Where(p => p.IsDeleted == false)
                 .Select(p => new PostViewModel()
                 {
                     Id = p.Id,
@@ -129,6 +135,18 @@ namespace RacketSpeed.Core.Services
             post.IsDeleted = true;
 
             await this.repository.SaveChangesAsync();
+        }
+
+        public int PostsPageCount(int postsPerPage)
+        {
+            int allPostsCount = this.repository
+                .AllReadonly<Post>()
+                .Where(p => p.IsDeleted == false)
+                .Count();
+
+            int pageCount = (int)Math.Ceiling((allPostsCount / (double)postsPerPage));
+
+            return pageCount;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿    using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using RacketSpeed.Core.Contracts;
@@ -28,15 +28,38 @@ namespace RacketSpeed.Controllers
         }
 
         /// <summary>
-        /// Displays a /Player/All page with all players.
+        /// Displays a /Player/All page with three players.
         /// </summary>
         /// <returns>/Player/All page.</returns>
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        [HttpGet]
+        public async Task<IActionResult> All(string pageCount = "1")
         {
-            var models = await this.playerService.AllAsync();
+            int pageNum = int.Parse(pageCount);
 
-            return View(models);
+            if (pageNum < 1)
+            {
+                pageNum = 1;
+            }
+
+            int playersPerPage = 4;
+
+            var pagesCount = this.playerService.PlayersPageCount(playersPerPage);
+
+            if (pageNum > pagesCount)
+            {
+                pageNum = pagesCount;
+            }
+
+            ViewData["pageNum"] = pageNum;
+
+            var models = await this.playerService.AllAsync(pageNum, playersPerPage);
+
+            return View(new PlayersPaginationCountViewModel()
+            {
+                PageCount = pagesCount,
+                Players = models
+            });
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿@model ICollection<PlayerViewModel>
+﻿@model PlayersPaginationCountViewModel
 
 @if (User?.IsInRole("Administrator") ?? false)
 {
@@ -8,58 +8,70 @@
 else
 {
     ViewData["Title"] = "Club Players";
-    @if (Model.Count > 0)
+    @if (Model.Players.Count() > 0)
     {
-        <section>
-            <h2 class="text-center">Club Players</h2>
-            <div class="container">
-                @{
-                    <hr />
-                    <div class="row row-cols-auto mt-5">
-                        @foreach (var player in Model)
-                        {
-                            <div class="col-12 text-center" style="max-width:fit-content;">
-                                <div class="row">
-                                    <div class="col-12 col-lg-4 text-center">
-                                        <div class="title shadow-sm">
-                                            <p class="fw-bold fs-4">@player.FirstName @player.LastName</p>
-                                        </div>
-                                        <div class="content">
-                                            <p class="lead">
-                                                Age: @(Math.Floor((DateTime.Now - player.BirthDate).TotalDays / 365.2425))
-                                            </p>
-                                            <p class="lead">
-                                                Place of birth: @player.BirthPlace
-                                            </p>
-                                            <p class="lead">
-                                                Height: @player.Height
-                                            </p>
-                                            <p class="lead">
-                                                Playing Hand: @player.PlayingHand
-                                            </p>
-                                            <p class="lead">
-                                                Part of RacketSpeed since: @player.CreatedOn.ToShortDateString()
-                                            </p>
-                                        </div>
+        <div class="twoColorDiv bg-danger">
+            <h1 class="text-center">Club Players</h1>
+        </div>
+        <div class="container">
+            @{
+                <hr class="border border-danger border-2 opacity-50">
+                <div class="row row-cols-auto">
+                    @foreach (var player in Model.Players)
+                    {
+                        <div class="col-12 text-center mt-4">
+                            <div class="row mb-4">
+                                <div class="col-12 col-lg-4 text-center">
+                                    <div class="title shadow-sm bg-danger">
+                                        <p class="fw-bold fs-4">@player.FirstName @player.LastName</p>
                                     </div>
-                                    <div class="col-12 col-lg-4">
-                                        <div class="image ratio ratio-4x3">
-                                            <img class="img-fluid rounded" src="@player.ImageUrl" />
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-4">
-                                        <div class="content">
-                                            <p>@player.Biography</p>
-                                        </div>
+                                    <div class="content">
+                                        <p class="lead">
+                                            Age: @(Math.Floor((DateTime.Today - player.BirthDate).TotalDays / 365.2425))
+                                        </p>
+                                        <p class="lead">
+                                            Place of birth: @player.BirthPlace
+                                        </p>
+                                        <p class="lead">
+                                            Height: @player.Height
+                                        </p>
+                                        <p class="lead">
+                                            Playing Hand: @player.PlayingHand
+                                        </p>
+                                        <p class="lead">
+                                            Part of RacketSpeed since: @player.CreatedOn.ToShortDateString()
+                                        </p>
                                     </div>
                                 </div>
-                                <hr />
+                                <div class="col-12 col-lg-4">
+                                    <div class="image ratio ratio-4x3">
+                                        <img class="img-fluid rounded" src="@player.ImageUrl" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="content">
+                                        <p>@player.Biography</p>
+                                    </div>
+                                </div>
                             </div>
+                            <hr class="border border-danger border-2 opacity-50">
+                        </div>
+                    }
+                </div>
+            }
+            <div class="row">
+                <div class="col-12">
+                    <ul class="pagination pagination-md justify-content-center">
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@i">@i</a></li>
                         }
-                    </div>
-                }
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
+                    </ul>
+                </div>
             </div>
-        </section>
+        </div>
     }
     else
     {
