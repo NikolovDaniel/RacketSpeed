@@ -11,7 +11,9 @@ namespace RacketSpeed.Core.Contracts
         /// Async method to retrieve all Players.
         /// </summary>
         /// <returns>Collection of all Players.</returns>
-        Task<ICollection<PlayerViewModel>> AllAsync();
+        /// <param name="start">Page number.</param>
+        /// <param name="playersPerPage">Player Entities per page.</param>
+        Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage);
 
         /// <summary>
         /// Async method to retrieve a single Player.
@@ -37,6 +39,13 @@ namespace RacketSpeed.Core.Contracts
         /// </summary>
         /// <param name="id">Entity Identificator.</param>
         Task DeleteAsync(Guid id);
+
+        /// <summary>
+        /// Method to get the Count of all Player Entities and help for the pagination.
+        /// </summary>
+        /// <param name="playersPerPage">Player count for pagination.</param>
+        /// <returns>Integer for Page number.</returns>
+        public int PlayersPageCount(int playersPerPage);
     }
 }
 

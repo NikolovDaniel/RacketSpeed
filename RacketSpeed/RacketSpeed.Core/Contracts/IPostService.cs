@@ -11,7 +11,9 @@ namespace RacketSpeed.Core.Contracts
         /// Async method to retrieve all Posts.
         /// </summary>
         /// <returns>Collection of all Posts.</returns>
-        Task<ICollection<PostViewModel>> AllAsync();
+        /// <param name="start">Page number.</param>
+        /// <param name="postsPerPage">Post Entities per page.</param>
+        Task<ICollection<PostViewModel>> AllAsync(int start, int postsPerPage);
 
         /// <summary>
         /// Async method to retrieve a single Post.
@@ -37,6 +39,13 @@ namespace RacketSpeed.Core.Contracts
         /// </summary>
         /// <param name="id">Entity Identificator.</param>
         Task DeleteAsync(Guid id);
+
+        /// <summary>
+        /// Method to get the Count of all Post Entities and help for the pagination.
+        /// </summary>
+        /// <param name="postsPerPage">Post count for pagination.</param>
+        /// <returns>Integer for Page number.</returns>
+        public int PostsPageCount(int postsPerPage);
     }
 }
 

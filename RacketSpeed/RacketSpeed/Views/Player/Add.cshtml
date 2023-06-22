@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Add Player (Admin)";
 }
-
+<div class="twoColorDiv bg-danger">
+    <h2 class="text-center">Add Player</h2>
+</div>
 <div class="container">
+    <hr class="border border-danger border-2 opacity-50">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
-            <h4 class="text-center">Add new Player</h4>
             <form asp-controller="Player" asp-action="Add" method="post">
                 <div class="mb-3">
                     <div class="form-floating mb-3">
@@ -105,9 +107,6 @@
             <hr />
         </div>
         <div class="col-12 col-lg-4 text-center">
-            <h4>
-                Fast buttons
-            </h4>
             <div class="fastButtons">
                 <a asp-controller="News" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Post</a>
                 <hr>

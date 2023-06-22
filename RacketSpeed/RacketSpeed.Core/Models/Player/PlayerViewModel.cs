@@ -68,6 +68,11 @@ namespace RacketSpeed.Core.Models.Player
         /// Player image url.
         /// </summary>
         public string ImageUrl { get; set; } = null!;
+
+        /// <summary>
+        /// Property to pass the needed Page Count.
+        /// </summary>
+        public int PageCount { get; set; }
     }
 }
 
