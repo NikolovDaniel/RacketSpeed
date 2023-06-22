@@ -50,9 +50,28 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<PlayerViewModel>> AllAsync()
+        public int PlayersPageCount(int playersPerPage)
         {
-            var allPlayers = this.repository.AllReadonly<Player>();
+            int allPlayersCount = this.repository
+                .AllReadonly<Player>()
+                .Where(p => p.IsDeleted == false)
+                .Count();
+
+            int pageCount = (int)Math.Ceiling((allPlayersCount / (double)playersPerPage));
+
+            return pageCount;
+        }
+
+        public async Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage)
+        {
+            int currPage = start;
+            start = (currPage - 1) * playersPerPage;
+
+            var allPlayers = this.repository
+                .AllReadonly<Player>()
+                .OrderBy(p => p.CreatedOn)
+                .Skip(start)
+                .Take(playersPerPage);
 
             return await allPlayers
                 .Where(p => p.IsDeleted == false)
