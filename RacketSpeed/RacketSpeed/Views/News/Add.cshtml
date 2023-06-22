@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Add News (Admin)";
 }
-
-<div class="container">
+<div class="twoColorDiv bg-danger">
+    <h2 class="text-center">Add Post</h2>
+</div>
+<div class="container mt-2">
+    <hr class="border border-danger border-2 opacity-50">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
-            <h4 class="text-center">Add new Post</h4>
             <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
             <form asp-controller="News" asp-action="Add" method="post">
                 <div class="mb-3">
@@ -89,9 +91,6 @@
             </form>
         </div>
         <div class="col-12 col-lg-4 text-center">
-            <h4>
-                Fast buttons
-            </h4>
             <div class="fastButtons">
                 <a asp-controller="Achievement" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Achievement</a>
                 <hr>

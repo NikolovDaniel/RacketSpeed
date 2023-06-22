@@ -7,34 +7,39 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RacketSpeed.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/97eee30641.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-lg box-shadow" style="background-color: black;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span class="text-dark fs-4">Racket</span><span class="text-danger fs-4">Speed</span></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://racketspeedbg.com/wp-content/uploads/2019/11/logo-raket-spiyd-page-0-300x160.jpg" alt="RacketSpeed" width="120" height="50" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon">
+                        <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+                    </span>
                 </button>
-                <div class="navbar-collapse collapse d-lg-inline-flex">
+                <div class="navbar-collapse collapse d-lg-inline-flex" style="background-color:black;">
                     <ul class="navbar-nav ms-auto fs-5 align-items-center" style="font-weight: 500;">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="All">News</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="News" asp-action="All">News</a>
                         </li>
                         @if (User?.IsInRole("Administrator") ?? false)
                         {
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Coach" asp-action="All">Coaches</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Coach" asp-action="All">Coaches</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Player" asp-action="All">Players</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Player" asp-action="All">Players</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Achievement" asp-action="All">Achievements</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Achievement" asp-action="All">Achievements</a>
                             </li>
                         }
                         else
@@ -42,43 +47,42 @@
                             @if (User?.Identity?.IsAuthenticated ?? false)
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Bookings</a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Bookings</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" aria-expanded="false" style="background-color: black;">
                                         <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Player" asp-action="Create">Book a Court</a>
+                                            <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="Create">Book a Court</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Player" asp-action="Create">My Bookings</a>
+                                            <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="Create">My Bookings</a>
                                         </li>
                                     </ul>
                                 </li>
                             }
-
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Club Information</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Club Information</a>
+                                <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" aria-expanded="false" style="background-color:black;">
                                     <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Coach" asp-action="All">Coaches</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Coach" asp-action="All">Coaches</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Player" asp-action="All">Players</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="All">Players</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Match" asp-action="Create">Training Schedule</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">Training Schedule</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Match" asp-action="Create">History</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">History</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Achievement" asp-action="All">Achievements</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Achievement" asp-action="All">Achievements</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Contacts</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Contacts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
                             </li>
                         }
                     </ul>
@@ -87,12 +91,11 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    @*<div class="container">*@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-
+    @*</div>*@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - RacketSpeed - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

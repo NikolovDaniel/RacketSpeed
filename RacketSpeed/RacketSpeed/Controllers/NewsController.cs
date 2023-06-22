@@ -31,16 +31,69 @@ namespace RacketSpeed.Controllers
         }
 
         /// <summary>
-        /// Displays a /News/All page with all posts.
+        /// Displays a /News/All page with three posts.
         /// </summary>
         /// <returns>/News/All page.</returns>
+        /// <param name="pageCount">Int for page index.</param>
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        [HttpGet]
+        public async Task<IActionResult> All(string pageCount = "1")
         {
-            var posts = await postService.AllAsync();
+            int pageNum = int.Parse(pageCount);
 
-            return View(posts);
+            int postsPerPage = 3;
+
+            var pagesCount = this.postService.PostsPageCount(postsPerPage);
+
+            pageNum = CalculateValidPageNum(pageNum, pagesCount);
+           
+            ViewData["pageNum"] = pageNum;
+
+            var posts = await postService.AllAsync(pageNum, postsPerPage);
+
+            return View(new PostsPaginationCountViewModel()
+            {
+                Posts = posts,
+                PageCount = pagesCount
+            });
         }
+
+        /// <summary>
+        /// Displays a /News/All page with three posts by keyword.
+        /// </summary>
+        /// <returns>/News/All page.</returns>
+        /// <param name="keyword">String used to filter Post Entities.</param>
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> AllPostsByKeyword(string keyword, string pageCount = "1")
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                ModelState.AddModelError("KeywordError", "Keyword should not be null!");
+                return View();
+            }
+
+            int pageNum = int.Parse(pageCount);
+
+            int postsPerPage = 5;
+
+            var pagesCount = this.postService.PostsPageCount(postsPerPage);
+
+            pageNum = CalculateValidPageNum(pageNum, pagesCount);
+
+            var posts = await postService.AllAsync(pageNum, postsPerPage);
+
+            ViewData["keyword"] = keyword;
+            ViewData["pageNum"] = pageNum;
+
+            return View(new PostsPaginationCountViewModel()
+            {
+                Posts = posts.Where(p => p.Title.ToUpper().Contains(keyword.ToUpper())).ToList(),
+                PageCount = pagesCount
+            });
+        }
+
+      
 
         /// <summary>
         /// Displays an /Add/ page for Admin users.
@@ -164,6 +217,27 @@ namespace RacketSpeed.Controllers
             }
 
             return View(post);
+        }
+
+        /// <summary>
+        /// Method to calculate the right page number.
+        /// </summary>
+        /// <param name="pageNum">Page number that the user wants.</param>
+        /// <param name="pagesCount">All pages available.</param>
+        /// <returns>Integer which is the correct page number.</returns>
+        private int CalculateValidPageNum(int pageNum, int pagesCount)
+        {
+            if (pageNum <= 0)
+            {
+                return 1;
+            }
+
+            if (pageNum > pagesCount)
+            {
+                return pagesCount;
+            }
+
+            return pageNum;
         }
     }
 }
