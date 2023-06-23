@@ -81,19 +81,17 @@ namespace RacketSpeed.Controllers
 
             pageNum = CalculateValidPageNum(pageNum, pagesCount);
 
-            var posts = await postService.AllAsync(pageNum, postsPerPage);
+            var posts = await postService.AllAsync(pageNum, postsPerPage, keyword);
 
             ViewData["keyword"] = keyword;
             ViewData["pageNum"] = pageNum;
 
             return View(new PostsPaginationCountViewModel()
             {
-                Posts = posts.Where(p => p.Title.ToUpper().Contains(keyword.ToUpper())).ToList(),
+                Posts = posts,
                 PageCount = pagesCount
             });
         }
-
-      
 
         /// <summary>
         /// Displays an /Add/ page for Admin users.

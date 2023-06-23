@@ -18,37 +18,113 @@ body {
     margin-bottom: 60px;
 }
 
-.twoColorDiv {
+/*Animated headers*/
+.adminHeader {
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
     width: 100%;
-    background: linear-gradient( to top, red 50%, black 100% );
+    background: linear-gradient( to top, #BB2D3B 50%, black 100% );
+    width: 100%;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-    .twoColorDiv h1 {
+div.animatedHeader {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+    background: linear-gradient( to top, #BB2D3B 50%, black 100% );
+}
+
+    div.animatedHeader > h1,
+    div.animatedHeader > h2 {
         width: 100%;
         animation: left_to_right 3s ease;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
-    .twoColorDiv h2 {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.noContentButton {
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+        background: linear-gradient(90deg, #000000 0%, #000000 100%);
+    padding: 15px 30px;
+    border: solid #000000 1px;
+    box-shadow: none;
+    border-radius: 50px;
+    transition: 912ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .noContentButton:hover {
+        transition: 912ms;
+        padding: 10px 50px;
+        transform: translateY(-0px);
+        background: linear-gradient(90deg, #000000 50%, #000000 100%);
+        color: #ede6e6;
+        border: solid 1px #000000;
+    }
+
+div.noContentHeader {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+    background: linear-gradient( to top, #BB2D3B 50%, black 100% );
+}
+
+    div.noContentHeader > div > div > h1 {
         width: 100%;
-        animation: left_to_right 3s ease;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
-/*News/Details/{Id} Page CSS*/
+/*@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');*/
+
+/*.noContentButton {
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(90deg, #cc0000 39%, #080000 100%);
+    padding: 10px 30px;
+    border: 2px solid #000000;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition: 1462ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .noContentButton:hover {
+        transition: 1462ms;
+        padding: 10px 50px;
+        transform: translateY(-0px);
+        background: linear-gradient(90deg, #cc0000 39%, #080000 100%);
+        color: #ede6e6;
+        border: solid 2px #e1e7eb;
+    }*/
+
 .titleRow {
     padding: 10px 0px 5px 0px;
     border-radius: 25px;
 }
-
-    .titleRow p {
-        font-family: Courier New, Courier, monospace;
-    }
 
 .contentRow {
     white-space: pre-wrap;
@@ -84,6 +160,12 @@ body {
 p {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+/*No content pages CSS*/
+/*.noContentContainer {
+    max-width: 800px;
+    min-height: 800px;
+}*/
 
 /*Animations*/
 @keyframes left_to_right {

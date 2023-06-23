@@ -70,12 +70,12 @@ else
             <div class="row">
                 <div class="col-12">
                     <ul class="pagination pagination-md justify-content-center">
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
                         @for (int i = 1; i <= Model.PageCount; i++)
                         {
-                            <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@i">@i</a></li>
+                            <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@i">@i</a></li>
                         }
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
                     </ul>
                 </div>
             </div>

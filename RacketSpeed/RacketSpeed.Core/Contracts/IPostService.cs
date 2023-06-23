@@ -13,7 +13,16 @@ namespace RacketSpeed.Core.Contracts
         /// <returns>Collection of all Posts.</returns>
         /// <param name="start">Page number.</param>
         /// <param name="postsPerPage">Post Entities per page.</param>
+        /// <returns>Collection of PostViewModel.</returns>
         Task<ICollection<PostViewModel>> AllAsync(int start, int postsPerPage);
+
+        /// <summary>
+        /// Async method to retrieve all Posts with expression.
+        /// </summary>
+        /// <param name="start">Page number.</param>
+        /// <param name="postsPerPage">Post Entities per page.</param>
+        /// <returns>Collection of PostViewModel.</returns>
+        Task<ICollection<PostViewModel>> AllAsync(int start, int postsPerPage, string keyword);
 
         /// <summary>
         /// Async method to retrieve a single Post.
