@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Post;
 using RacketSpeed.Infrastructure.Data.Entities;
@@ -59,6 +60,27 @@ namespace RacketSpeed.Core.Services
                 .Where(p => p.IsDeleted == false)
                 .Skip(start)
                 .Take(postsPerPage);
+
+            return await allPosts
+                .Select(p => new PostViewModel()
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Content = p.Content,
+                    ImageUrls = p.PostImageUrls.Select(img => img.Url).ToArray()
+                })
+                .ToListAsync();
+        }
+
+        public async Task<ICollection<PostViewModel>> AllAsync(int start, int postsPerPage, string keyword)
+        {
+            int currPage = start;
+            start = (currPage - 1) * postsPerPage;
+
+            Expression<Func<Post, bool>> expression
+             = p => p.IsDeleted == false && p.Title.ToUpper().Contains(keyword.ToUpper());
+
+            var allPosts = this.repository.All<Post>(expression);
 
             return await allPosts
                 .Select(p => new PostViewModel()

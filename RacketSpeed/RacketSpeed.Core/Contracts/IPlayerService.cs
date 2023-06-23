@@ -1,4 +1,5 @@
 ﻿using RacketSpeed.Core.Models.Player;
+using RacketSpeed.Core.Models.Post;
 
 namespace RacketSpeed.Core.Contracts
 {
@@ -14,6 +15,15 @@ namespace RacketSpeed.Core.Contracts
         /// <param name="start">Page number.</param>
         /// <param name="playersPerPage">Player Entities per page.</param>
         Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage);
+
+        /// <summary>
+        /// Async method to retrieve all Players with expression.
+        /// </summary>
+        /// <param name="start">Page number.</param>
+        /// <param name="playersPerPage">Player Entities per page.</param>
+        /// <returns>Collection of PlayerViewModel.</returns>
+        Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage, string keyword);
+
 
         /// <summary>
         /// Async method to retrieve a single Player.
