@@ -53,7 +53,7 @@ namespace RacketSpeed.Infrastructure.Data.Repositories
         }
 
         /// <summary>
-        /// Ads collection of entities to the database
+        /// Adds collection of entities to the database
         /// </summary>
         /// <param name="entities">Enumerable list of entities</param>
         public async Task AddRangeAsync<T>(IEnumerable<T> entities) where T : class
