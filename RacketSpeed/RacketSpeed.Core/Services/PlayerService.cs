@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Player;
 using RacketSpeed.Core.Models.Post;
@@ -75,6 +76,37 @@ namespace RacketSpeed.Core.Services
 
             return await allPlayers
                 .Where(p => p.IsDeleted == false)
+                .Select(p => new PlayerViewModel()
+                {
+                    Id = p.Id,
+                    FirstName = p.FirstName,
+                    LastName = p.LastName,
+                    BirthDate = p.BirthDate,
+                    BirthPlace = p.BirthPlace,
+                    CreatedOn = p.CreatedOn,
+                    Biography = p.Biography,
+                    WorldRanking = p.WorldRanking,
+                    NationalRanking = p.NationalRanking,
+                    PlayingHand = p.PlayingHand,
+                    Height = p.Height,
+                    ImageUrl = p.PlayerImageUrl.Url
+                })
+                .ToListAsync();
+        }
+
+        public async Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage, string keyword)
+        {
+            int currPage = start;
+            start = (currPage - 1) * playersPerPage;
+
+            Expression<Func<Player, bool>> expression
+             = p => p.IsDeleted == false &&
+                    p.FirstName.ToUpper().Contains(keyword.ToUpper()) ||
+                    p.LastName.ToUpper().Contains(keyword.ToUpper());
+
+            var allPlayers = this.repository.All<Player>(expression);
+
+            return await allPlayers
                 .Select(p => new PlayerViewModel()
                 {
                     Id = p.Id,

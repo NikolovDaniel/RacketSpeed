@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Achievement;
 using RacketSpeed.Core.Models.Player;
+using RacketSpeed.Core.Models.Post;
+using RacketSpeed.Core.Services;
 
 namespace RacketSpeed.Controllers
 {
@@ -59,6 +61,40 @@ namespace RacketSpeed.Controllers
             {
                 PageCount = pagesCount,
                 Players = models
+            });
+        }
+
+        /// <summary>
+        /// Displays a /Player/All page with three players by keyword.
+        /// </summary>
+        /// <returns>/Player/All/{keyword} page.</returns>
+        /// <param name="keyword">String used to filter Player Entities.</param>
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> AllPlayersByKeyword(string keyword, string pageCount = "1")
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                ModelState.AddModelError("KeywordError", "Keyword should not be null!");
+                return View();
+            }
+
+            int pageNum = int.Parse(pageCount);
+
+            int playersPerPage = 5;
+
+            var pagesCount = this.playerService.PlayersPageCount(playersPerPage);
+            pageNum = CalculateValidPageNum(pageNum, pagesCount);
+
+            var players = await playerService.AllAsync(pageNum, playersPerPage, keyword);
+
+            ViewData["keyword"] = keyword;
+            ViewData["pageNum"] = pageNum;
+
+            return View(new PlayersPaginationCountViewModel()
+            {
+                Players = players,
+                PageCount = pagesCount
             });
         }
 
@@ -151,6 +187,27 @@ namespace RacketSpeed.Controllers
             await this.playerService.DeleteAsync(playerId);
 
             return RedirectToAction("All", "Player");
+        }
+
+        /// <summary>
+        /// Method to calculate the right page number.
+        /// </summary>
+        /// <param name="pageNum">Page number that the user wants.</param>
+        /// <param name="pagesCount">All pages available.</param>
+        /// <returns>Integer which is the correct page number.</returns>
+        private int CalculateValidPageNum(int pageNum, int pagesCount)
+        {
+            if (pageNum <= 0)
+            {
+                return 1;
+            }
+
+            if (pageNum > pagesCount)
+            {
+                return pagesCount;
+            }
+
+            return pageNum;
         }
     }
 }
