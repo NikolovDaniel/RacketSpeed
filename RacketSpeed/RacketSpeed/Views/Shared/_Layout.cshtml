@@ -25,21 +25,21 @@
                 <div class="navbar-collapse collapse d-lg-inline-flex" style="background-color:black;">
                     <ul class="navbar-nav ms-auto fs-5 align-items-center" style="font-weight: 500;">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="News" asp-action="All">News</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="News" asp-action="All">Новини</a>
                         </li>
                         @if (User?.IsInRole("Administrator") ?? false)
                         {
                             <li>
-                                <a class="nav-link text-white" asp-area="" asp-controller="Coach" asp-action="All">Coaches</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Coach" asp-action="All">Треньори</a>
                             </li>
                             <li>
-                                <a class="nav-link text-white" asp-area="" asp-controller="Player" asp-action="All">Players</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Player" asp-action="All">Състезатели</a>
                             </li>
                             <li>
-                                <a class="nav-link text-white" asp-area="" asp-controller="Achievement" asp-action="All">Achievements</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Achievement" asp-action="All">Клубни Постижения</a>
                             </li>
                         }
                         else
@@ -50,39 +50,39 @@
                                     <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Bookings</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" aria-expanded="false" style="background-color: black;">
                                         <li>
-                                            <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="Create">Book a Court</a>
+                                            <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="Create">Запази Корт</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="Create">My Bookings</a>
+                                            <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="Create">Моите Резервации</a>
                                         </li>
                                     </ul>
                                 </li>
                             }
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Club Information</a>
+                                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">Информация за Клуба</a>
                                 <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" aria-expanded="false" style="background-color:black;">
                                     <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Coach" asp-action="All">Coaches</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Coach" asp-action="All">Треньори</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="All">Players</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="All">Състезатели</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">Training Schedule</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">Тренировъчна Програма</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">History</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">История на Клуба</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Achievement" asp-action="All">Achievements</a>
+                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Achievement" asp-action="All">Постижения на Клуба</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Contacts</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Контакти</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">За нас</a>
                             </li>
                         }
                     </ul>

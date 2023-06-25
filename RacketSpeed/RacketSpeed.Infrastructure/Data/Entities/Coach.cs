@@ -48,6 +48,11 @@ namespace RacketSpeed.Infrastructure.Data.Entities
         public IEnumerable<Training> Trainings { get; set; } = null!;
 
         /// <summary>
+        /// Navigation property for CoachImageUrl.
+        /// </summary>
+        public CoachImageUrl CoachImageUrl { get; set; } = null!;
+
+        /// <summary>
         /// Delete flag.
         /// </summary>
         public bool IsDeleted { get; set; }

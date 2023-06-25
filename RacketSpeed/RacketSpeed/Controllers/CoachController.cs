@@ -34,21 +34,11 @@ namespace RacketSpeed.Controllers
         {
             var models = await this.coachService.AllAsync();
 
-            models = new List<CoachViewModel>()
-            {
-                new CoachViewModel()
-                {
-                    FirstName = "Daniel",
-                    LastName = "Nikolov",
-                    Biography = "I am the best palyer ever the wolrd has seen"
-                }
-            };
-
             return View(models);
         }
 
         /// <summary>
-        /// Displays an /Add/ page for Admin users.
+        /// Displays an Coach/Add/ page for Admin users.
         /// </summary>
         /// <returns>/Coach/Add/ page.</returns>
         [HttpGet]
@@ -69,11 +59,6 @@ namespace RacketSpeed.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState)
-                {
-                    ModelState.AddModelError($"{error.Key}", $"{error.Value}");
-                }
-
                 return View(model);
             }
 
@@ -85,27 +70,21 @@ namespace RacketSpeed.Controllers
         /// <summary>
         /// Displays an /Coach/Edit/Id Page.
         /// </summary>
-        /// <param name="id">Identificator for Coach Entity.</param>
+        /// <param name="coachId">Identificator for Coach Entity.</param>
         /// <returns>/Coach/Edit/Id Page.</returns>
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid coachId)
         {
-            var coach = await this.coachService.GetByIdAsync(id, false);
+            bool withTrainings = true;
+
+            var coach = await this.coachService.GetByIdAsync(coachId, withTrainings);
 
             if (coach == null)
             {
                 return RedirectToAction("All", "Coach");
             }
 
-            CoachFormModel model = new CoachFormModel()
-            {
-              Id = coach.Id,
-              FirstName = coach.FirstName,
-              LastName = coach.LastName,
-              Biography = coach.Biography
-            };
-
-            return View(model);
+            return View(coach);
         }
 
         /// <summary>
@@ -118,11 +97,6 @@ namespace RacketSpeed.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState)
-                {
-                    ModelState.AddModelError($"{error.Key}", $"{error.Value}");
-                }
-
                 return View(model);
             }
 
@@ -132,14 +106,35 @@ namespace RacketSpeed.Controllers
         }
 
         /// <summary>
+        /// Display a /Coach/Details/Id Page.
+        /// </summary>
+        /// <param name="coachId">Identificator for Coach Entity.</param>
+        /// <returns>/Coach/Details/Id Page.</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(Guid coachId)
+        {
+            bool withTrainings = true;
+
+            var coach = await this.coachService.GetByIdAsync(coachId, withTrainings);
+
+            if (coach == null)
+            {
+                return RedirectToAction("All", "Coach");
+            }
+
+            return View(coach);
+        }
+
+        /// <summary>
         /// Deletes an Coach Entity.
         /// </summary>
-        /// <param name="id">Identificator for Coach Entity.</param>
+        /// <param name="coachId">Identificator for Coach Entity.</param>
         /// <returns>/Coach/All Page.</returns>
         [HttpPost]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid coachId)
         {
-            await this.coachService.DeleteAsync(id);
+            await this.coachService.DeleteAsync(coachId);
 
             return RedirectToAction("All", "Coach");
         }

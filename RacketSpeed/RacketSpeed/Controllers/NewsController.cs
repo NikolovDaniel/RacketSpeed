@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Post;
-using RacketSpeed.TestStrings;
 
 namespace RacketSpeed.Controllers
 {
@@ -115,11 +110,6 @@ namespace RacketSpeed.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState)
-                {
-                    ModelState.AddModelError($"{error.Key}", $"{error.Value}");
-                }
-
                 return View(model);
             }
 
@@ -171,11 +161,6 @@ namespace RacketSpeed.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState)
-                {
-                    ModelState.AddModelError($"{error.Key}", $"{error.Value}");
-                }
-
                 return View(model);
             }
 
@@ -202,7 +187,6 @@ namespace RacketSpeed.Controllers
         /// </summary>
         /// <param name="postId">Identificator for Post Entity.</param>
         /// <returns>/News/Details/Id Page.</returns>
-        /// 
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Details(Guid postId)

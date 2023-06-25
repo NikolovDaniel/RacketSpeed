@@ -27,9 +27,9 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to retrieve a single Post.
         /// </summary>
-        /// <param name="id">Entity Identificator.</param>
+        /// <param name="postId">Entity Identificator.</param>
         /// <returns>PostViewModel.</returns>
-        Task<PostViewModel> GetByIdAsync(Guid id);
+        Task<PostViewModel> GetByIdAsync(Guid postId);
 
         /// <summary>
         /// Async method to add an Entity to the Database.
@@ -46,8 +46,8 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to Delete an Entity.
         /// </summary>
-        /// <param name="id">Entity Identificator.</param>
-        Task DeleteAsync(Guid id);
+        /// <param name="postId">Entity Identificator.</param>
+        Task DeleteAsync(Guid postId);
 
         /// <summary>
         /// Method to get the Count of all Post Entities and help for the pagination.

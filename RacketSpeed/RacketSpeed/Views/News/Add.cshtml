@@ -1,10 +1,10 @@
 ﻿@model PostFormModel
 
 @{
-    ViewData["Title"] = "Add News (Admin)";
+    ViewData["Title"] = "Добавяне на Новина (Админ)";
 }
 <div class="adminHeader bg-danger">
-    <h2 class="text-center">Add Post</h2>
+    <h2 class="text-center">Добави Новина</h2>
 </div>
 <div class="container mt-2">
     <hr class="border border-danger border-2 opacity-50">
@@ -16,7 +16,7 @@
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.Title" placeholder="Title" class="form-control" aria-required="true"
                                id="titleFloatingInput" />
-                        <label for="titleFloatingInput" class="form-label-add-edit">Title</label>
+                        <label for="titleFloatingInput" class="form-label-add-edit">Заглавие</label>
                         <span asp-validation-for="@Model.Title" class="text-danger"></span>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Title Image Url #1
+                                    Главна Снимка #1
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show"
@@ -35,7 +35,7 @@
                                     <div class="form-floating mb-3">
                                         <input asp-for="@Model.ImageUrls" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
-                                        <label for="floatingInput">Image Url</label>
+                                        <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                    Body Image Url #2
+                                    Допълнителна Снимка #2
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse show"
@@ -53,7 +53,7 @@
                                     <div class="form-floating mb-3">
                                         <input asp-for="@Model.ImageUrls" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl" value="">
-                                        <label for="floatingInput">Image Url</label>
+                                        <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="true"
                                         aria-controls="collapseThree">
-                                    Body Image Url #3
+                                    Допълнителна Снимка #3
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse show"
@@ -72,7 +72,7 @@
                                     <div class="form-floating mb-3">
                                         <input asp-for="@Model.ImageUrls" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
-                                        <label for="floatingInput">Image Url</label>
+                                        <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
                                 </div>
                             </div>
@@ -80,25 +80,26 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="fs-5">Content</label>
+                    <label class="fs-5">Съдържание</label>
                     <textarea asp-for="@Model.Content" class="form-control" aria-required="true"
                               rows="10"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Add" />
+                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Добави" />
                 </div>
             </form>
+            <hr class="border border-danger border-2 opacity-50">
         </div>
         <div class="col-12 col-lg-4 text-center">
             <div class="fastButtons">
-                <a asp-controller="Achievement" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Achievement</a>
+                <a asp-controller="Training" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Тренировка</a>
                 <hr>
-                <a asp-controller="Player" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Player</a>
+                <a asp-controller="Player" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Състезател</a>
                 <hr>
-                <a asp-controller="Coach" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Add Coach</a>
+                <a asp-controller="Coach" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Треньор</a>
                 <hr>
-                <a asp-controller="User" asp-action="UserReservations" class="form-control btn btn-large btn-danger fs-5">User Reservations</a>
+                <a asp-controller="User" asp-action="UserReservations" class="form-control btn btn-large btn-danger fs-5">Потребителски Резервации</a>
                 <hr>
             </div>
         </div>
