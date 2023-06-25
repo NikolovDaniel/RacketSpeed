@@ -16,9 +16,16 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to retrieve a single Coach with its trainings.
         /// </summary>
-        /// <param name="id">Entity Identificator.</param>
+        /// <param name="coachId">Entity Identificator.</param>
+        /// <returns>CoachTrainingsViewModel.</returns>
+        Task<CoachTrainingsViewModel> GetByIdAsync(Guid coachId, bool withTrainings);
+
+        /// <summary>
+        /// Async method to retrieve a single Coach without trainings.
+        /// </summary>
+        /// <param name="coachId">Entity Identificator.</param>
         /// <returns>CoachViewModel.</returns>
-        Task<CoachTrainingsViewModel> GetByIdAsync(Guid id, bool withTrainings);
+        Task<CoachFormModel> GetByIdAsync(Guid coachId);
 
         /// <summary>
         /// Async method to add an Entity to the Database.
@@ -35,8 +42,8 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to Delete an Entity.
         /// </summary>
-        /// <param name="id">Entity Identificator.</param>
-        Task DeleteAsync(Guid id);
+        /// <param name="coachId">Entity Identificator.</param>
+        Task DeleteAsync(Guid coachId);
     }
 }
 

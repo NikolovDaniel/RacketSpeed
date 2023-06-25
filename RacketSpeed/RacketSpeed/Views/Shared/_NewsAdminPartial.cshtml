@@ -1,70 +1,93 @@
 ﻿@model PostsPaginationCountViewModel
 
-<div class="adminHeader bg-danger">
-    <h2 class="text-center">Recent Posts</h2>
-</div>
-<div class="container">
-    <hr class="border border-danger border-2 opacity-50">
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <a asp-controller="News" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Add a Post</a>
-        </div>
-        <div class="col-12 col-lg-6">
-            <form asp-controller="News" asp-action="AllPostsByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
-                <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Search News" aria-label="Search">
-                <button class="btn btn-outline-danger" type="submit">Search</button>
-            </form>
+@if (Model == null || Model.Posts.Count() <= 0)
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Последно добавени Новини</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <a asp-controller="News" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Новина</a>
+            </div>
+            <div class="col-12 col-lg-6">
+                <form asp-controller="News" asp-action="AllPostsByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                    <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Новина" aria-label="Search">
+                    <button class="btn btn-outline-danger" type="submit">Търси</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="row row-cols-auto mt-5">
-        @foreach (var post in Model.Posts)
-        {
-            <div class="col-12 mt-2 mb-2">
-                <div class="card" style="background-color: #F5F7FD">
-                    <div class="card-body">
-                        <h3 class="card-title">@post.Title</h3>
-                    </div>
-                    <div class="card-footer">
-                        <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-dark">View Post</a>
-                        <a asp-controller="News" asp-action="Edit" asp-route-postId="@post.Id" class="btn btn-dark">Edit</a>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#player-@post.Id">
-                            Delete
-                        </button>
-                        <div class="modal fade" id="player-@post.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="modalLabel">Post: @post.Title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete this Post?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <form>
-                                            <button type="submit" formmethod="post" asp-controller="News" asp-action="Delete" asp-route-postId="@post.Id" class="btn btn-danger">Delete</button>
-                                        </form>
+}
+else
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Последно добавени Новини</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <a asp-controller="News" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Новина</a>
+            </div>
+            <div class="col-12 col-lg-6">
+                <form asp-controller="News" asp-action="AllPostsByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                    <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Новина" aria-label="Search">
+                    <button class="btn btn-outline-danger" type="submit">Търси</button>
+                </form>
+            </div>
+        </div>
+        <div class="row row-cols-auto mt-5">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="col-12 mt-2 mb-2">
+                    <div class="card" style="background-color: #F5F7FD">
+                        <div class="card-body">
+                            <h3 class="card-title">@post.Title</h3>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-dark">Виж Повече</a>
+                            <a asp-controller="News" asp-action="Edit" asp-route-postId="@post.Id" class="btn btn-dark">Редактирай</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#player-@post.Id">
+                                Изтрий
+                            </button>
+                            <div class="modal fade" id="player-@post.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalLabel">Новина: @post.Title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Сигурни ли сте, че искате да изтриете тази Новина?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+                                            <form>
+                                                <button type="submit" formmethod="post" asp-controller="News" asp-action="Delete" asp-route-postId="@post.Id" class="btn btn-danger">Изтрий</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr />
                 </div>
-                <hr />
+            }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination pagination-md justify-content-center">
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
+                    @for (int j = 1; j <= Model.PageCount; j++)
+                    {
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@j">@j</a></li>
+                    }
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
+                </ul>
             </div>
-        }
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <ul class="pagination pagination-md justify-content-center">
-                <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
-                @for (int j = 1; j <= Model.PageCount; j++)
-                {
-                    <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@j">@j</a></li>
-                }
-                <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
-            </ul>
         </div>
     </div>
-</div>
+}

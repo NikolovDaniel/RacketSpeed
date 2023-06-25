@@ -1,6 +1,7 @@
 ﻿using System;
 using RacketSpeed.Infrastructure.Utilities;
 using System.ComponentModel.DataAnnotations;
+using RacketSpeed.Core.Models.Training;
 
 namespace RacketSpeed.Core.Models.Coach
 {
@@ -33,6 +34,12 @@ namespace RacketSpeed.Core.Models.Coach
         public string LastName { get; set; } = null!;
 
         /// <summary>
+        /// ImageUrl for coach image.
+        /// </summary>
+        [Required]
+        public string ImageUrl { get; set; } = null!;
+
+        /// <summary>
         /// Biography of the Coach.
         /// </summary>
         [Required]
@@ -40,6 +47,11 @@ namespace RacketSpeed.Core.Models.Coach
         MinimumLength = DataConstants.CoachBiographyMinLength,
         ErrorMessage = DataConstants.CoachBiographyErrorMessage)]
         public string Biography { get; set; } = null!;
+
+        /// <summary>
+        /// Navigation property for Training Entity.
+        /// </summary>
+        public IEnumerable<TrainingViewModel> Trainings { get; set; } = new List<TrainingViewModel>();
     }
 }
 

@@ -1,97 +1,98 @@
 ﻿@model PostsPaginationCountViewModel
 
+@{
+    ViewData["Title"] = "Новини";
+}
+
 @if (User?.IsInRole("Administrator") ?? false)
 {
-    ViewData["Title"] = "News (Admin)";
+    ViewData["Title"] = "Новини (Админ)";
     @await Html.PartialAsync(@"~/Views/Shared/_NewsAdminPartial.cshtml", Model);
+}
+else if (Model != null && Model.Posts.Count() > 0)
+{
+    <div class="animatedHeader bg-danger">
+        <h1 class="text-center">Новини</h1>
+    </div>
+    <div class="container">
+        @{
+            int i = 1;
+            <div class="row">
+                <div class="col-12 col-lg-6 offset-lg-6 d-flex justify-content-lg-end">
+                    <form asp-controller="News" asp-action="AllPostsByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                        <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Новина" aria-label="Search">
+                        <button class="btn btn-outline-danger" type="submit">Търси</button>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="border border-danger border-2 opacity-50">
+            foreach (var post in Model.Posts.Where(p => p.ImageUrls.Length > 2))
+            {
+                <div class="row row-cols-auto mt-5">
+                    @if (i % 2 == 1)
+                    {
+                        <div class="col-12 col-lg-4">
+                            <div class="image ratio ratio-4x3">
+                                <img class="img-fluid rounded border border-danger" src="@post.ImageUrls[0]" />
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column col-12 col-lg-8 align-items-center mt-2 mt-lg-0">
+                            <div class="title shadow-sm" style="background-color: #BB2D3C;">
+                                <h3 class="text-center">@post.Title</h3>
+                            </div>
+                            <div class="content">
+                                <p class="lead text-center">
+                                    @post.Content.Substring(0, 400)...
+                                </p>
+                            </div>
+                            <div class="align-self-center">
+                                <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-link link-danger">Прочети повече</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex flex-column col-12 col-lg-8 mt-2 mt-lg-0">
+                            <div class="title shadow-sm" style="background-color: #BB2D3C; ">
+                                <h3 class="text-center">@post.Title</h3>
+                            </div>
+                            <div class="content">
+                                <p class="lead text-center">
+                                    @post.Content.Substring(0, 400)...
+                                </p>
+                            </div>
+                            <div class="align-self-center">
+                                <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-link link-danger">Прочети повече</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 mt-0">
+                            <div class="image ratio ratio-4x3">
+                                <img class="img-fluid rounded border border-danger" src="@post.ImageUrls[0]" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <hr class="border border-danger border-2 opacity-50">
+                i++;
+            }
+        }
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination pagination-md justify-content-center">
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
+                    @for (int j = 1; j <= Model.PageCount; j++)
+                    {
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@j">@j</a></li>
+                    }
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 }
 else
 {
-    ViewData["Title"] = "News";
-    @if (Model != null && Model.Posts.Count > 0)
-    {
-        <div class="animatedHeader bg-danger">
-            <h1 class="text-center">NEWS</h1>
-        </div>
-        <div class="container">
-            @{
-                int i = 1;
-                <div class="row">
-                    <div class="col-12 col-lg-6 offset-lg-6 d-flex justify-content-lg-end">
-                        <form asp-controller="News" asp-action="AllPostsByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
-                            <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Search News" aria-label="Search">
-                            <button class="btn btn-outline-danger" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-
-                <hr class="border border-danger border-2 opacity-50">
-                foreach (var post in Model.Posts.Where(p => p.ImageUrls.Length > 2))
-                {
-                    <div class="row row-cols-auto mt-5">
-                        @if (i % 2 == 1)
-                        {
-                            <div class="col-12 col-lg-4">
-                                <div class="image ratio ratio-4x3">
-                                    <img class="img-fluid rounded" src="@post.ImageUrls[0]" />
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column col-12 col-lg-8 align-items-center mt-2 mt-lg-0">
-                                <div class="title shadow-sm bg-danger">
-                                    <p class="fw-bold text-center fs-4">@post.Title</p>
-                                </div>
-                                <div class="content">
-                                    <p class="lead text-center">
-                                        @post.Content.Substring(0, 400)...
-                                    </p>
-                                </div>
-                                <div class="align-self-center">
-                                    <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-link link-danger">Read More</a>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="d-flex flex-column col-12 col-lg-8 mt-2 mt-lg-0">
-                                <div class="title shadow-sm bg-danger">
-                                    <p class="fw-bold text-center fs-4">@post.Title</p>
-                                </div>
-                                <div class="content">
-                                    <p class="lead text-center">
-                                        @post.Content.Substring(0, 400)...
-                                    </p>
-                                </div>
-                                <div class="align-self-center">
-                                    <a asp-controller="News" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-link link-danger">Read More</a>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4 mt-0">
-                                <div class="image ratio ratio-4x3">
-                                    <img class="img-fluid rounded" src="@post.ImageUrls[0]" />
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <hr class="border border-danger border-2 opacity-50">
-                    i++;
-                }
-            }
-            <div class="row">
-                <div class="col-12">
-                    <ul class="pagination pagination-md justify-content-center">
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
-                        @for (int j = 1; j <= Model.PageCount; j++)
-                        {
-                            <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@j">@j</a></li>
-                        }
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="News" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <p>There are no posts!</p>
-    }
+    ViewData["contentType"] = "Новини";
+    @await Html.PartialAsync(@"~/Views/Shared/_NoContentPartialView.cshtml", ViewData["contentType"]);
 }

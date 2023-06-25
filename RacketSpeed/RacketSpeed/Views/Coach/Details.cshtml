@@ -1,0 +1,27 @@
+﻿@model CoachTrainingsViewModel
+
+@{
+    ViewData["Title"] = $"{Model.FirstName} {Model.LastName}";
+}
+
+<div class="animatedHeader bg-danger">
+    <h2 class="text-center">@Model.FirstName @Model.LastName</h2>
+</div>
+<section class="sectionCoaches">
+    <div class="container">
+        <div class="row d-flex justify-content-center text-white">
+            <div class="d-flex justify-content-center mt-5">
+                <img src="@Model.ImageUrl" width="300" height="500"
+                     style="object-fit: contain;" />
+            </div>
+        </div>
+        <div class="shadowedHeader">
+            <h2 class="text-center mt-2 text-white">График</h2>
+        </div>
+        <div class="table-responsive">
+            @await Html.PartialAsync(@"~/Views/Shared/_CoachTrainingTablePartialView.cshtml", Model)
+        </div>
+        <hr>
+    </div>
+</section>
+

@@ -1,23 +1,23 @@
 ﻿@model PlayerFormModel
 
 @{
-    ViewData["Title"] = "Edit Player (Admin)";
+    ViewData["Title"] = "Редактиране на Състезател (Админ)";
 }
 
 <div class="adminHeader bg-danger">
-    <h2 class="text-center">Edit Player</h2>
+    <h2 class="text-center">Редактирай Състезател</h2>
 </div>
 <div class="container">
+    <hr class="border border-danger border-2 opacity-50">
     <div class="row justify-content-center mt-5">
         <div class="col-12 col-lg-8">
-            <h4 class="text-center">Edit Player</h4>
             <form asp-controller="Player" asp-action="Edit" method="post">
                 <input type="hidden" asp-for="@Model.Id" />
                 <div class="mb-3">
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.FirstName" placeholder="FirstName" class="form-control" aria-required="true"
                                id="firstNameFloatingInput" />
-                        <label for="firstNameFloatingInput" class="form-label-add-edit">First Name</label>
+                        <label for="firstNameFloatingInput" class="form-label-add-edit">Име</label>
                         <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.LastName" placeholder="LastName" class="form-control" aria-required="true"
                                id="lastNameFloatingInput" />
-                        <label for="lastNameFloatingInput" class="form-label-add-edit">Last Name</label>
+                        <label for="lastNameFloatingInput" class="form-label-add-edit">Фамилия</label>
                         <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             }
                             <input asp-for="@Model.BirthDate" placeholder="BirthDate" class="form-control" aria-required="true"
                                    type="date" id="birthDateFloatingInput" />
-                            <label for="birthDateFloatingInput" class="form-label-add-edit">Birthdate</label>
+                            <label for="birthDateFloatingInput" class="form-label-add-edit">Дата на раждане</label>
                             <span asp-validation-for="@Model.BirthDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="form-floating">
                             <input asp-for="@Model.BirthPlace" placeholder="BirthPlace" class="form-control" aria-required="true"
                                    id="birthPlaceFloatingInput" />
-                            <label for="birthPlaceFloatingInput" class="form-label-add-edit">Birth place</label>
+                            <label for="birthPlaceFloatingInput" class="form-label-add-edit">Място на раждане</label>
                             <span asp-validation-for="@Model.BirthPlace" class="text-danger"></span>
                         </div>
                     </div>
@@ -55,17 +55,17 @@
                         <div class="form-floating">
                             <input asp-for="@Model.Height" placeholder="Height" class="form-control" aria-required="true"
                                    id="heightFloatingInput" />
-                            <label for="heightFloatingInput" class="form-label-add-edit">Height</label>
+                            <label for="heightFloatingInput" class="form-label-add-edit">Височина</label>
                             <span asp-validation-for="@Model.Height" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 mt-3 mt-lg-0">
                         <div class="form-floating">
                             <select asp-for="@Model.PlayingHand" class="form-select">
-                                <option value="Right-Handed">Right-Handed</option>
-                                <option value="Left-Handed">Left-Handed</option>
+                                <option value="Right-Handed">Дясна</option>
+                                <option value="Left-Handed">Лява</option>
                             </select>
-                            <label class="form-label-add-edit">Playing Hand</label>
+                            <label class="form-label-add-edit">Играеща ръка</label>
                             <span asp-validation-for="@Model.PlayingHand" class="text-danger"></span>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                         <div class="form-floating">
                             <input asp-for="@Model.WorldRanking" placeholder="WorldRankig" class="form-control" aria-required="true"
                                    id="worldRankingFloatingInput" />
-                            <label for="worldRankingFloatingInput" class="form-label-add-edit">World Ranking</label>
+                            <label for="worldRankingFloatingInput" class="form-label-add-edit">Световен Ранкинг</label>
                             <span asp-validation-for="@Model.WorldRanking" class="text-danger"></span>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="form-floating">
                             <input asp-for="@Model.NationalRanking" placeholder="NationalRanking" class="form-control" aria-required="true"
                                    id="nationalRankingFloatingInput" />
-                            <label for="nationalRankingFloatingInput" class="form-label-add-edit">National Ranking</label>
+                            <label for="nationalRankingFloatingInput" class="form-label-add-edit">Национален Ранкинг</label>
                             <span asp-validation-for="@Model.NationalRanking" class="text-danger"></span>
                         </div>
                     </div>
@@ -92,18 +92,18 @@
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.ImageUrl" placeholder="ImageUrl" class="form-control" aria-required="true"
                                id="imageUrlFloatingInput" />
-                        <label for="imageUrlFloatingInput" class="form-label-add-edit">Image Url</label>
+                        <label for="imageUrlFloatingInput" class="form-label-add-edit">Адрес на Снимка</label>
                         <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="fs-5">Biography</label>
+                    <label class="fs-5">Биография</label>
                     <textarea asp-for="@Model.Biography" class="form-control" aria-required="true"
                               rows="10"></textarea>
                     <span asp-validation-for="Biography" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Edit" />
+                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Редактирай" />
                 </div>
             </form>
             <hr />

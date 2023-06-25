@@ -125,9 +125,9 @@ namespace RacketSpeed.Core.Services
                 .ToListAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid playerId)
         {
-            var player = await this.repository.GetByIdAsync<Player>(id);
+            var player = await this.repository.GetByIdAsync<Player>(playerId);
 
             if (player == null)
             {
@@ -162,9 +162,9 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<PlayerFormModel> GetByIdAsync(Guid id)
+        public async Task<PlayerFormModel> GetByIdAsync(Guid playerId)
         {
-            var player = await this.repository.GetByIdAsync<Player>(id);
+            var player = await this.repository.GetByIdAsync<Player>(playerId);
 
             if (player == null)
             {

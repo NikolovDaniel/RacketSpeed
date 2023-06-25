@@ -2,13 +2,20 @@
 
 @if (Model == null || Model.Players.Count() <= 0)
 {
-    <div class="noContentHeader w-100 min-vh-100 d-flex justify-content-center align-items-center mb-0">
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Състезатели на Клуба</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
         <div class="row">
-            <div class="col-12 mb-5">
-                <h1 class="text-center">No players with keyword (@ViewData["keyword"]) were found!</h1>
+            <div class="col-12 col-lg-6">
+                <a asp-controller="Player" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Състезател</a>
             </div>
-            <div class="col-12 d-flex justify-content-center">
-                <input class="noContentButton w-50 form-control me-2 fs-3 text-center" onclick="history.back()" value="Go Back">
+            <div class="col-12 col-lg-6">
+                <form asp-controller="Player" asp-action="AllPlayersByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                    <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Състезател" aria-label="Search">
+                    <button class="btn btn-outline-danger" type="submit">Търси</button>
+                </form>
             </div>
         </div>
     </div>
@@ -16,25 +23,23 @@
 else
 {
     <div class="adminHeader bg-danger">
-        <h2 class="text-center">Club Players</h2>
+        <h2 class="text-center">Състезатели на Клуба</h2>
     </div>
     <div class="container">
         <hr class="border border-danger border-2 opacity-50">
         <div class="row">
             <div class="col-12 col-lg-6">
-                <a asp-controller="Player" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Add a Player</a>
+                <a asp-controller="Player" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Състезател</a>
             </div>
             <div class="col-12 col-lg-6">
                 <form asp-controller="Player" asp-action="AllPlayersByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
-                    <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Search Players" aria-label="Search">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+                    <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Състезател" aria-label="Search">
+                    <button class="btn btn-outline-danger" type="submit">Търси</button>
                 </form>
             </div>
         </div>
         <div class="row row-cols-auto mt-5">
             @{
-                int counter = 1;
-
                 foreach (var player in Model.Players)
                 {
                     <div class="col-12 col-md-6 mt-2 mb-2">
@@ -45,24 +50,24 @@ else
                                 <p class="card-text">Created On: @player.CreatedOn.ToShortDateString()</p>
                             </div>
                             <div class="card-footer">
-                                <a asp-controller="Player" asp-action="Edit" asp-route-playerId="@player.Id" class="btn btn-dark">Edit</a>
+                                <a asp-controller="Player" asp-action="Edit" asp-route-playerId="@player.Id" class="btn btn-dark">Редактирай</a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#player-@player.Id">
-                                    Delete
+                                    Изтрий
                                 </button>
                                 <div class="modal fade" id="player-@player.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="modalLabel">Player: @player.FirstName @player.LastName</h1>
+                                                <h1 class="modal-title fs-5" id="modalLabel">Състезател: @player.FirstName @player.LastName</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Are you sure you want to delete this Player?
+                                                Сигурни ли сте, че искате да изтриете този Състезател?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
                                                 <form>
-                                                    <button type="submit" formmethod="post" asp-controller="Player" asp-action="Delete" asp-route-playerId="@player.Id" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" formmethod="post" asp-controller="Player" asp-action="Delete" asp-route-playerId="@player.Id" class="btn btn-danger">Изтрий</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -72,24 +77,20 @@ else
                         </div>
                         <hr />
                     </div>
-                    counter++;
                 }
             }
         </div>
         <div class="row">
             <div class="col-12">
                 <ul class="pagination pagination-md justify-content-center">
-                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
                     @for (int i = 1; i <= Model.PageCount; i++)
                     {
                         <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@i">@i</a></li>
                     }
-                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
                 </ul>
             </div>
         </div>
     </div>
 }
-<script language="javascript" type="text/javascript">function fnConfirmDelete() {
-        return confirm(`Are you sure you want to delete this Player?`);
-    }</script>

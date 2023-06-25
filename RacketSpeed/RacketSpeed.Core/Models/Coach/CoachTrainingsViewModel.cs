@@ -29,9 +29,14 @@ namespace RacketSpeed.Core.Models.Coach
         public string Biography { get; set; } = null!;
 
         /// <summary>
+        /// Coach image url.
+        /// </summary>
+        public string ImageUrl { get; set; } = null!;
+
+        /// <summary>
         /// Navigation property for Training Entity.
         /// </summary>
-        public IEnumerable<TrainingViewModel> Trainings { get; set; } = null!;
+        public IEnumerable<TrainingViewModel> Trainings { get; set; } = new List<TrainingViewModel>();
     }
 }
 

@@ -1,0 +1,99 @@
+﻿@model TrainingFormModel
+
+@{
+    ViewData["Title"] = "Добавяне на Тренировка (Админ)";
+}
+@if (Model == null || Model.Coaches.Count() <= 0)
+{
+    ViewData["contentType"] = "Треньори";
+    @await Html.PartialAsync(@"~/Views/Shared/_NoContentPartialView.cshtml", ViewData["contentType"]);
+}
+else
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Добави Тренировка</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <form asp-controller="Training" asp-action="Add" method="post">
+                    <div class="mb-3">
+                        <div class="form-floating mb-3">
+                            <select asp-for="@Model.Name" class="form-select">
+                                <option value="Деца до 7">Деца до 7</option>
+                                <option value="Деца до 11">Деца до 11</option>
+                                <option value="Деца до 15">Деца до 15</option>
+                                <option value="Деца до 19">Деца до 19</option>
+                            </select>
+                            <label for="trainingNameFloatingInput" class="form-label-add-edit">Вид на тренировката</label>
+                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="@Model.Start" placeholder="StartHour" class="form-control"
+                                           aria-required="true" id="startHourFloatingInput" type="time" value="09:00" min="09:00" max="21:00" />
+                                    <label for="startHourFloatingInput" class="form-label-add-edit">Начален час</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="@Model.End" placeholder="EndHour" class="form-control"
+                                           aria-required="true" id="endHourFloatingInput" type="time" value="10:00" min="09:00" max="21:00" />
+                                    <label for="endHourFloatingInput" class="form-label-add-edit">Краен час</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating mb-3">
+                            <select asp-for="@Model.DayOfWeek" class="form-select">
+                                <option value="Понеделник">Понеделник</option>
+                                <option value="Вторник">Вторник</option>
+                                <option value="Сряда">Сряда</option>
+                                <option value="Четвъртък">Четвъртък</option>
+                                <option value="Петък">Петък</option>
+                                <option value="Събота">Събота</option>
+                                <option value="Неделя">Неделя</option>
+                            </select>
+                            <label class="form-label-add-edit">Ден от седмицата</label>
+                            <span asp-validation-for="@Model.CoachId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h5 class="text-center">Избери треньор</h5>
+                        <div class="form-floating mb-3">
+                            <select asp-for="@Model.CoachId" class="form-select">
+                                @foreach (var coach in Model.Coaches)
+                                {
+                                    <option value="@coach.Id">@coach.Name</option>
+                                }
+                            </select>
+                            <label class="form-label-add-edit">Треньор</label>
+                            <span asp-validation-for="@Model.CoachId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Добави" />
+                    </div>
+                </form>
+                <hr class="border border-danger border-2 opacity-50">
+            </div>
+            <div class="col-12 col-lg-4 text-center">
+                <div class="fastButtons">
+                    <a asp-controller="News" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Новина</a>
+                    <hr />
+                    <a asp-controller="Player" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Играч</a>
+                    <hr />
+                    <a asp-controller="Coach" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Треньор</a>
+                    <hr />
+                    <a asp-controller="User" asp-action="UserReservations" class="form-control btn btn-large btn-danger fs-5">Потребителски Резервации</a>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+}
