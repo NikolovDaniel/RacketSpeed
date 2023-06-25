@@ -1,11 +1,12 @@
-﻿using System;
-using RacketSpeed.Infrastructure.Utilities;
-using System.ComponentModel.DataAnnotations;
-
-namespace RacketSpeed.Core.Models.Training
+﻿namespace RacketSpeed.Core.Models.Training
 {
 	public class TrainingViewModel
 	{
+        /// <summary>
+        /// Training identificator.
+        /// </summary>
+        public Guid Id { get; set; }
+
         /// <summary>
         /// Name of the training.
         /// </summary>
@@ -20,6 +21,11 @@ namespace RacketSpeed.Core.Models.Training
         /// End hour of the training.
         /// </summary>
         public DateTime End { get; set; }
+
+        /// <summary>
+        /// Day of the week.
+        /// </summary>
+        public string DayOfWeek { get; set; } = null!;
     }
 }
 

@@ -1,0 +1,76 @@
+﻿@model ICollection<CoachViewModel>
+
+@if (Model == null || Model.Count <= 0)
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Треньори на Клуба</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <a asp-controller="Coach" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Треньор</a>
+            </div>
+            <div class="col-12 col-lg-6">
+                <a asp-controller="Training" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Тренировка</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Треньори на Клуба</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <a asp-controller="Coach" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Треньор</a>
+            </div>
+            <div class="col-12 col-lg-6 mt-1 mt-lg-0">
+                <a asp-controller="Training" asp-action="Add" style="width:100%;" class="btn btn-lg btn-danger btn-block">Добави Тренировка</a>
+            </div>
+        </div>
+        <div class="row row-cols-auto mt-5">
+            @{
+                foreach (var coach in Model)
+                {
+                    <div class="col-12 col-md-6 mt-2 mb-2">
+                        <div class="card" style="background-color: #F5F7FD">
+                            <div class="card-body">
+                                <h3 class="card-title">@coach.FirstName @coach.LastName</h3>
+                            </div>
+                            <div class="card-footer">
+                                <a asp-controller="Coach" asp-action="Edit" asp-route-coachId="@coach.Id" class="btn btn-dark">Редактирай</a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#coach-@coach.Id">
+                                    Изтрий
+                                </button>
+                                <div class="modal fade" id="coach-@coach.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="modalLabel">Треньор: @coach.FirstName @coach.LastName</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Сигурни ли сте, че искате да изтриете този Треньор?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+                                                <form>
+                                                    <button type="submit" formmethod="post" asp-controller="Coach" asp-action="Delete" asp-route-coachId="@coach.Id" class="btn btn-danger">Изтрий</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

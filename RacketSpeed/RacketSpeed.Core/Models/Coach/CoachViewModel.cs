@@ -25,6 +25,11 @@ namespace RacketSpeed.Core.Models.Coach
         public string LastName { get; set; } = null!;
 
         /// <summary>
+        /// Coach image url.
+        /// </summary>
+        public string ImageUrl { get; set; } = null!;
+
+        /// <summary>
         /// Biography of the Coach.
         /// </summary>
         public string Biography { get; set; } = null!;

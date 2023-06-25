@@ -28,9 +28,9 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to retrieve a single Player.
         /// </summary>
-        /// <param name="id">Entity Identificator.</param>
+        /// <param name="playerId">Entity Identificator.</param>
         /// <returns>PlayerDetailsViewModel.</returns>
-        Task<PlayerFormModel> GetByIdAsync(Guid id);
+        Task<PlayerFormModel> GetByIdAsync(Guid playerId);
 
         /// <summary>
         /// Async method to add an Entity to the Database.
@@ -47,8 +47,8 @@ namespace RacketSpeed.Core.Contracts
         /// <summary>
         /// Async method to Delete an Entity.
         /// </summary>
-        /// <param name="id">Entity Identificator.</param>
-        Task DeleteAsync(Guid id);
+        /// <param name="playerId">Entity Identificator.</param>
+        Task DeleteAsync(Guid playerId);
 
         /// <summary>
         /// Method to get the Count of all Player Entities and help for the pagination.

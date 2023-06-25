@@ -27,9 +27,14 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<Training> Trainings { get; set; } = null!;
         public DbSet<PostImageUrl> PostImageUrls { get; set; } = null!;
         public DbSet<PlayerImageUrl> PlayerImageUrls { get; set; } = null!;
+        public DbSet<CoachImageUrl> CoachImageUrls { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // This might be a problem in the future if any of the entities come with
+            // large amount of images.
+            // Fluent API to configure a Coach to always come with its ImageUrls.
+            builder.Entity<Coach>().Navigation(img => img.CoachImageUrl).AutoInclude();
             // Fluent API to configure a Player to always come with its ImageUrls.
             builder.Entity<Player>().Navigation(img => img.PlayerImageUrl).AutoInclude();
             // Fluent API to configure a Post to always come with its ImageUrls.

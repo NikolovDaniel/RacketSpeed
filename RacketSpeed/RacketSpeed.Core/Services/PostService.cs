@@ -93,9 +93,9 @@ namespace RacketSpeed.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<PostViewModel> GetByIdAsync(Guid id)
+        public async Task<PostViewModel> GetByIdAsync(Guid postId)
         {
-            var post = await this.repository.GetByIdAsync<Post>(id);
+            var post = await this.repository.GetByIdAsync<Post>(postId);
 
             if (post == null)
             {
@@ -145,9 +145,9 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid postId)
         {
-            var post = await this.repository.GetByIdAsync<Post>(id);
+            var post = await this.repository.GetByIdAsync<Post>(postId);
 
             if (post == null)
             {
