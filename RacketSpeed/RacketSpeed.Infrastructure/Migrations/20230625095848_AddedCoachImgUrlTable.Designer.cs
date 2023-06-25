@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RacketSpeed.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RacketSpeed.Infrastructure.Data;
 namespace RacketSpeed.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230625095848_AddedCoachImgUrlTable")]
+    partial class AddedCoachImgUrlTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -526,11 +528,6 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.Property<Guid>("CoachId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DayOfWeek")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");

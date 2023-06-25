@@ -1,88 +1,89 @@
 ﻿@model PlayersPaginationCountViewModel
 
+@{
+    ViewData["Title"] = "Състезатели";
+}
+
 @if (User?.IsInRole("Administrator") ?? false)
 {
-    ViewData["Title"] = "Players (Admin)";
+    ViewData["Title"] = "Състезатели (Админ)";
     @await Html.PartialAsync(@"~/Views/Shared/_PlayersAdminPartial.cshtml", Model);
+}
+else if (Model != null && Model.Players.Count() > 0)
+{
+    <div class="animatedHeader bg-danger">
+        <h1 class="text-center">Състезатели на Клуба</h1>
+    </div>
+    <div class="container">
+        @{
+            <div class="row">
+                <div class="col-12 col-lg-6 offset-lg-6 d-flex justify-content-lg-end">
+                    <form asp-controller="Player" asp-action="AllPlayersByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                        <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Състезател" aria-label="Search">
+                        <button class="btn btn-outline-danger" type="submit">Търси</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="border border-danger border-2 opacity-50">
+            <div class="row row-cols-auto">
+                @foreach (var player in Model.Players)
+                {
+                    <div class="col-12 text-center mt-4">
+                        <div class="row mb-4">
+                            <div class="col-12 col-lg-4 text-center">
+                                <div class="title shadow-sm" style="background-color: #BB2D3C;">
+                                    <h3 class="text-center">@player.FirstName @player.LastName</h3>
+                                </div>
+                                <div class="content">
+                                    <p class="lead">
+                                        Възраст: @(Math.Floor((DateTime.Today - player.BirthDate).TotalDays / 365.2425))
+                                    </p>
+                                    <p class="lead">
+                                        Място на раждане: @player.BirthPlace
+                                    </p>
+                                    <p class="lead">
+                                        Височина: @player.Height
+                                    </p>
+                                    <p class="lead">
+                                        Играеща ръка: @player.PlayingHand
+                                    </p>
+                                    <p class="lead">
+                                        Член на клуба от: @player.CreatedOn.ToShortDateString()
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="image ratio ratio-4x3">
+                                    <img class="img-fluid rounded border border-danger" src="@player.ImageUrl" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="content">
+                                    <p>@player.Biography</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="border border-danger border-2 opacity-50">
+                    </div>
+                }
+            </div>
+        }
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination pagination-md justify-content-center">
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@i">@i</a></li>
+                    }
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 }
 else
 {
-    ViewData["Title"] = "Club Players";
-    @if (Model.Players.Count() > 0)
-    {
-        <div class="animatedHeader bg-danger">
-            <h1 class="text-center">Club Players</h1>
-        </div>
-        <div class="container">
-            @{
-                <div class="row">
-                    <div class="col-12 col-lg-6 offset-lg-6 d-flex justify-content-lg-end">
-                        <form asp-controller="Player" asp-action="AllPlayersByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
-                            <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Search Players" aria-label="Search">
-                            <button class="btn btn-outline-danger" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-                <hr class="border border-danger border-2 opacity-50">
-                <div class="row row-cols-auto">
-                    @foreach (var player in Model.Players)
-                    {
-                        <div class="col-12 text-center mt-4">
-                            <div class="row mb-4">
-                                <div class="col-12 col-lg-4 text-center">
-                                    <div class="title shadow-sm bg-danger">
-                                        <p class="fw-bold fs-4">@player.FirstName @player.LastName</p>
-                                    </div>
-                                    <div class="content">
-                                        <p class="lead">
-                                            Age: @(Math.Floor((DateTime.Today - player.BirthDate).TotalDays / 365.2425))
-                                        </p>
-                                        <p class="lead">
-                                            Place of birth: @player.BirthPlace
-                                        </p>
-                                        <p class="lead">
-                                            Height: @player.Height
-                                        </p>
-                                        <p class="lead">
-                                            Playing Hand: @player.PlayingHand
-                                        </p>
-                                        <p class="lead">
-                                            Part of RacketSpeed since: @player.CreatedOn.ToShortDateString()
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-4">
-                                    <div class="image ratio ratio-4x3">
-                                        <img class="img-fluid rounded" src="@player.ImageUrl" />
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-4">
-                                    <div class="content">
-                                        <p>@player.Biography</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="border border-danger border-2 opacity-50">
-                        </div>
-                    }
-                </div>
-            }
-            <div class="row">
-                <div class="col-12">
-                    <ul class="pagination pagination-md justify-content-center">
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Previous</a></li>
-                        @for (int i = 1; i <= Model.PageCount; i++)
-                        {
-                            <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@i">@i</a></li>
-                        }
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="AllPlayersByKeyword" asp-route-keyword="@ViewData["keyword"]" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <p>There are no players!</p>
-    }
+    ViewData["contentType"] = "Състезатели";
+    @await Html.PartialAsync(@"~/Views/Shared/_NoContentPartialView.cshtml", ViewData["contentType"]);
 }

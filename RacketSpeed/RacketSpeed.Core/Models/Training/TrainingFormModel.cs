@@ -1,19 +1,16 @@
-﻿using System;
+﻿using RacketSpeed.Infrastructure.Utilities;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using RacketSpeed.Infrastructure.Utilities;
 
-namespace RacketSpeed.Infrastructure.Data.Entities
+namespace RacketSpeed.Core.Models.Training
 {
     /// <summary>
-    /// Training Entity.
+    /// Training form model, holds validation for CRUD operations.
     /// </summary>
-    public class Training
+    public class TrainingFormModel
     {
         /// <summary>
-        /// Identificator.
+        /// Training identificator.
         /// </summary>
-        [Key]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -49,18 +46,13 @@ namespace RacketSpeed.Infrastructure.Data.Entities
         /// <summary>
         /// Identificator for Coach Entity.
         /// </summary>
-        [ForeignKey(nameof(Coach))]
         public Guid CoachId { get; set; }
 
         /// <summary>
-        /// Coach entity.
+        /// Collection of Coaches Id and Name.
         /// </summary>
-        public Coach Coach { get; set; } = null!;
+        public IEnumerable<TrainingCoachFormModel> Coaches { get; set; } = new List<TrainingCoachFormModel>();
 
-        /// <summary>
-        /// Delete flag.
-        /// </summary>
-        public bool IsDeleted { get; set; }
     }
 }
 

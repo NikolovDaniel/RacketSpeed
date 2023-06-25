@@ -1,13 +1,14 @@
 ﻿@model PostFormModel
 
 @{
-    ViewData["Title"] = "Edit Post (Admin)";
+    ViewData["Title"] = "Редактиране на Новина (Админ)";
 }
 
 <div class="adminHeader bg-danger">
-    <h2 class="text-center">Edit Post</h2>
+    <h2 class="text-center">Редактирай Новина</h2>
 </div>
 <div class="container">
+    <hr class="border border-danger border-2 opacity-50">
     <div class="row justify-content-center">
         <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6">
@@ -17,7 +18,7 @@
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.Title" placeholder="Title" class="form-control" aria-required="true"
                                id="titleFloatingInput" />
-                        <label for="titleFloatingInput" class="form-label-add-edit">Title</label>
+                        <label for="titleFloatingInput" class="form-label-add-edit">Заглавие</label>
                         <span asp-validation-for="@Model.Title" class="text-danger"></span>
                     </div>
                 </div>
@@ -27,7 +28,7 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Title Image Url #1
+                                    Главна Снимка #1
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show"
@@ -36,7 +37,7 @@
                                     <div class="form-floating mb-3">
                                         <input asp-for="@Model.ImageUrls[0]" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
-                                        <label for="floatingInput">Image Url</label>
+                                        <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +46,7 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                    Body Image Url #2
+                                    Допълнителна Снимка #2
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse show"
@@ -54,7 +55,7 @@
                                     <div class="form-floating mb-3">
                                         <input asp-for="@Model.ImageUrls[1]" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
-                                        <label for="floatingInput">Image Url</label>
+                                        <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +65,7 @@
                                 <button class="accordion-button btn-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="true"
                                         aria-controls="collapseThree">
-                                    Body Image Url #3
+                                    Допълнителна Снимка #3
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse show"
@@ -73,7 +74,7 @@
                                     <div class="form-floating mb-3">
                                         <input asp-for="@Model.ImageUrls[2]" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
-                                        <label for="floatingInput">Image Url</label>
+                                        <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
                                 </div>
                             </div>
@@ -81,13 +82,13 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="fs-5">Content</label>
+                    <label class="fs-5">Съдържание</label>
                     <textarea asp-for="@Model.Content" class="form-control" aria-required="true"
                               rows="10"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-danger mb-2 w-100 p-3 fw-bold text-white" type="submit" value="Edit" />
+                    <input class="btn btn-danger mb-2 w-100 p-3 fw-bold text-white" type="submit" value="Редактирай" />
                 </div>
             </form>
         </div>

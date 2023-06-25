@@ -1,41 +1,40 @@
 ﻿@model ICollection<CoachViewModel>
 
-@if (User?.IsInRole("Administrator") ?? false)
-{
-    <a role="button">Add new Coach</a>
+@{
+    ViewData["Title"] = "Треньори";
 }
 
-@if (Model.Count > 0)
+@if (User?.IsInRole("Administrator") ?? false)
 {
-    foreach (var coach in Model)
-    {
-        <div class="row">
-            <div class="card">
-                <div class="card-title">
-                    @coach.FirstName @coach.LastName
-                </div>
-                <div class="card-body">
-                    @coach.Biography
-                </div>
-                @if (User?.IsInRole("Administrator") ?? false)
+    ViewData["Title"] = "Треньори (Админ)";
+    @await Html.PartialAsync(@"~/Views/Shared/_CoachesAdminPartialView.cshtml", Model);
+}
+else if (Model != null && Model.Count > 0)
+{
+    <div class="animatedHeader">
+        <h2 class="text-center">Треньори</h2>
+    </div>
+    <section class="sectionCoaches">
+        <div class="container">
+            <div class="row d-flex justify-content-center text-white">
+                @foreach (var coach in Model)
                 {
-                    <div class="card-footer">
-                        <a role="button">Edit</a>
-                        <a role="button">Delete</a>
+                    <div class="d-flex justify-content-center mt-5">
+                        <img src="@coach.ImageUrl" width="300" height="500"
+                             style="object-fit: contain;" />
+                    </div>
+                    <h1 class="text-center">@coach.FirstName @coach.LastName</h1>
+                    <div class="col-12 d-flex justify-content-center">
+                        <a asp-controller="Coach" asp-action="Details" asp-route-coachId="@coach.Id" class="btn btn-danger">Научи повече</a>
                     </div>
                 }
-                else
-                {
-                    <div class="card-footer">
-                        <a role="button">Details</a>
-                    </div>
-                }
-                 
             </div>
+            <hr>
         </div>
-    }
+    </section>
 }
 else
 {
-    <p>There are no coaches!</p>
+    ViewData["contentType"] = "Треньори";
+    @await Html.PartialAsync(@"~/Views/Shared/_NoContentPartialView.cshtml", ViewData["contentType"]);
 }

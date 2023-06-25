@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Coach;
-using RacketSpeed.Core.Models.Post;
 using RacketSpeed.Core.Models.Training;
 using RacketSpeed.Infrastructure.Data.Entities;
 using RacketSpeed.Infrastructure.Data.Repositories;
@@ -34,6 +34,10 @@ namespace RacketSpeed.Core.Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Biography = model.Biography,
+                CoachImageUrl = new CoachImageUrl()
+                {
+                    Url = model.ImageUrl
+                },
                 IsDeleted = false
             };
 
@@ -52,14 +56,14 @@ namespace RacketSpeed.Core.Services
                     Id = c.Id,
                     FirstName = c.FirstName,
                     LastName = c.LastName,
-                    Biography = c.Biography
+                    ImageUrl = c.CoachImageUrl.Url
                 })
                 .ToListAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid coachId)
         {
-            var coach = await this.repository.GetByIdAsync<Coach>(id);
+            var coach = await this.repository.GetByIdAsync<Coach>(coachId);
 
             if (coach == null)
             {
@@ -80,6 +84,7 @@ namespace RacketSpeed.Core.Services
                 return;
             }
 
+            coach.CoachImageUrl.Url = model.ImageUrl;
             coach.FirstName = model.FirstName;
             coach.LastName = model.LastName;
             coach.Biography = model.Biography;
@@ -87,9 +92,28 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<CoachTrainingsViewModel> GetByIdAsync(Guid id, bool withTrainings)
+        public async Task<CoachFormModel> GetByIdAsync(Guid coachId)
         {
-            var coach = await this.repository.GetByIdAsync<Coach>(id);
+            var coach = await this.repository.GetByIdAsync<Coach>(coachId);
+
+            return new CoachFormModel()
+            {
+                Id = coach.Id,
+                FirstName = coach.FirstName,
+                LastName = coach.LastName,
+                Biography = coach.Biography,
+                ImageUrl = coach.CoachImageUrl.Url
+            };
+        }
+
+        public async Task<CoachTrainingsViewModel> GetByIdAsync(Guid coachId, bool withTrainings)
+        {
+            var coach = await this.repository.GetByIdAsync<Coach>(coachId);
+
+            Expression<Func<Training, bool>> expression
+                = p => p.CoachId == coachId;
+
+            var coachTrainings = this.repository.All(expression);
 
             if (coach == null)
             {
@@ -98,16 +122,18 @@ namespace RacketSpeed.Core.Services
 
             var model = new CoachTrainingsViewModel()
             {
+                ImageUrl = coach.CoachImageUrl.Url,
                 FirstName = coach.FirstName,
                 LastName = coach.LastName,
                 Biography = coach.Biography,
-                Trainings = withTrainings ? coach.Trainings
-                .Where(t => t.CoachId == coach.Id)
+                Trainings = withTrainings && coachTrainings != null ? coachTrainings
                 .Select(t => new TrainingViewModel()
                 {
+                    Id = t.Id,
                     Name = t.Name,
                     Start = t.Start,
-                    End = t.End
+                    End = t.End,
+                    DayOfWeek = t.DayOfWeek
                 })
                 .ToList() : new List<TrainingViewModel>()
             };

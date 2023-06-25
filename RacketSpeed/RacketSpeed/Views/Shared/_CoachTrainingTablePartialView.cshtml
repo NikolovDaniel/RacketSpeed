@@ -1,0 +1,56 @@
+﻿@model CoachTrainingsViewModel
+
+<table class="table table-dark table-striped text-center">
+    <thead class="table table-danger">
+        <tr>
+            <th scope="col">Тренировка</th>
+            <th scope="col">Пон</th>
+            <th scope="col">Вто</th>
+            <th scope="col">Сря</th>
+            <th scope="col">Чет</th>
+            <th scope="col">Пет</th>
+            <th scope="col">Съб</th>
+            <th scope="col">Нед</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            @{
+                if (Model.Trainings.Count() > 0)
+                {
+                    var trainingNames = Model.Trainings.DistinctBy(t => t.Name).Select(x => x.Name).ToArray();
+
+                    for (int i = 0; i < trainingNames.Count(); i++)
+                    {
+                        string trainingName = trainingNames[i];
+
+                        <th scope="row">@trainingName</th>
+
+                        var mondayTraining = Model.Trainings
+                            .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Понеделник");
+                        var tuesdayTraining = Model.Trainings
+                         .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Вторник");
+                        var wednesdayTraining = Model.Trainings
+                         .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Сряда");
+                        var thursdayTraining = Model.Trainings
+                         .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Четвъртък");
+                        var fridayTraining = Model.Trainings
+                         .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Петък");
+                        var saturdayTraining = Model.Trainings
+                         .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Събота");
+                        var sundayTraining = Model.Trainings
+                         .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Неделя");
+
+                        <td>@(mondayTraining != null ? $"{mondayTraining.Start.ToString("HH:mm")} - {mondayTraining.End.ToString("HH:mm")}" : null)</td>
+                        <td>@(tuesdayTraining != null ? $"{tuesdayTraining.Start.ToString("HH:mm")} - {tuesdayTraining.End.ToString("HH:mm")}" : null)</td>
+                        <td>@(wednesdayTraining != null ? $"{wednesdayTraining.Start.ToString("HH:mm")} - {wednesdayTraining.End.ToString("HH:mm")}" : null)</td>
+                        <td>@(thursdayTraining != null ? $"{thursdayTraining.Start.ToString("HH:mm")} - {thursdayTraining.End.ToString("HH:mm")}" : null)</td>
+                        <td>@(fridayTraining != null ? $"{fridayTraining.Start.ToString("HH:mm")} - {fridayTraining.End.ToString("HH:mm")}" : null)</td>
+                        <td>@(saturdayTraining != null ? $"{saturdayTraining.Start.ToString("HH:mm")} - {saturdayTraining.End.ToString("HH:mm")}" : null)</td>
+                        <td>@(sundayTraining != null ? $"{sundayTraining.Start.ToString("HH:mm")} - {sundayTraining.End.ToString("HH:mm")}" : null)</td>
+                    }
+                }
+            }
+        </tr>
+    </tbody>
+</table>

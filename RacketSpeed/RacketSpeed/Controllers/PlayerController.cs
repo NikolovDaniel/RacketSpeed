@@ -122,11 +122,6 @@ namespace RacketSpeed.Controllers
 
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState)
-                {
-                    ModelState.AddModelError($"{error.Key}", $"{error.Value}");
-                }
-
                 return View(model);
             }
 
@@ -163,11 +158,6 @@ namespace RacketSpeed.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var error in ModelState)
-                {
-                    ModelState.AddModelError($"{error.Key}", $"{error.Value}");
-                }
-
                 return View(model);
             }
 

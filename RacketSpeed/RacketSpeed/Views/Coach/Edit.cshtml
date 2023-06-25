@@ -1,0 +1,60 @@
+﻿@model CoachFormModel
+
+@{
+    ViewData["Title"] = "Редактиране на Треньор (Админ)";
+}
+
+<div class="adminHeader bg-danger">
+    <h2 class="text-center">Редактирай Треньор</h2>
+</div>
+<div class="container">
+    <hr class="border border-danger border-2 opacity-50">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <form asp-controller="Coach" asp-action="Edit" method="post">
+                <input type="hidden" asp-for="@Model.Id" />
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.FirstName" placeholder="FirstName" class="form-control" aria-required="true"
+                               id="firstNameFloatingInput" />
+                        <label for="firstNameFloatingInput" class="form-label-add-edit">Име</label>
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.LastName" placeholder="LastName" class="form-control" aria-required="true"
+                               id="lastNameFloatingInput" />
+                        <label for="lastNameFloatingInput" class="form-label-add-edit">Фамилия</label>
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.ImageUrl" placeholder="ImageUrl" class="form-control" aria-required="true"
+                               id="imageUrlFloatingInput" />
+                        <label for="imageUrlFloatingInput" class="form-label-add-edit">Адрес на Снимка</label>
+                        <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fs-5">Биография</label>
+                    <textarea asp-for="@Model.Biography" class="form-control" aria-required="true"
+                              rows="10"></textarea>
+                    <span asp-validation-for="Biography" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Редактирай" />
+                </div>
+            </form>
+            <hr />
+        </div>
+        <div class="col-12 col-lg-4">
+            @await Html.PartialAsync(@"~/Views/Shared/_CoachTrainingsEditPartialView.cshtml", Model.Trainings)
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
