@@ -43,16 +43,33 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<TrainingViewModel>> AllAsync(Guid coachId)
+        public async Task<ICollection<TrainingViewModel>> AllAsync()
+        {
+            var trainings = this.repository.AllReadonly<Training>();
+
+            return await  trainings
+                .Select(t => new TrainingViewModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                })
+                .ToListAsync();
+        }
+
+        public async Task<ICollection<TrainingViewModel>> AllAsync(string trainingName)
         {
             Expression<Func<Training, bool>> expression
-                = p => p.CoachId == coachId;
+                = t => t.Name == trainingName && t.IsDeleted == false;
 
-            var coachTrainings = this.repository.All<Training>(expression);
+            var trainings = this.repository.All<Training>(expression);
 
-            return await coachTrainings
-                            .Select(ct => new TrainingViewModel()
+            return await trainings
+                            .Select(t => new TrainingViewModel()
                             {
+                                Name = t.Name,
+                                Start = t.Start,
+                                End = t.End,
+                                DayOfWeek = t.DayOfWeek
                             })
                             .ToListAsync();
         }
@@ -80,12 +97,15 @@ namespace RacketSpeed.Core.Services
                 return;
             }
 
+            training.Id = model.Id;
             training.CoachId = model.CoachId;
             training.Name = model.Name;
             training.Start = model.Start;
             training.End = model.End;
             training.DayOfWeek = model.DayOfWeek;
             training.CoachId = model.CoachId;
+
+            await this.repository.SaveChangesAsync();
         }
 
         public async Task<TrainingFormModel> GetByIdAsync(Guid trainingId)
@@ -103,7 +123,8 @@ namespace RacketSpeed.Core.Services
                 Name = training.Name,
                 Start = training.Start,
                 End = training.End,
-                DayOfWeek = training.DayOfWeek
+                DayOfWeek = training.DayOfWeek,
+                CoachId = training.CoachId
             };
 
             return model;

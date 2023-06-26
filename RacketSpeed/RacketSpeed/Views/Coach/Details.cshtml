@@ -9,19 +9,30 @@
 </div>
 <section class="sectionCoaches">
     <div class="container">
-        <div class="row d-flex justify-content-center text-white">
-            <div class="d-flex justify-content-center mt-5">
-                <img src="@Model.ImageUrl" width="300" height="500"
-                     style="object-fit: contain;" />
+        <div class="row d-flex justify-content-center align-items-center text-white">
+            <div class="col-12 col-lg-4">
+                <div class="d-flex justify-content-center mt-5">
+                    <img src="@Model.ImageUrl" width="300" height="500"
+                         style="object-fit: contain;" />
+                </div>
+            </div>
+            <div class="col-12 col-lg-8">
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <p class="fs-5">@Model.Biography</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="shadowedHeader">
+                            <h2 class="text-center mt-2 text-white">График</h2>
+                        </div>
+                        <div class="table-responsive">
+                            @await Html.PartialAsync(@"~/Views/Shared/_CoachTrainingTablePartialView.cshtml", Model)
+                        </div>
+                        <hr />
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="shadowedHeader">
-            <h2 class="text-center mt-2 text-white">График</h2>
-        </div>
-        <div class="table-responsive">
-            @await Html.PartialAsync(@"~/Views/Shared/_CoachTrainingTablePartialView.cshtml", Model)
-        </div>
-        <hr>
     </div>
 </section>
 

@@ -18,10 +18,11 @@ else
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <form asp-controller="Training" asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="@Model.Id" />
                     <div class="mb-3">
                         <div class="form-floating mb-3">
                             <select asp-for="@Model.Name" class="form-select">
-                                <option disabled selected>@Model.Name</option>
+                                @*<option disabled selected>@Model.Name</option>*@
                                 <option value="Деца до 7">Деца до 7</option>
                                 <option value="Деца до 11">Деца до 11</option>
                                 <option value="Деца до 15">Деца до 15</option>
@@ -43,7 +44,7 @@ else
                             <div class="col-12 col-lg-6">
                                 <div class="form-floating mb-3">
                                     <input asp-for="@Model.End" placeholder="EndHour" class="form-control"
-                                           aria-required="true" id="endHourFloatingInput" type="time" value="@Model.Start.ToString("HH:mm")" min="09:00" max="21:00" />
+                                           aria-required="true" id="endHourFloatingInput" type="time" value="@Model.End.ToString("HH:mm")" min="09:00" max="21:00" />
                                     <label for="endHourFloatingInput" class="form-label-add-edit">Краен час</label>
                                 </div>
                             </div>
@@ -52,7 +53,7 @@ else
                     <div class="mb-3">
                         <div class="form-floating mb-3">
                             <select asp-for="@Model.DayOfWeek" class="form-select">
-                                <option disabled selected>@Model.DayOfWeek</option>
+                                @*<option disabled selected>@Model.DayOfWeek</option>*@
                                 <option value="Понеделник">Понеделник</option>
                                 <option value="Вторник">Вторник</option>
                                 <option value="Сряда">Сряда</option>
@@ -69,7 +70,7 @@ else
                         <h5 class="text-center">Избери треньор</h5>
                         <div class="form-floating mb-3">
                             <select asp-for="@Model.CoachId" class="form-select">
-                                <option disabled selected>@Model.Coaches.FirstOrDefault(c => c.Id == Model.CoachId).Name</option>
+                                @*<option disabled selected>@Model.Coaches.FirstOrDefault(c => c.Id == Model.CoachId).Name</option>*@
                                 @foreach (var coach in Model.Coaches)
                                 {
                                     <option value="@coach.Id">@coach.Name</option>
@@ -80,7 +81,7 @@ else
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Добави" />
+                        <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Редактирай" />
                     </div>
                 </form>
                 <hr class="border border-danger border-2 opacity-50">
@@ -99,8 +100,4 @@ else
             </div>
         </div>
     </div>
-}
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
 }
