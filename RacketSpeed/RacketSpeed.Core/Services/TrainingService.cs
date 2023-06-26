@@ -46,7 +46,7 @@ namespace RacketSpeed.Core.Services
         public async Task<ICollection<TrainingViewModel>> AllAsync(Guid coachId)
         {
             Expression<Func<Training, bool>> expression
-                = p => p.CoachId == coachId;
+                = p => p.CoachId == coachId && p.IsDeleted == false;
 
             var coachTrainings = this.repository.All<Training>(expression);
 
@@ -80,12 +80,15 @@ namespace RacketSpeed.Core.Services
                 return;
             }
 
+            training.Id = model.Id;
             training.CoachId = model.CoachId;
             training.Name = model.Name;
             training.Start = model.Start;
             training.End = model.End;
             training.DayOfWeek = model.DayOfWeek;
             training.CoachId = model.CoachId;
+
+            await this.repository.SaveChangesAsync();
         }
 
         public async Task<TrainingFormModel> GetByIdAsync(Guid trainingId)
@@ -103,7 +106,8 @@ namespace RacketSpeed.Core.Services
                 Name = training.Name,
                 Start = training.Start,
                 End = training.End,
-                DayOfWeek = training.DayOfWeek
+                DayOfWeek = training.DayOfWeek,
+                CoachId = training.CoachId
             };
 
             return model;

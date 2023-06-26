@@ -1,3 +1,19 @@
 ﻿@model IEnumerable<TrainingViewModel>
 
-<div></div>
+<div class="trainingDropdown">
+    <h2 class="text-center">Тренировки</h2>
+    @{
+        var trainingDays = Model.DistinctBy(t => t.DayOfWeek).Where(t => t.DayOfWeek != "Понеделник").ToArray();
+
+        ViewData["DayOfWeek"] = "Понеделник";
+        @await Html.PartialAsync(@"~/Views/Shared/_TrainingEditDeletePartialView.cshtml", Model.Where(t => t.DayOfWeek == "Понеделник"));
+        <hr />
+
+        for (int i = 0; i < trainingDays.Count(); i++)
+        {
+            ViewData["DayOfWeek"] = trainingDays[i].DayOfWeek;
+            @await Html.PartialAsync(@"~/Views/Shared/_TrainingEditDeletePartialView.cshtml", Model.Where(t => t.DayOfWeek != "Понеделник"));
+            <hr />
+        }
+    }
+</div>

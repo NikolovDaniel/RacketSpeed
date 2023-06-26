@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TrainingViewModel>
+
+<p>
+    <a class="btn btn-danger" style="width: 100%" data-bs-toggle="collapse" href="#traininig-@ViewData["DayOfWeek"]" role="button" aria-expanded="false" aria-controls="traininig-@ViewData["DayOfWeek"]">
+        @ViewData["DayOfWeek"]
+    </a>
+</p>
+<div class="collapse" id="traininig-@ViewData["DayOfWeek"]">
+    <div class="row">
+        @foreach (var training in Model.Where(t => t.DayOfWeek == ViewData["DayOfWeek"].ToString()).OrderBy(t => t.Start.ToString("HH:mm")))
+        {
+            <div class="col-6">
+                <p>
+                    <a class="btn btn-dark" data-bs-toggle="collapse" href="#day-@training.Id" role="button" aria-expanded="false" aria-controls="day-@training.Id">
+                        @training.Name: @training.Start.ToString("HH:mm") - @training.End.ToString("HH:mm")
+                    </a>
+                </p>
+                <div class="collapse" id="day-@training.Id">
+                    <div class="row mb-1">
+                        <div class="col-6">
+                            <a class="btn btn-dark" asp-controller="Training" asp-action="Edit" asp-route-trainingId="@training.Id" style="width: fit-content;">Редактирай</a>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#training-@training.Id">
+                                Изтрий
+                            </button>
+                            <div class="modal fade" id="training-@training.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalLabel">Тренировка: @training.DayOfWeek - @training.Name</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Сигурни ли сте, че искате да изтриете тази Тренировка?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+                                            <form>
+                                                <button type="submit" formmethod="post" asp-controller="Training" asp-action="Delete" asp-route-trainingId="@training.Id" class="btn btn-danger">Изтрий</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
