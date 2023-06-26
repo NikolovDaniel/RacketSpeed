@@ -30,9 +30,24 @@ namespace RacketSpeed.Controllers
         }
 
         /// <summary>
-        /// Displays a /All page with three posts.
+        /// Display 
         /// </summary>
-        /// <returns>/News/All page.</returns>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> All(string trainingName)
+        {
+            var allTrainings = await this.trainingService.AllAsync(trainingName);
+
+            ViewData["Title"] = $"{trainingName} години";
+
+            return View(allTrainings);
+        }
+
+        /// <summary>
+        /// Displays a Training/Add page.
+        /// </summary>
+        /// <returns>/Training/Add page.</returns>
         [HttpGet]
         public async Task<IActionResult> Add()
         {

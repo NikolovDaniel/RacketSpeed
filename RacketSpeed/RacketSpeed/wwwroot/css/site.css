@@ -18,6 +18,11 @@ body {
     margin-bottom: 60px;
 }
 
+/* makes main-menu open on hover */
+.menu-item:hover > .dropdown-menu {
+    display: block;
+}
+
 /*Animated headers*/
 .title {
     background-color: #BB2C3B;
@@ -176,6 +181,12 @@ div.noContentHeader {
 
 p {
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/*Training/All Pages CSS*/
+.trainingSchedule > div {
+    /*    animation: left_to_right 3s ease;*/
+    height: 100%;
 }
 
 /*No content pages CSS*/

@@ -17,16 +17,19 @@
         @{
             if (Model.Trainings.Count() > 0)
             {
+                // All unique training names 
                 var trainingNames = Model.Trainings.DistinctBy(t => t.Name).Select(x => x.Name).ToArray();
 
                 for (int i = 0; i < trainingNames.Count(); i++)
                 {
                     <tr>
                         @{
+                            // Gets the current training name and set it as <th>
                             string trainingName = trainingNames[i];
 
                             <th scope="row">@trainingName</th>
 
+                            // Gets the training with has the same training name and is on a particular day.
                             var mondayTraining = Model.Trainings
                             .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Понеделник");
                             var tuesdayTraining = Model.Trainings
@@ -42,6 +45,7 @@
                             var sundayTraining = Model.Trainings
                             .FirstOrDefault(t => t.Name == trainingName && t.DayOfWeek == "Неделя");
 
+                            // Set <td> to empty text or the training start and end hour, so it skips the days when there is no training.
                             <td>@(mondayTraining != null ? $"{mondayTraining.Start.ToString("HH:mm")} - {mondayTraining.End.ToString("HH:mm")}" : null)</td>
                             <td>@(tuesdayTraining != null ? $"{tuesdayTraining.Start.ToString("HH:mm")} - {tuesdayTraining.End.ToString("HH:mm")}" : null)</td>
                             <td>@(wednesdayTraining != null ? $"{wednesdayTraining.Start.ToString("HH:mm")} - {wednesdayTraining.End.ToString("HH:mm")}" : null)</td>

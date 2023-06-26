@@ -43,16 +43,33 @@ namespace RacketSpeed.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<TrainingViewModel>> AllAsync(Guid coachId)
+        public async Task<ICollection<TrainingViewModel>> AllAsync()
+        {
+            var trainings = this.repository.AllReadonly<Training>();
+
+            return await  trainings
+                .Select(t => new TrainingViewModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                })
+                .ToListAsync();
+        }
+
+        public async Task<ICollection<TrainingViewModel>> AllAsync(string trainingName)
         {
             Expression<Func<Training, bool>> expression
-                = p => p.CoachId == coachId && p.IsDeleted == false;
+                = t => t.Name == trainingName && t.IsDeleted == false;
 
-            var coachTrainings = this.repository.All<Training>(expression);
+            var trainings = this.repository.All<Training>(expression);
 
-            return await coachTrainings
-                            .Select(ct => new TrainingViewModel()
+            return await trainings
+                            .Select(t => new TrainingViewModel()
                             {
+                                Name = t.Name,
+                                Start = t.Start,
+                                End = t.End,
+                                DayOfWeek = t.DayOfWeek
                             })
                             .ToListAsync();
         }
