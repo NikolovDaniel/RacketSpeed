@@ -92,11 +92,19 @@ namespace RacketSpeed.Controllers
         public async Task<IActionResult> Edit(Guid trainingId)
         {
             var training = await this.trainingService.GetByIdAsync(trainingId);
+            var coaches = await this.coachService.AllAsync();
 
             if (training == null)
             {
                 return RedirectToAction("All", "Coach");
             }
+
+            training.Coaches = coaches
+                .Select(c => new TrainingCoachFormModel()
+                {
+                    Id = c.Id,
+                    Name = $"{c.FirstName} {c.LastName}"
+                });
 
             return View(training);
         }

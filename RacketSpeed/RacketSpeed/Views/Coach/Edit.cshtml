@@ -1,4 +1,4 @@
-﻿@model CoachFormModel
+﻿@model CoachTrainingsViewModel
 
 @{
     ViewData["Title"] = "Редактиране на Треньор (Админ)";
@@ -49,7 +49,7 @@
             </form>
             <hr />
         </div>
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4 mb-2">
             @await Html.PartialAsync(@"~/Views/Shared/_CoachTrainingsEditPartialView.cshtml", Model.Trainings)
         </div>
     </div>
