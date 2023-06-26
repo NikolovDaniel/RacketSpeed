@@ -9,10 +9,16 @@ namespace RacketSpeed.Core.Contracts
     public interface ITrainingService
     {
         /// <summary>
-        /// Async method to retrieve all Trainings for particular coach.
+        /// Async method to retrieve all Trainings.
         /// </summary>
         /// <returns>Collection of TrainingViewModel.</returns>
-        Task<ICollection<TrainingViewModel>> AllAsync(Guid coachId);
+        Task<ICollection<TrainingViewModel>> AllAsync();
+
+        /// <summary>
+        /// Async method to retrieve all Trainings filtered by training name.
+        /// </summary>
+        /// <returns>Collection of TrainingViewModel.</returns>
+        Task<ICollection<TrainingViewModel>> AllAsync(string trainingName);
 
         /// <summary>
         /// Async method to retrieve a single Training.

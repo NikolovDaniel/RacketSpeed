@@ -38,9 +38,6 @@
                             <li>
                                 <a class="nav-link text-white" asp-area="" asp-controller="Player" asp-action="All">Състезатели</a>
                             </li>
-                            <li>
-                                <a class="nav-link text-white" asp-area="" asp-controller="Achievement" asp-action="All">Клубни Постижения</a>
-                            </li>
                         }
                         else
                         {
@@ -67,14 +64,46 @@
                                     <li>
                                         <a class="dropdown-item text-white" asp-area="" asp-controller="Player" asp-action="All">Състезатели</a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">Тренировъчна Програма</a>
+                                    @*<li class="menu-item nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            main menu
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="#">P</a>
+                                            <a class="dropdown-item" href="#">Q</a>
+                                            <a class="dropdown-item" href="#">R</a>
+                                            <div class="submenu-item">
+                                                <a class="dropdown-item dropdown-toggle dropright" href="#" id="navbarDropdownSubMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    S
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdownSubMenuLink">
+                                                    <a class="dropdown-item" href="#">T</a>
+                                                    <a class="dropdown-item" href="#">U</a>
+                                                    <a class="dropdown-item" href="#">V</a>
+                                                    <a class="dropdown-item" href="#">W</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>*@
+                                    <li class="menu-item dropdown-submenu">
+                                        <a tabindex="-1" class="nav-link dropdown-toggle text-white" id="navbarDropdownSubmenu" role="button" data-bs-toggle="dropdown">Тренировъчна Програма</a>
+                                        <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdownSubmenu" aria-expanded="false" style="background-color: black; width: 100%;">
+                                            <li>
+                                                <a class="dropdown-item text-white" asp-area="" asp-controller="Training" asp-action="All" asp-route-trainingName="Деца до 7">Деца до 7</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-white" asp-area="" asp-controller="Training" asp-action="All" asp-route-trainingName="Деца до 11">Деца до 11</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-white" asp-area="" asp-controller="Training" asp-action="All" asp-route-trainingName="Деца до 15">Деца до 15</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-white" asp-area="" asp-controller="Training" asp-action="All" asp-route-trainingName="Деца до 19">Деца до 19</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
                                         <a class="dropdown-item text-white" asp-area="" asp-controller="Match" asp-action="Create">История на Клуба</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-white" asp-area="" asp-controller="Achievement" asp-action="All">Постижения на Клуба</a>
                                     </li>
                                 </ul>
                             </li>
@@ -91,11 +120,9 @@
             </div>
         </nav>
     </header>
-    @*<div class="container">*@
-        <main role="main" class="pb-0">
-            @RenderBody()
-        </main>
-    @*</div>*@
+    <main role="main" class="pb-0">
+        @RenderBody()
+    </main>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - RacketSpeed - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
