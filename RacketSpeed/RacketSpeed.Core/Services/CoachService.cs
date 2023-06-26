@@ -111,7 +111,7 @@ namespace RacketSpeed.Core.Services
             var coach = await this.repository.GetByIdAsync<Coach>(coachId);
 
             Expression<Func<Training, bool>> expression
-                = p => p.CoachId == coachId;
+                = ct => ct.CoachId == coachId && ct.IsDeleted == false;
 
             var coachTrainings = this.repository.All(expression);
 
