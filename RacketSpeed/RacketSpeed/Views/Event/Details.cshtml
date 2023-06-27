@@ -1,0 +1,51 @@
+﻿@model EventDetailsViewModel
+@using System.Globalization
+
+@{
+    ViewData["Title"] = Model.Category;
+}
+
+<style>
+    p {
+        color: #DC5B67;
+    }
+</style>
+
+<div class="animatedHeader bg-danger">
+    <h2 class="text-center">@Model.Title</h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="contentRow row mt-3 shadow-sm" style="width: auto; background-color: #F5F7FD;">
+                <div class="col-12">
+                    <p class="lead text-dark">@Model.Content</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="contentRow row mt-3 shadow-sm text-center" style="width: auto; margin:0px 10px 0px 0px; padding:10px 0px 10px 0px; background-color: #F5F7FD;">
+                <h5>Начало</h5>
+                <p class="lead">@Model.Start.ToString("dd MMM HH:mm", new CultureInfo("bg"))</p>
+                <h5>Край</h5>
+                <p class="lead">@Model.End.ToString("dd MMM HH:mm", new CultureInfo("bg"))</p>
+                <h5>Вид на събитието</h5>
+                <p class="lead">@ViewData["Title"]</p>
+                <h5>Локация</h5>
+                <p class="lead"><a class="link-danger" target="_blank" href="https://www.google.com/maps/place/@Model.Location">@Model.Location</a> <span><i class="fa-solid fa-map-location-dot"></i></span></p>
+               
+            </div>
+            <div class="imagesRow row mt-3">
+                @foreach (var img in Model.ImageUrls)
+                {
+                    <div class="col-12 mt-2 mb-4">
+                        <div class="ratio ratio-4x3">
+                            <img class="rounded img-fluid border border-danger" src="@img" alt="Club Image">
+                        </div>
+                    </div>
+                    <hr class="border border-danger border-2 opacity-50">
+                }
+            </div>
+        </div>
+    </div>
+</div>

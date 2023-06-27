@@ -80,7 +80,7 @@
 
         public const int TrainingDayOfWeekMinLength = 5;
         public const int TrainingDayOfWeekMaxLength = 10;
-        public const string TrainingDayOfWeekErrorMessage = "Денят трябва да бъде между 5 и 10 букви.";
+        public const string TrainingDayOfWeekErrorMessage = "Денят трябва да съдържа между 5 и 10 букви.";
 
         /// <summary>
         /// Data constants for ApplicationUser Entity.
@@ -92,6 +92,25 @@
         public const int UserLastNameMinLength = 3;
         public const int UserLastNameMaxLength = 50;
         public const string UserLastNameErrorMessage = "Фамилното име трябва да съдържа между 3 и 50 букви.";
+
+        /// <summary>
+        /// Data constants for Event Entity.
+        /// </summary>
+        public const int EventTitleMinLength = 50;
+        public const int EventTitleMaxLength = 200;
+        public const string EventTitleErrorMessage = "Заглавието трябва да съдържа между 50 и 200 символа.";
+
+        public const int EventCategoryMinLength = 5;
+        public const int EventCategoryMaxLength = 30;
+        public const string EventCategoryErrorMessage = "Категорията трябва да съдържа между 5 и 30 символа.";
+
+        public const int EventLocationMinLength = 5;
+        public const int EventLocationMaxLength = 30;
+        public const string EventLocationErrorMessage = "Локацията трябва да съдържа между 5 и 100 символа.";
+
+        public const int EventContentMinLength = 800;
+        public const int EventContentMaxLength = 5000;
+        public const string EventContentErrorMessage = "Съдържанието трябва да съдържа между 800 и 5000 символа.";
 
     }
 }

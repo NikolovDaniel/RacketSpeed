@@ -17,6 +17,8 @@ else
         <hr class="border border-danger border-2 opacity-50">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
+                <span class="text-center text-danger">@Html.ValidationMessage("InvalidHours")</span>
+                <span class="text-center text-danger">@Html.ValidationMessage("InvalidTrainingTime")</span>
                 <form asp-controller="Training" asp-action="Add" method="post">
                     <div class="mb-3">
                         <div class="form-floating mb-3">

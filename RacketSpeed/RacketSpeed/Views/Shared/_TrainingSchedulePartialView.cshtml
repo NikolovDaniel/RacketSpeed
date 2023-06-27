@@ -1,107 +1,61 @@
 ﻿@model IEnumerable<TrainingViewModel>
+    <style>
+        h2 {
+            color: white;
+        }
 
-<div class="row w-100 min-vh-100 d-flex justify-content-center align-items-center mt-5">
-    <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
-        <h2 class="card-title text-center">Понеделник</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+        p {
+            color: #DC5B67;
         }
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
-        <h2 class="card-title text-center">Вторник</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Вторник").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-        }
-    </div>
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="card-title text-center">Сряда</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Сряда").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-        }
-    </div>
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="card-title text-center">Четвъртък</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Четвъртък").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-        }
-    </div>
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="card-title text-center">Петък</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Петък").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-        }
-    </div>
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="card-title text-center">Събота</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Събота").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-        }
-    </div>
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="card-title text-center">Неделя</h2>
-        @foreach (var training in Model.Where(t => t.DayOfWeek == "Неделя").OrderBy(t => t.Start.Hour))
-        {
-            <p class="lead text-center text-danger fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-        }
-    </div>
-</div>
-
-@*@model IEnumerable<TrainingViewModel>
-
-    <div class="row mt-5 pb-0 d-flex justify-content-center align-items-center">
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
+    </style>
+    <div class="row w-100 min-vh-100 d-flex justify-content-center align-items-center mt-5">
+        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
             <h2 class="card-title text-center">Понеделник</h2>
             @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+            {
+                <p class="lead text-center fs-4" style="color: #DC5B67;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+            }
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
+            <h2 class="card-title text-center">Вторник</h2>
+            @foreach (var training in Model.Where(t => t.DayOfWeek == "Вторник").OrderBy(t => t.Start.Hour))
             {
                 <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
             }
         </div>
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
-            <h5 class="card-title text-center">Понеделник</h5>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="card-title text-center">Сряда</h2>
+            @foreach (var training in Model.Where(t => t.DayOfWeek == "Сряда").OrderBy(t => t.Start.Hour))
             {
-                <p class="card-text text-center"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
             }
         </div>
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
-            <h5 class="card-title text-center">Понеделник</h5>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="card-title text-center">Четвъртък</h2>
+            @foreach (var training in Model.Where(t => t.DayOfWeek == "Четвъртък").OrderBy(t => t.Start.Hour))
             {
-                <p class="card-text text-center"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
             }
         </div>
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
-            <h5 class="card-title text-center">Понеделник</h5>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="card-title text-center">Петък</h2>
+            @foreach (var training in Model.Where(t => t.DayOfWeek == "Петък").OrderBy(t => t.Start.Hour))
             {
-                <p class="card-text text-center"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
             }
         </div>
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
-            <h5 class="card-title text-center">Понеделник</h5>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="card-title text-center">Събота</h2>
+            @foreach (var training in Model.Where(t => t.DayOfWeek == "Събота").OrderBy(t => t.Start.Hour))
             {
-                <p class="card-text text-center"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
             }
         </div>
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
-            <h5 class="card-title text-center">Понеделник</h5>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="card-title text-center">Неделя</h2>
+            @foreach (var training in Model.Where(t => t.DayOfWeek == "Неделя").OrderBy(t => t.Start.Hour))
             {
-                <p class="card-text text-center"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
+                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
             }
         </div>
-        <div class="col-12 col-md-3 d-flex flex-column justify-content-center mt-2 mt-lg-0">
-            <h5 class="card-title text-center">Понеделник</h5>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
-            {
-                <p class="card-text text-center"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
-        </div>
-    </div>*@
+    </div>   

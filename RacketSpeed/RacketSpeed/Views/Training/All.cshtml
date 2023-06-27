@@ -9,11 +9,11 @@
     else
     {
         <div class="animatedHeader bg-danger">
-            <h2 class="text-center">Тренировъчна Програма за @ViewData["Title"]</h2>
+            <h2 class="text-center">Тренировки за @ViewData["Title"]</h2>
         </div>
         <section class="sectionCoaches">
             <div class="container">
-                <div class="row d-flex justify-content-center text-white">
+                <div class="row d-flex justify-content-center">
                     @await Html.PartialAsync(@"~/Views/Shared/_TrainingSchedulePartialView.cshtml", Model)
                 </div>
             </div>

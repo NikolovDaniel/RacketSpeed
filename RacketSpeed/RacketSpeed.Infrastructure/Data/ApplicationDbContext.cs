@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RacketSpeed.Infrastructure.Data.Entities;
-using System.Reflection.Emit;
 
 namespace RacketSpeed.Infrastructure.Data
 {
@@ -15,7 +12,6 @@ namespace RacketSpeed.Infrastructure.Data
 
         }
 
-        public DbSet<Achievement> Achievements { get; set; } = null!;
         public DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
         public DbSet<Coach> Coaches { get; set; } = null!;
         public DbSet<Court> Courts { get; set; } = null!;
@@ -28,6 +24,8 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<PostImageUrl> PostImageUrls { get; set; } = null!;
         public DbSet<PlayerImageUrl> PlayerImageUrls { get; set; } = null!;
         public DbSet<CoachImageUrl> CoachImageUrls { get; set; } = null!;
+        public DbSet<Event> Events { get; set; } = null!;
+        public DbSet<EventImageUrl> EventImageUrls { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -39,6 +37,8 @@ namespace RacketSpeed.Infrastructure.Data
             builder.Entity<Player>().Navigation(img => img.PlayerImageUrl).AutoInclude();
             // Fluent API to configure a Post to always come with its ImageUrls.
             builder.Entity<Post>().Navigation(img => img.PostImageUrls).AutoInclude();
+            // Fluent API to configure an Event to always come with its ImageUrls.
+            builder.Entity<Event>().Navigation(img => img.EventImageUrls).AutoInclude();
 
             // Fluent API to configure Court and Schedule Entities for Many-To-Many.
             builder.Entity<CourtSchedule>()
@@ -65,7 +65,6 @@ namespace RacketSpeed.Infrastructure.Data
             //        Name = "Administrator",
             //        NormalizedName = "ADMINISTRATOR"
             //    });
-
 
             base.OnModelCreating(builder);
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RacketSpeed.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RacketSpeed.Infrastructure.Data;
 namespace RacketSpeed.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230627063439_RemovedAchievementTable")]
+    partial class RemovedAchievementTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,66 +321,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.ToTable("CourtSchedules");
                 });
 
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Event", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("End")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.EventImageUrl", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EventId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("EventImageUrls");
-                });
-
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Player", b =>
                 {
                     b.Property<Guid>("Id")
@@ -667,17 +609,6 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.Navigation("Schedule");
                 });
 
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.EventImageUrl", b =>
-                {
-                    b.HasOne("RacketSpeed.Infrastructure.Data.Entities.Event", "Event")
-                        .WithMany("EventImageUrls")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-                });
-
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PlayerImageUrl", b =>
                 {
                     b.HasOne("RacketSpeed.Infrastructure.Data.Entities.Player", "Player")
@@ -746,11 +677,6 @@ namespace RacketSpeed.Infrastructure.Migrations
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Court", b =>
                 {
                     b.Navigation("CourtSchedules");
-                });
-
-            modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Event", b =>
-                {
-                    b.Navigation("EventImageUrls");
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Player", b =>

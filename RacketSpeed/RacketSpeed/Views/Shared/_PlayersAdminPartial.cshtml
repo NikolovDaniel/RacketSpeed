@@ -46,8 +46,8 @@ else
                         <div class="card" style="background-color: #F5F7FD">
                             <div class="card-body">
                                 <h3 class="card-title">@player.FirstName @player.LastName</h3>
-                                <p class="card-text">Birthdate: @player.BirthDate.ToShortDateString()</p>
-                                <p class="card-text">Created On: @player.CreatedOn.ToShortDateString()</p>
+                                <p class="card-text">Дата на раждане: @player.BirthDate.ToShortDateString()</p>
+                                <p class="card-text">Създаден на: @player.CreatedOn.ToShortDateString()</p>
                             </div>
                             <div class="card-footer">
                                 <a asp-controller="Player" asp-action="Edit" asp-route-playerId="@player.Id" class="btn btn-dark">Редактирай</a>
