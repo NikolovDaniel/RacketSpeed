@@ -60,7 +60,7 @@ namespace RacketSpeed.Controllers
                     Name = $"{c.FirstName} {c.LastName}"
                 })
                 .ToList();
-            
+
 
             return View(new TrainingFormModel()
             {
@@ -76,8 +76,21 @@ namespace RacketSpeed.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(TrainingFormModel model)
         {
-            if (!ModelState.IsValid)
+            // Check if there is a training at that day and hour already. Also checkes if the training starts before another one ends.
+            bool hasTraining = this.coachService.HasTraining(model.CoachId, model.DayOfWeek, model.Start);
+
+            if (!ModelState.IsValid || model.Start > model.End || hasTraining)
             {
+                if (model.Start > model.End)
+                {
+                    ModelState.AddModelError("InvalidHours", "Началния час за тренировка трябва да бъде по-рано от крайния час.");
+                }
+
+                if (hasTraining)
+                {
+                    ModelState.AddModelError("InvalidTrainingTime", "Вече съществува тренировка по това време или друга започва преди крайния час на текущата.");
+                }
+
                 var coaches = await this.coachService.AllAsync();
 
                 var coachTrainingModels = coaches
@@ -132,12 +145,37 @@ namespace RacketSpeed.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(TrainingFormModel model)
         {
-            if (!ModelState.IsValid)
+            // Check if there is a training at that day and hour already. Also checkes if the training starts before another one ends.
+            bool hasTraining = this.coachService.HasTraining(model.CoachId, model.DayOfWeek, model.Start);
+
+            if (!ModelState.IsValid || model.Start > model.End || hasTraining)
             {
+                if (model.Start > model.End)
+                {
+                    ModelState.AddModelError("InvalidHours", "Началния час за тренировка трябва да бъде по-рано от крайния час.");
+                }
+
+                if (hasTraining)
+                {
+                    ModelState.AddModelError("InvalidTrainingTime", "Вече съществува тренировка по това време или друга започва преди крайния час на текущата.");
+                }
+
+                var coaches = await this.coachService.AllAsync();
+
+                var coachTrainingModels = coaches
+                    .Select(c => new TrainingCoachFormModel()
+                    {
+                        Id = c.Id,
+                        Name = $"{c.FirstName} {c.LastName}"
+                    })
+                    .ToList();
+
+                model.Coaches = coachTrainingModels;
+
                 return View(model);
             }
 
-            await this.trainingService.EditAsync(model);
+            await this.trainingService.AddAsync(model);
 
             return RedirectToAction("All", "Coach");
         }

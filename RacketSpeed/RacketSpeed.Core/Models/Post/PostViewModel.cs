@@ -1,8 +1,4 @@
-﻿using System;
-using RacketSpeed.Infrastructure.Utilities;
-using System.ComponentModel.DataAnnotations;
-
-namespace RacketSpeed.Core.Models.Post
+﻿namespace RacketSpeed.Core.Models.Post
 {
     /// <summary>
     /// Post view model for presenting.

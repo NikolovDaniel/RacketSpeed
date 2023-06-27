@@ -37,6 +37,7 @@ namespace RacketSpeed
             builder.Services.AddScoped<ICoachService, CoachService>();
             builder.Services.AddScoped<IPlayerService, PlayerService>();
             builder.Services.AddScoped<ITrainingService, TrainingService>();
+            builder.Services.AddScoped<IEventService, EventService>();
 
             var app = builder.Build();
 

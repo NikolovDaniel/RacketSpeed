@@ -21,6 +21,7 @@ namespace RacketSpeed.Core.Contracts
         /// </summary>
         /// <param name="start">Page number.</param>
         /// <param name="postsPerPage">Post Entities per page.</param>
+        /// <param name="keyword">Keyword for filtering purpose.</param>
         /// <returns>Collection of PostViewModel.</returns>
         Task<ICollection<PostViewModel>> AllAsync(int start, int postsPerPage, string keyword);
 

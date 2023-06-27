@@ -64,7 +64,7 @@ namespace RacketSpeed.Controllers
         {
             if (string.IsNullOrEmpty(keyword))
             {
-                ModelState.AddModelError("KeywordError", "Keyword should not be null!");
+                ModelState.AddModelError("KeywordError", "Полето трябва да съдържа поне 1 символ.");
                 return View();
             }
 
@@ -89,9 +89,9 @@ namespace RacketSpeed.Controllers
         }
 
         /// <summary>
-        /// Displays an /Add/ page for Admin users.
+        /// Displays an /Post/Add/ page for Admin users.
         /// </summary>
-        /// <returns>/Add/ page.</returns>
+        /// <returns>/Post/Add/ page.</returns>
         [HttpGet]
         public IActionResult Add()
         {
@@ -103,7 +103,7 @@ namespace RacketSpeed.Controllers
         /// <summary>
         /// Gets the data from a HttpPost request and proccesses it.
         /// </summary>
-        /// <param name="model">PostFormModel..</param>
+        /// <param name="model">PostFormModel.</param>
         /// <returns>/News/All Page.</returns>
         [HttpPost]
         public async Task<IActionResult> Add(PostFormModel model)
@@ -115,7 +115,7 @@ namespace RacketSpeed.Controllers
 
             if (model.ImageUrls.Contains(null))
             {
-                ModelState.AddModelError("UrlEmpty", "All URLs should be filled.");
+                ModelState.AddModelError("UrlEmpty", "Всички адреси на снимки трябва да бъдат попълнени.");
 
                 return View(model);
             }
@@ -128,7 +128,7 @@ namespace RacketSpeed.Controllers
         /// <summary>
         /// Displays an /News/Edit/Id Page.
         /// </summary>
-        /// <param name="id">Identificator for Post Entity.</param>
+        /// <param name="postId">Identificator for Post Entity.</param>
         /// <returns>/News/Edit/Id Page.</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(Guid postId)

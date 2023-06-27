@@ -1,23 +1,65 @@
-﻿@model PostFormModel
+﻿@model EventFormModel
 
 @{
-    ViewData["Title"] = "Добавяне на Новина (Админ)";
+    ViewData["Title"] = "Редактиране на Събитие (Админ)";
 }
 <div class="adminHeader bg-danger">
-    <h2 class="text-center">Добави Новина</h2>
+    <h2 class="text-center">Редактирай Събитие</h2>
 </div>
 <div class="container mt-2">
     <hr class="border border-danger border-2 opacity-50">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <span class="text-center text-danger">@Html.ValidationMessage("UrlEmpty")</span>
-            <form asp-controller="News" asp-action="Add" method="post">
+            <span class="text-center text-danger">@Html.ValidationMessage("InvalidDates")</span>
+            <form asp-controller="Event" asp-action="Add" method="post">
                 <div class="mb-3">
                     <div class="form-floating mb-3">
                         <input asp-for="@Model.Title" placeholder="Title" class="form-control" aria-required="true"
                                id="titleFloatingInput" />
                         <label for="titleFloatingInput" class="form-label-add-edit">Заглавие</label>
                         <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="@Model.Start" placeholder="StartHour" class="form-control"
+                                       aria-required="true" id="startHourFloatingInput" type="datetime-local" value="@Model.Start.ToString("yyyy-MM-ddTHH:mm")" min="07:00" max="22:00" />
+                                <label for="startHourFloatingInput" class="form-label-add-edit">Дата и начален час</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="@Model.End" placeholder="EndHour" class="form-control"
+                                       aria-required="true" id="endHourFloatingInput" type="datetime-local" value="@Model.End.ToString("yyyy-MM-ddTHH:mm")" min="07:00" max="23:59" />
+                                <label for="endHourFloatingInput" class="form-label-add-edit">Дата и краен час</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <select asp-for="@Model.Category" class="form-select">
+                                    <option value="Лагери">Лагери</option>
+                                    <option value="Турнири за деца">Турнири за деца</option>
+                                    <option value="Турнири за любители">Турнири за любители</option>
+                                    <option value="Развлечения">Развлечения</option>
+                                </select>
+                                <label for="trainingNameFloatingInput" class="form-label-add-edit">Категория на събитието</label>
+                                <span asp-validation-for="@Model.Category" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="@Model.Location" placeholder="Location" class="form-control"
+                                       aria-required="true" id="locationFloatingInput" />
+                                <label for="locationFloatingInput" class="form-label-add-edit">Локация</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -33,7 +75,7 @@
                                  aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
-                                        <input asp-for="@Model.ImageUrls" type="text" class="form-control" id="floatingInput"
+                                        <input asp-for="@Model.ImageUrls[0]" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
                                         <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
@@ -51,7 +93,7 @@
                                  aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
-                                        <input asp-for="@Model.ImageUrls" type="text" class="form-control" id="floatingInput"
+                                        <input asp-for="@Model.ImageUrls[1]" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
                                         <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
@@ -70,7 +112,7 @@
                                  aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
-                                        <input asp-for="@Model.ImageUrls" type="text" class="form-control" id="floatingInput"
+                                        <input asp-for="@Model.ImageUrls[2]" type="text" class="form-control" id="floatingInput"
                                                placeholder="imageUrl">
                                         <label for="floatingInput">Адрес на Снимка</label>
                                     </div>
@@ -86,22 +128,10 @@
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" value="Добави" />
+                    <input class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit" formmethod="post" value="Редактирай" />
                 </div>
             </form>
             <hr class="border border-danger border-2 opacity-50">
-        </div>
-        <div class="col-12 col-lg-4 text-center">
-            <div class="fastButtons">
-                <a asp-controller="Training" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Тренировка</a>
-                <hr>
-                <a asp-controller="Player" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Състезател</a>
-                <hr>
-                <a asp-controller="Coach" asp-action="Add" class="form-control btn btn-large btn-danger fs-5">Добави Треньор</a>
-                <hr>
-                <a asp-controller="User" asp-action="UserReservations" class="form-control btn btn-large btn-danger fs-5">Потребителски Резервации</a>
-                <hr>
-            </div>
         </div>
     </div>
 </div>
