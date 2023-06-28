@@ -1,9 +1,9 @@
-﻿namespace RacketSpeed.Core.Models.Post
+﻿namespace RacketSpeed.Core.Models.Event
 {
     /// <summary>
-    /// Post view model for presenting.
+    /// Event home page view model for presenting.
     /// </summary>
-    public class PostViewModel
+    public class EventHomePageViewModel
     {
         /// <summary>
         /// Identificator.
@@ -11,18 +11,19 @@
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Title of the post.
+        /// Title of the event.
         /// </summary>
         public string Title { get; set; } = null!;
 
         /// <summary>
-        /// Content of the post.
+        /// Description of the event.
         /// </summary>
         public string Content { get; set; } = null!;
 
         /// <summary>
-        /// Collection of ImageUrl.
+        /// Image Url.
         /// </summary>
-        public string[] ImageUrls { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
     }
 }
+

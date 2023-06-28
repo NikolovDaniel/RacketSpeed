@@ -35,6 +35,7 @@
     <None Remove="Views\Coach\" />
     <None Remove="TestStrings\" />
     <None Remove="Views\Training\" />
+    <None Remove="Views\Event\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\News\" />
@@ -42,6 +43,7 @@
     <Folder Include="Views\Coach\" />
     <Folder Include="TestStrings\" />
     <Folder Include="Views\Training\" />
+    <Folder Include="Views\Event\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Achievements\Achievements\Add.cshtml" />

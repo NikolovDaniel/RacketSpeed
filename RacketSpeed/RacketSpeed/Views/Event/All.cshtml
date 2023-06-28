@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EventViewModel>
+@using System.Globalization
+
+@if (User?.IsInRole("Administrator") ?? false)
+    {
+        ViewData["Category"] = ViewData["Title"];
+        ViewData["Title"] += " (Админ)";
+        @await Html.PartialAsync(@"~/Views/Shared/_EventsAdminPartialView.cshtml", Model);
+    }
+    else if (Model != null && Model.Count() > 0)
+    {
+    <div class="animatedHeader bg-danger">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row d-flex justify-content-center align-items-center text-center">
+            <div class="row">
+                @foreach (var eventModel in Model)
+                {
+                    <div class="col-12 col-lg-4">
+                        <img class="img-fluid rounded border border-danger" src="@eventModel.TitleImageUrl"
+                             width="300" />
+                        <div class="title shadow-sm mt-2 mb-4" style="background-color: #BB2D3C;">
+                            <h3>@eventModel.Title</h3>
+                        </div>
+                        <p class="lead">Начало: @eventModel.Start.ToString("dd MMM HH:mm", new CultureInfo("bg"))</p>
+                        <p class="lead">Край: @eventModel.End.ToString("dd MMM HH:mm", new CultureInfo("bg"))</p>
+                        <p class="lead">Вид на събитието: @ViewData["Title"]</p>
+                        <p class="lead">Локация: @eventModel.Location</p>
+                        <a asp-controller="Event" asp-action="Details" asp-route-eventId="@eventModel.Id"
+                           class="btn btn-link link-danger">Прочети повече</a>
+                        <hr class="border border-danger border-2 opacity-50">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    ViewData["contentType"] = ViewData["Title"];
+    @await Html.PartialAsync(@"~/Views/Shared/_NoContentPartialView.cshtml", ViewData["contentType"]);
+}
