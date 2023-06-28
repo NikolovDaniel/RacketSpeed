@@ -161,6 +161,26 @@ namespace RacketSpeed.Core.Services
                 .ToArray()
             };
         }
+
+        public async Task<IEnumerable<EventHomePageViewModel>> MostRecentEventsAsync()
+        {
+            int numberOfPosts = 3;
+
+            var mostRecentPosts = await this.repository
+                .AllReadonly<Event>()
+                .OrderBy(e => e.Start)
+                .Take(numberOfPosts)
+                .Select(e => new EventHomePageViewModel()
+                {
+                    Id = e.Id,
+                    Title = e.Title,
+                    Content = e.Content,
+                    ImageUrl = e.EventImageUrls.FirstOrDefault().Url
+                })
+                .ToListAsync();
+
+            return mostRecentPosts;
+        }
     }
 }
 

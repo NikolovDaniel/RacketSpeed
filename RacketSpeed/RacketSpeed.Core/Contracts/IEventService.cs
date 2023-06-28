@@ -39,6 +39,12 @@ namespace RacketSpeed.Core.Contracts
         /// </summary>
         /// <param name="eventId">Entity Identificator.</param>
         Task DeleteAsync(Guid eventId);
+
+        /// <summary>
+        /// Async method to get the most recent posts.
+        /// </summary>
+        /// <returns>EventHomePageViewModel for most recent posts.</returns>
+        Task<IEnumerable<EventHomePageViewModel>> MostRecentEventsAsync();
     }
 }
 

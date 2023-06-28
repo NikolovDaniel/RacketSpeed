@@ -189,6 +189,13 @@ namespace RacketSpeed.Core.Services
 
             return model;
         }
+
+        public async Task<int> PlayersCountAsync()
+        {
+            int playersCount = await this.repository.AllReadonly<Player>().CountAsync();
+
+            return playersCount;
+        }
     }
 }
 
