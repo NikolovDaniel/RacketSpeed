@@ -56,6 +56,12 @@ namespace RacketSpeed.Core.Contracts
         /// <param name="playersPerPage">Player count for pagination.</param>
         /// <returns>Integer for Page number.</returns>
         public int PlayersPageCount(int playersPerPage);
+
+        /// <summary>
+        /// Async method to get the players count. 
+        /// </summary>
+        /// <returns>Players count.</returns>
+        Task<int> PlayersCountAsync();
     }
 }
 

@@ -164,7 +164,7 @@ div.noContentHeader {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F5F7FD;
+/*    background-color: #F5F7FD;*/
     border-radius: 25px;
     padding: 5px 20px 0px 20px;
 }
@@ -189,6 +189,29 @@ p {
     height: 100%;
 }
 
+/*Index Page CSS*/
+table, th, td, tr {
+    border: 10px solid black;
+}
+
+.clubSection {
+    background: linear-gradient( to top, black 85%, #BB2D3B 100% );
+}
+
+.eventsSection {
+    background: linear-gradient( to top, #BB2D3B 0%, black 30% );
+}
+
+.trainingSection {
+    padding-top: 100px;
+    background: linear-gradient( to top, black 70%, #BB2D3B 100% );
+}
+
+.carouselSection {
+    padding-top: 100px;
+    background: linear-gradient( to top, #BB2D3B 60%, black 100% );
+}
+
 /*No content pages CSS*/
 /*.noContentContainer {
     max-width: 800px;
@@ -204,4 +227,26 @@ p {
     to {
         margin-left: 0;
     }
+}
+
+/*Media queries*/
+@media (min-width: 992px) {
+    .carousel-item {
+        width: 100%;
+    }
+
+        .carousel-item img {
+            width: 50%;
+            height: 500px;
+        }
+}
+
+@media(max-width:768px) {
+    .carousel-item {
+        width: 100%;
+    }
+
+        .carousel-item img {
+            width: 100%;
+        }
 }
