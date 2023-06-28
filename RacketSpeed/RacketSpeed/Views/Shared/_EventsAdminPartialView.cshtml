@@ -1,0 +1,66 @@
+﻿@model IEnumerable<EventViewModel>
+@using System.Globalization
+
+@if (Model == null || Model.Count() <= 0)
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Последно добавени @ViewData["Category"]</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+    </div>
+}
+else
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Последно добавени @ViewData["Category"]</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row row-cols-auto mt-5">
+            @foreach (var eventModel in Model.OrderBy(e => e.Start))
+            {
+                <div class="col-12 col-md-6 mt-2 mb-2">
+                    <div class="card" style="background-color: #F5F7FD">
+                        <div class="card-body">
+                            <h3 class="card-title">@eventModel.Title</h3>
+                            <div class="card-text">
+                                <p>Начало: @eventModel.Start.ToString("dd MMM HH:mm", new CultureInfo("bg"))</p>
+                                <p>Край: @eventModel.End.ToString("dd MMM HH:mm", new CultureInfo("bg"))</p>
+                                <p>Вид на събитието: @ViewData["Category"]</p>
+                                <p>Локация: @eventModel.Location</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Event" asp-action="Details" asp-route-eventId="@eventModel.Id" class="btn btn-dark">Виж Повече</a>
+                            <a asp-controller="Event" asp-action="Edit" asp-route-eventId="@eventModel.Id" class="btn btn-dark">Редактирай</a>
+                            <button type="button" class="btn btn-danger mt-md-1 mt-lg-0" data-bs-toggle="modal" data-bs-target="#event-@eventModel.Id">
+                                Изтрий
+                            </button>
+                            <div class="modal fade" id="event-@eventModel.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalLabel">Събитие: @eventModel.Title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Сигурни ли сте, че искате да изтриете това Събитие?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+                                            <form>
+                                                <button type="submit" formmethod="post" asp-controller="Event" asp-action="Delete" asp-route-eventId="@eventModel.Id" class="btn btn-danger">Изтрий</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            }
+        </div>
+    </div>
+}

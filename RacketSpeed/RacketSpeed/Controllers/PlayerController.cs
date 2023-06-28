@@ -1,11 +1,7 @@
-﻿    using Microsoft.AspNetCore.Authorization;
-using System.Data;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RacketSpeed.Core.Contracts;
-using RacketSpeed.Core.Models.Achievement;
 using RacketSpeed.Core.Models.Player;
-using RacketSpeed.Core.Models.Post;
-using RacketSpeed.Core.Services;
 
 namespace RacketSpeed.Controllers
 {
@@ -75,7 +71,7 @@ namespace RacketSpeed.Controllers
         {
             if (string.IsNullOrEmpty(keyword))
             {
-                ModelState.AddModelError("KeywordError", "Keyword should not be null!");
+                ModelState.AddModelError("KeywordError", "Полето трябва да съдържа поне 1 символ.");
                 return View();
             }
 

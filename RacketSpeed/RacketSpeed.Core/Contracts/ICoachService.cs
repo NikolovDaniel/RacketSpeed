@@ -44,6 +44,16 @@ namespace RacketSpeed.Core.Contracts
         /// </summary>
         /// <param name="coachId">Entity Identificator.</param>
         Task DeleteAsync(Guid coachId);
+
+        /// <summary>
+        /// Method to check if there is a duplicate training or training that starts before another ends.
+        /// </summary>
+        /// <param name="coachId">Coach Entity identificator.</param>
+        /// <param name="dayOfWeek">The training's day.</param>
+        /// <param name="start">Start hour.</param>
+        /// <returns>Boolean whether there is a training at that time or not.</returns>
+        bool HasTraining(Guid coachId, string dayOfWeek, DateTime start);
+
     }
 }
 

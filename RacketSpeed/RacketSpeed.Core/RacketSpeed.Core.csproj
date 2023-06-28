@@ -14,19 +14,19 @@
     <None Remove="Contracts\" />
     <None Remove="Models\" />
     <None Remove="Models\Post\" />
-    <None Remove="Models\Achievement\" />
     <None Remove="Models\Player\" />
     <None Remove="Models\Coach\" />
     <None Remove="Models\Training\" />
+    <None Remove="Models\Event\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Contracts\" />
     <Folder Include="Models\" />
     <Folder Include="Models\Post\" />
-    <Folder Include="Models\Achievement\" />
     <Folder Include="Models\Player\" />
     <Folder Include="Models\Coach\" />
     <Folder Include="Models\Training\" />
+    <Folder Include="Models\Event\" />
   </ItemGroup>
 </Project>

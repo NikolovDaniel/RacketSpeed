@@ -26,7 +26,6 @@ namespace RacketSpeed.Core.Services
             this.repository = repository;
         }
 
-
         public async Task AddAsync(CoachFormModel model)
         {
             var coach = new Coach()
@@ -59,6 +58,23 @@ namespace RacketSpeed.Core.Services
                     ImageUrl = c.CoachImageUrl.Url
                 })
                 .ToListAsync();
+        }
+
+        public bool HasTraining(Guid coachId, string dayOfWeek, DateTime start)
+        {
+            Expression<Func<Training, bool>> expression
+               = ct => ct.CoachId == coachId && ct.IsDeleted == false;
+
+            var coachTrainings = this.repository.All(expression);
+
+            bool hasTraining
+                = coachTrainings.FirstOrDefault(t => t.DayOfWeek == dayOfWeek && t.Start == start) != null ? true : false;
+
+            bool hasTrainingBefore
+                = coachTrainings.FirstOrDefault(t => t.DayOfWeek == dayOfWeek && t.End > start) != null ? true : false;
+
+
+            return hasTraining || hasTrainingBefore;
         }
 
         public async Task DeleteAsync(Guid coachId)
