@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Player;
-using RacketSpeed.Core.Models.Post;
 using RacketSpeed.Infrastructure.Data.Entities;
 using RacketSpeed.Infrastructure.Data.Repositories;
 

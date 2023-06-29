@@ -18,7 +18,7 @@ namespace RacketSpeed.Core.Models.Coach
         /// <summary>
         /// First name of the Coach.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.CoachFirstNameMaxLength,
             MinimumLength = DataConstants.CoachFirstNameMinLength,
             ErrorMessage = DataConstants.CoachFirstNameErrorMessage)]
@@ -27,7 +27,7 @@ namespace RacketSpeed.Core.Models.Coach
         /// <summary>
         /// Last name of the Coach.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.CoachLastNameMaxLength,
         MinimumLength = DataConstants.CoachLastNameMinLength,
         ErrorMessage = DataConstants.CoachLastNameErrorMessage)]
@@ -36,13 +36,13 @@ namespace RacketSpeed.Core.Models.Coach
         /// <summary>
         /// ImageUrl for coach image.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public string ImageUrl { get; set; } = null!;
 
         /// <summary>
         /// Biography of the Coach.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.CoachBiographyMaxLength,
         MinimumLength = DataConstants.CoachBiographyMinLength,
         ErrorMessage = DataConstants.CoachBiographyErrorMessage)]

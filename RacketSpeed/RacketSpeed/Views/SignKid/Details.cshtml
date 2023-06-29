@@ -1,0 +1,74 @@
+﻿@model SignKidFormModel
+
+@{
+    ViewData["Title"] = "Форма (Админ)";
+}
+<section class="signFormSection">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="login-box col-lg-8 mt-5">
+                <h2 class="text-center text-white mb-5">Форма за записване на: @Model.FullName</h2>
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="@Model.FullName" placeholder="FullName" class="form-control" aria-required="true"
+                               id="fullNameFloatingInput" disabled/>
+                        <label for="fullNameFloatingInput" asp-for="FullName" class="form-label-add-edit">Име и фамилия</label>
+                        <span asp-validation-for="FullName" class="text-dark"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="@Model.PhoneNumber" placeholder="PhoneNumber" class="form-control"
+                                       aria-required="true" id="phoneNumberFloatingInput" disabled/>
+                                <label for="phoneNumberFloatingInput" asp-for="@Model.PhoneNumber"
+                                       class="form-label-add-edit">Телефон за връзка</label>
+                                <span asp-validation-for="PhoneNumber" class="text-dark"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 mt-1 mt-md-0">
+                            <div class="form-floating mb-3">
+                                <input asp-for="@Model.EmailAddress" placeholder="EmailAddress" class="form-control"
+                                       aria-required="true" id="emailAddressFloatingInput" type="email" disabled/>
+                                <label for="emailAddressFloatingInput" asp-for="@Model.EmailAddress"
+                                       class="form-label-add-edit">Емайл</label>
+                                <span asp-validation-for="EmailAddress" class="text-dark"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <select asp-for="@Model.Location" class="form-select">
+                                    <option selected disabled>@Model.Location</option>
+                                </select>
+                                <label for="locationFloatingInput" class="form-label-add-edit">Обект</label>
+                                <span asp-validation-for="@Model.Location" class="text-dark"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating mb-3">
+                                <select asp-for="@Model.TrainingType" class="form-select">
+                                    <option selected disabled>@Model.TrainingType</option>
+                                </select>
+                                <label for="trainingTypeFloatingInput" class="form-label-add-edit">
+                                    Възрасти
+                                </label>
+                                <span asp-validation-for="@Model.TrainingType" class="text-dark"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Message" class="fs-5">Съобщение</label>
+                    <textarea asp-for="@Model.Message" class="form-control" aria-required="true"
+                              rows="5" disabled></textarea>
+                    <span asp-validation-for="Message" class="text-dark"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

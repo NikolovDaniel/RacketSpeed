@@ -168,7 +168,7 @@ namespace RacketSpeed.Core.Services
 
             int pageCount = (int)Math.Ceiling((allPostsCount / (double)postsPerPage));
 
-            return pageCount;
+            return pageCount == 0 ? 1 : pageCount;
         }
     }
 }

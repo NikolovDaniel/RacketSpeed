@@ -17,25 +17,25 @@ namespace RacketSpeed.Core.Models.Event
         /// <summary>
         /// Time of when the event starts.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public DateTime Start { get; set; }
 
         /// <summary>
         /// Time of when the event ends.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public DateTime End { get; set; }
 
         /// <summary>
         /// Category of the event.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public string Category { get; set; } = null!;
 
         /// <summary>
         /// Title of the event.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.EventTitleMaxLength,
             MinimumLength = DataConstants.EventTitleMinLength,
             ErrorMessage = DataConstants.EventTitleErrorMessage)]
@@ -44,7 +44,7 @@ namespace RacketSpeed.Core.Models.Event
         /// <summary>
         /// Location of the event.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.EventLocationMaxLength,
             MinimumLength = DataConstants.EventLocationMinLength,
             ErrorMessage = DataConstants.EventLocationErrorMessage)]
@@ -53,7 +53,7 @@ namespace RacketSpeed.Core.Models.Event
         /// <summary>
         /// Description of the event.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.EventContentMaxLength,
             MinimumLength = DataConstants.EventContentMinLength,
             ErrorMessage = DataConstants.EventContentErrorMessage)]
