@@ -1,0 +1,76 @@
+﻿@model SignKidFormsPaginationViewModel
+
+@{
+    ViewData["Title"] = "Форми за заспиване (Админ)";
+}
+
+@if (Model == null || Model.SignedKidForms.Count() <= 0)
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Форми за записване на дете</h2>
+    </div>
+    <hr class="border border-danger border-2 opacity-50">
+}
+else
+{
+    <div class="adminHeader bg-danger">
+        <h2 class="text-center">Форми за записване на дете</h2>
+    </div>
+    <div class="container">
+        <hr class="border border-danger border-2 opacity-50">
+        <div class="row row-cols-auto mt-5">
+            @{
+                foreach (var signKidForm in Model.SignedKidForms)
+                {
+                    <div class="col-12 col-md-6 mt-2 mb-2">
+                        <div class="card" style="background-color: #F5F7FD">
+                            <div class="card-body">
+                                <h3 class="card-title">Форма на: @signKidForm.FullName</h3>
+                                <p class="card-text">Телефон: @signKidForm.PhoneNumber</p>
+                                <p class="card-text">Създаденa на: @signKidForm.SignOn.ToShortDateString()</p>
+                            </div>
+                            <div class="card-footer">
+                                <a asp-controller="SignKid" asp-action="Details" asp-route-signKidFormId="@signKidForm.Id" class="btn btn-dark">Виж повече</a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#signKid-@signKidForm.Id">
+                                    Изтрий
+                                </button>
+                                <div class="modal fade" id="signKid-@signKidForm.Id" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="modalLabel">Форма за дете: @signKidForm.FullName</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Сигурни ли сте, че искате да изтриете тази Форма?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+                                                <form>
+                                                    <button type="submit" formmethod="post" asp-controller="SignKid" asp-action="Delete" asp-route-signKidFormId="@signKidForm.Id" class="btn btn-danger">Изтрий</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                }
+            }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination pagination-md justify-content-center">
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="SignKid" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="SignKid" asp-action="All" asp-route-pageCount="@i">@i</a></li>
+                    }
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="SignKid" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
