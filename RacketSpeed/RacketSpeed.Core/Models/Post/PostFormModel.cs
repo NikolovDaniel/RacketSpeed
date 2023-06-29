@@ -16,7 +16,7 @@ namespace RacketSpeed.Core.Models.Post
         /// <summary>
         /// Title of the post.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.PostTitleMaxLength,
             MinimumLength = DataConstants.PostTitleMinLength,
             ErrorMessage = DataConstants.PostTitleErrorMessage)]
@@ -25,7 +25,7 @@ namespace RacketSpeed.Core.Models.Post
         /// <summary>
         /// Description of the post.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.PostContentMaxLength,
             MinimumLength = DataConstants.PostContentMinLength,
             ErrorMessage = DataConstants.PostContentErrorMessage)]

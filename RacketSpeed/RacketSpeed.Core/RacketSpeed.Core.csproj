@@ -18,6 +18,7 @@
     <None Remove="Models\Coach\" />
     <None Remove="Models\Training\" />
     <None Remove="Models\Event\" />
+    <None Remove="Models\SignKidForm\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -28,5 +29,6 @@
     <Folder Include="Models\Coach\" />
     <Folder Include="Models\Training\" />
     <Folder Include="Models\Event\" />
+    <Folder Include="Models\SignKidForm\" />
   </ItemGroup>
 </Project>

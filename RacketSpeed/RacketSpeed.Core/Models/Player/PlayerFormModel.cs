@@ -8,7 +8,7 @@ namespace RacketSpeed.Core.Models.Player
     /// Player form model, holds validation for CRUD operations.
     /// </summary>
     public class PlayerFormModel
-	{
+    {
         /// <summary>
         /// Identificator.
         /// </summary>
@@ -17,13 +17,13 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// Birthday of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// Birth place of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.PlayerBirthPlaceMaxLength,
             MinimumLength = DataConstants.PlayerBirthPlaceMinLength,
             ErrorMessage = DataConstants.PlayerBirthPlaceErrorMessage)]
@@ -32,7 +32,7 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// First name of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.PlayerFirstNameMaxLength,
             MinimumLength = DataConstants.PlayerFirstNameMinLength,
             ErrorMessage = DataConstants.PlayerFirstNameErrorMessage)]
@@ -41,7 +41,7 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// Last name of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.PlayerLastNameMaxLength,
             MinimumLength = DataConstants.PlayerLastNameMinLength,
             ErrorMessage = DataConstants.PlayerLastNameErrorMessage)]
@@ -50,13 +50,13 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// Playing hand of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public string PlayingHand { get; set; } = null!;
 
         /// <summary>
         /// Height of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [Range(DataConstants.PlayerHeightMinValue,
             DataConstants.PlayerHeightMaxValue,
             ErrorMessage = DataConstants.PlayerHeightErrorMessage)]
@@ -65,7 +65,7 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// National Ranking of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [Range(DataConstants.PlayerRankingMinValue,
             DataConstants.PlayerRankingMaxValue,
             ErrorMessage = DataConstants.PlayerNationalRankingErrorMessage)]
@@ -74,7 +74,7 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// World Ranking of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [Range(DataConstants.PlayerRankingMinValue,
             DataConstants.PlayerRankingMaxValue,
             ErrorMessage = DataConstants.PlayerWorldRankingErrorMessage)]
@@ -83,7 +83,7 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// Biography of the player.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.PlayerBiographyMaxLength,
             MinimumLength = DataConstants.PlayerBiographyMinLength,
             ErrorMessage = DataConstants.PlayerBiographyErrorMessage)]
@@ -97,7 +97,7 @@ namespace RacketSpeed.Core.Models.Player
         /// <summary>
         /// ImageUrl for player's image.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public string ImageUrl { get; set; } = null!;
     }
 }

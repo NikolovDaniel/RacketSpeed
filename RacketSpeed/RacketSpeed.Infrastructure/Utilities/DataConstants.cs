@@ -3,6 +3,11 @@
     public static class DataConstants
     {
         /// <summary>
+        /// Data constants for Required Fields.
+        /// </summary>
+        public const string RequiredFieldErrorMessage = "Полето е задължително.";
+
+        /// <summary>
         /// Data constants for Post Entity.
         /// </summary>
         public const int PostTitleMinLength = 100;
@@ -104,14 +109,31 @@
         public const int EventCategoryMaxLength = 30;
         public const string EventCategoryErrorMessage = "Категорията трябва да съдържа между 5 и 30 символа.";
 
-        public const int EventLocationMinLength = 5;
-        public const int EventLocationMaxLength = 30;
-        public const string EventLocationErrorMessage = "Локацията трябва да съдържа между 5 и 100 символа.";
+        public const int EventLocationMinLength = 10;
+        public const int EventLocationMaxLength = 100;
+        public const string EventLocationErrorMessage = "Локацията трябва да съдържа между 10 и 100 символа.";
 
         public const int EventContentMinLength = 800;
         public const int EventContentMaxLength = 5000;
         public const string EventContentErrorMessage = "Съдържанието трябва да съдържа между 800 и 5000 символа.";
 
+        /// <summary>
+        /// Data constants for SignKid Entity.
+        /// </summary>
+        public const int SignKidFullNameMinLength = 7;
+        public const int SignKidFullNameMaxLength = 100;
+        public const string SignKidFullNameErrorMessage = "Имената трябва да съдържат между 7 и 100 букви.";
+
+        public const string SignKidPhoneNumberErrorMessage = "Телефонът трябва да бъде в този формат: +359886005040";
+
+        public const int SignKidEmailAddressMinLength = 8;
+        public const int SignKidEmailAddressMaxLength = 100;
+        public const string SignKidEmailAddressErrorMessageOnInvalidEmail = "Невалиден емайл адрес.";
+        public const string SignKidEmailAddressErrorMessageOnInvalidLength = "Емайл адресът трябва да съдържа между 8 и 100 символа.";
+
+        public const int SignKidMessageMinLength = 5;
+        public const int SignKidMessageMaxLength = 200;
+        public const string SignKidMessageErrorMessage = "Съобщението трябва да съдържа между 5 и 200 символа.";
     }
 }
 

@@ -26,6 +26,7 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<CoachImageUrl> CoachImageUrls { get; set; } = null!;
         public DbSet<Event> Events { get; set; } = null!;
         public DbSet<EventImageUrl> EventImageUrls { get; set; } = null!;
+        public DbSet<SignKid> SignedKids { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

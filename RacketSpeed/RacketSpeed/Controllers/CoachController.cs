@@ -30,6 +30,7 @@ namespace RacketSpeed.Controllers
         /// </summary>
         /// <returns>/Coach/All page.</returns>
         [AllowAnonymous]
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var models = await this.coachService.AllAsync();
