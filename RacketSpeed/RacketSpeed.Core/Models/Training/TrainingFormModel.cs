@@ -16,7 +16,7 @@ namespace RacketSpeed.Core.Models.Training
         /// <summary>
         /// Name of the training.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.TrainingNameMaxLength,
             MinimumLength = DataConstants.TrainingNameMinLength,
             ErrorMessage = DataConstants.TrainingNameErrorMessage)]
@@ -25,7 +25,7 @@ namespace RacketSpeed.Core.Models.Training
         /// <summary>
         /// Day of the week on which the training is held.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [StringLength(DataConstants.TrainingDayOfWeekMaxLength,
             MinimumLength = DataConstants.TrainingDayOfWeekMinLength,
             ErrorMessage = DataConstants.TrainingDayOfWeekErrorMessage)]
@@ -34,13 +34,13 @@ namespace RacketSpeed.Core.Models.Training
         /// <summary>
         /// Start hour of the training.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public DateTime Start { get; set; }
 
         /// <summary>
         /// End hour of the training.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         public DateTime End { get; set; }
 
         /// <summary>
