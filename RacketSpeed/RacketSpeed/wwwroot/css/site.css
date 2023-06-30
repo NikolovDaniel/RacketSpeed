@@ -15,7 +15,7 @@ html {
 
 body {
     background-color: #F4F9FF;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
 }
 
 /* makes main-menu open on hover */
@@ -154,9 +154,20 @@ div.noContentHeader {
     border-radius: 25px;
 }
 
+/*Footer CSS*/
+.footerSectionBlackToRed {
+    background: linear-gradient( to top, #BB2D3B 60%, black 100% );
+}
+
+.footerSectionRedToBlack {
+    background: linear-gradient( to top, black 60%, #BB2D3B 100% );
+}
+
 /*Coach Pages CSS*/
 .sectionCoaches {
     background: linear-gradient( to top, black 95%, #BB2D3B 100% );
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 /*News/All Page CSS*/
@@ -229,6 +240,417 @@ table, th, td, tr {
     to {
         margin-left: 0;
     }
+}
+
+/*AboutUs page CSS*/
+.sectionAboutUs {
+    background-color: black;
+    padding: 100px 0;
+    position: relative;
+}
+
+.gray-bg {
+    background-color: #f5f5f5;
+}
+
+img {
+    max-width: 100%;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.media label {
+    font-size: 20px;
+}
+
+.media p {
+    font-size: 50px;
+}
+
+.about-text h3 {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+@media (max-width: 767px) {
+    .about-text h3 {
+        font-size: 35px;
+    }
+}
+
+.about-text h6 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+    .about-text h6 {
+        font-size: 18px;
+    }
+}
+
+.about-text p {
+    font-size: 18px;
+    max-width: 450px;
+}
+
+    .about-text p mark {
+        font-weight: 600;
+        color: #FFA202;
+    }
+
+.about-list {
+    padding-top: 10px;
+}
+
+    .about-list .media {
+        padding: 5px 0;
+    }
+
+    .about-list label {
+        color: #fc5356;
+        font-weight: 600;
+        width: 88px;
+        margin: 0;
+        position: relative;
+    }
+
+        .about-list label:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 11px;
+            width: 1px;
+            height: 12px;
+            background: #fc5356;
+            -moz-transform: rotate(15deg);
+            -o-transform: rotate(15deg);
+            -ms-transform: rotate(15deg);
+            -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+            margin: auto;
+            opacity: 0.5;
+        }
+
+    .about-list p {
+        margin: 0;
+        font-size: 15px;
+    }
+
+@media (max-width: 991px) {
+    .about-avatar {
+        margin-top: 30px;
+    }
+}
+
+.about-section .counter {
+    padding: 22px 20px;
+    background: #BB2D3B;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+
+    .about-section .counter .count-data {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .about-section .counter .count {
+        font-weight: 700;
+        color: black;
+        margin: 0 0 5px;
+    }
+
+    .about-section .counter p {
+        font-weight: 600;
+        margin: 0;
+    }
+
+mark {
+    background-image: linear-gradient(rgba(252, 83, 86, 0.6), rgba(252, 83, 86, 0.6));
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+    background-color: transparent;
+    padding: 0;
+    color: currentColor;
+}
+
+.theme-color {
+    color: #fc5356;
+}
+
+.dark-color {
+    color: #FFA202;
+}
+
+/*History CSS page*/
+.sectionHistory {
+    background: linear-gradient( to top, black 85%, #BB2D3B 100% );
+}
+
+.h4 {
+    color: #FFA202;
+}
+
+.history-wrapper {
+    position: relative;
+    padding: 50px 0 50px;
+}
+
+    .history-wrapper:after {
+        content: "";
+        width: 3px;
+        height: 100%;
+        background: #BB2D3B;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+    }
+
+    .history-wrapper .title-wrap {
+        opacity: 0.8;
+        padding: 100px 0 0 45px;
+    }
+
+    .history-wrapper .timeline-box {
+        position: relative;
+    }
+
+.one-of-two {
+    width: 50%;
+    float: left;
+}
+
+.history-wrapper .timeline-box:not(:last-child) {
+    margin-bottom: 140px;
+}
+
+.timeline-box:nth-child(2n) {
+    padding: 0 0 0 140px;
+}
+
+.history-wrapper .timeline-box:nth-child(2n) {
+    margin-bottom: 140px;
+}
+
+.history-wrapper .timeline-box:nth-child(2n + 1) {
+    margin-top: -24%;
+    text-align: right;
+}
+
+.timeline-box:nth-child(2n + 1) {
+    padding: 0 140px 0 0;
+}
+
+.year {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    background: #BB2C3B;
+    top: 30%;
+    color: #FFA202;
+    transform: translateY(-50%);
+    border: 1px solid #dbdbdb;
+    line-height: 100px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.timeline-box:nth-child(2n) .year {
+    left: 25px;
+}
+
+.timeline-box:nth-child(2n + 1) .year {
+    right: 32px;
+}
+
+.year:before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-left: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    background: #ffffff;
+    position: absolute;
+    top: 50%;
+    margin-top: -7.5px;
+}
+
+.timeline-box:nth-child(2n) .year:before {
+    left: -8px;
+    transform: rotate(45deg);
+}
+
+.timeline-box:nth-child(2n + 1) .year:before {
+    right: -8px;
+    transform: rotate(-135deg);
+}
+
+.timeline-box:after {
+    content: "";
+    width: 3px;
+    height: 0;
+    background: #ffa200;
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.timeline-box:nth-child(2n):after {
+    left: -1.5px;
+}
+
+.timeline-box:nth-child(2n + 1):after {
+    right: -1.5px;
+}
+
+.timeline-box:hover:after {
+    height: 97px;
+}
+
+.timeline-box:before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    border: 5px solid #ededed;
+    position: absolute;
+    background: #fff;
+    z-index: 2;
+    top: 30%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.timeline-box:nth-child(2n):before {
+    left: -10.5px;
+}
+
+.timeline-box:nth-child(2n + 1):before {
+    right: -10.5px;
+}
+
+.timeline-box:hover:before {
+    border: 5px solid #ffa200;
+}
+
+@media screen and (max-width: 1199px) {
+    .year {
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .history-wrapper {
+        padding: 30px 0 30px;
+    }
+
+        .history-wrapper .title-wrap {
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+    .title-wrap.one-of-two {
+        width: 100%;
+    }
+
+    .history-wrapper:after {
+        left: 0;
+    }
+
+    .history-wrapper .timeline-box:nth-child(2n) {
+        padding: 0 0 0 140px;
+    }
+
+    .history-wrapper .timeline-box:not(:last-child) {
+        margin-bottom: 40px;
+    }
+
+    .timeline-box.one-of-two,
+    .timeline-box .img img {
+        width: 100%;
+    }
+
+    .history-wrapper .timeline-box:nth-child(2n + 1) {
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .timeline-box:nth-child(2n + 1) .year {
+        left: 32px;
+    }
+
+    .timeline-box:nth-child(2n + 1):before {
+        left: -10.5px;
+    }
+
+    .timeline-box:nth-child(2n + 1) .year:before {
+        left: -8px;
+        transform: rotate(45deg);
+    }
+
+    .timeline-box:nth-child(2n + 1):after {
+        left: -1.5px;
+    }
+
+    .history-wrapper .timeline-box:nth-child(2n + 1) {
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .timeline-box:nth-child(2n + 1) {
+        padding: 0 0 0 140px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .history-wrapper:after,
+    .year,
+    .timeline-box:before {
+        display: none;
+    }
+
+    .history-wrapper {
+        padding: 0;
+    }
+
+        .history-wrapper .timeline-box:nth-child(2n),
+        .history-wrapper .timeline-box:nth-child(2n + 1) {
+            padding: 0 15px;
+        }
+
+        .history-wrapper .timeline-box:not(:last-child) {
+            margin-bottom: 30px;
+        }
+
+    .timeline-box .content {
+        text-align: center;
+    }
+
+    .timeline-box:nth-child(2n):after,
+    .timeline-box:nth-child(2n + 1):after {
+        display: none;
+    }
+}
+
+.mb-1-6,
+.my-1-6 {
+    margin-bottom: 1.6rem;
 }
 
 /*Animations Button for Sign Kid*/
