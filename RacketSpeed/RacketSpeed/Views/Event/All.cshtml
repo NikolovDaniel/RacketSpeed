@@ -2,13 +2,13 @@
 @using System.Globalization
 
 @if (User?.IsInRole("Administrator") ?? false)
-    {
-        ViewData["Category"] = ViewData["Title"];
-        ViewData["Title"] += " (Админ)";
-        @await Html.PartialAsync(@"~/Views/Shared/_EventsAdminPartialView.cshtml", Model);
-    }
-    else if (Model != null && Model.Count() > 0)
-    {
+{
+    ViewData["Category"] = ViewData["Title"];
+    ViewData["Title"] += " (Админ)";
+    @await Html.PartialAsync(@"~/Views/Shared/_EventsAdminPartialView.cshtml", Model);
+}
+else if (Model != null && Model.Count() > 0)
+{
     <div class="animatedHeader bg-danger">
         <h1 class="text-center">@ViewData["Title"]</h1>
     </div>
@@ -36,6 +36,8 @@
             </div>
         </div>
     </div>
+
+    @await Html.PartialAsync(@"~/Views/Shared/_FooterRedToBlackPartialView.cshtml")
 }
 else
 {

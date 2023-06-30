@@ -15,7 +15,7 @@
                     <img class="img-fluid rounded"
                          src="https://racketspeedbg.com/wp-content/uploads/2023/05/342408243_191873547017741_1776652270621883938_n-1-1536x1024.jpg" />
                 </div>
-                <p class="lead text-center text-white fs-3 mt-4">13 Титли от Национални Шампионати</p>
+                <p class="lead text-center text-white fs-3 mt-4"><span style="color: #FFA202">13 Титли</span> от Национални Шампионати</p>
             </div>
             <div class="col-12 col-lg-4 text-white mb-5 mt-5 mt-lg-0" style="background-color: black;">
                 <div class="d-flex justify-content-center pb-5">
@@ -23,12 +23,12 @@
                          alt="RacketSpeed" width="200" height="100" />
                 </div>
                 <p class="lead text-center fs-4">Членове: @Model.PlayerCount</p>
-                <p class="lead text-center fs-4">Основан: 26 Февруари 2013</p>
+                <p class="lead text-center fs-4">Основан: <span style="color: #FFA202">26 Февруари 2018</span></p>
             </div>
             <div class="col-12 col-lg-4 d-flex justify-content-center pt-lg-5">
                 <div>
                     <img class="img-fluid rounded" src="https://i.ibb.co/hXsLpmC/Gergin-Nedyalkov-pure-black.jpg" width="350" />
-                    <p class="lead text-center text-white fs-4">Гергин Недялков</p>
+                    <p class="lead text-center fs-4" style="color: #FFA202;">Гергин Недялков</p>
                     <p class="lead text-center text-white fs-4">Основател</p>
                 </div>
             </div>
@@ -133,3 +133,5 @@
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterRedToBlackPartialView.cshtml")

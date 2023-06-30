@@ -14,7 +14,7 @@ else if (Model != null && Model.Count > 0)
     <div class="animatedHeader">
         <h2 class="text-center">Треньори</h2>
     </div>
-    <section class="sectionCoaches">
+    <section class="sectionCoaches pb-5">
         <div class="container">
             <div class="row d-flex justify-content-center text-white">
                 @foreach (var coach in Model)
@@ -29,9 +29,9 @@ else if (Model != null && Model.Count > 0)
                     </div>
                 }
             </div>
-            <hr>
         </div>
     </section>
+    @await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
 }
 else
 {
