@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "За нас";
+}
+
+<section class="sectionAboutUs about-section" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">За нас</h3>
+                    <h6 class="theme-color lead">Най-големият клуб по Бадминтон в България</h6>
+                    <p class="text-white">
+                        <mark>Бадминтон клуб Ракет Спийд</mark> е създаден през 2018
+                        г. като сдружение с нестопанска цел в град София и е лицензиран клуб към Министерството на
+                        младежта и спорта и член на Българска федерация бадминтон. Клуба има и регистриран клон в
+                        община Елин Пелин и в община Горна Малина и успешно развива детско-юношеския спорт на
+                        територията на 3 общини в Софийска област.
+                        Основната цел на Бадминтон клуб Ракет Спийд е развитие на масовия спорт и спорта за високи
+                        постижения, най-вече сред децата и подрастващите.
+                    </p>
+                    <div class="row about-list mt-5">
+                        <h6 class="dark-color lead fs-4">Контакти</h6>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Емайл</label>
+                                <p class="text-white lead fs-5">racketspeed@mail.bg</p>
+                            </div>
+                            <div class="media">
+                                <label>Телефон</label>
+                                <p class="text-white fs-5">
+                                    <a class="text-white"
+                                       href="tel:+359899587456">+359-89-958-7456</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Адрес</label>
+                                <p class="text-white lead fs-5">град София – спортна зала ”Младост” кв. Гео Милев, ул 101-ва</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="https://i.ibb.co/hXsLpmC/Gergin-Nedyalkov-pure-black.jpg" title="" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="counter mt-5">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="500" data-speed="500">580</h6>
+                        <p class="text-white m-0px font-w-600">Доволни Клиенти</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="150" data-speed="150">38</h6>
+                        <p class="text-white m-0px font-w-600">Проведени Събития</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="850" data-speed="850">128</h6>
+                        <p class="text-white m-0px font-w-600">Медала от Републикански Първенства</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="190" data-speed="190">@ViewData["memberCount"]</h6>
+                        <p class="text-white m-0px font-w-600">Члена на Клуба</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")

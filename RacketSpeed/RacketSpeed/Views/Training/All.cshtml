@@ -13,10 +13,13 @@
         </div>
         <section class="sectionCoaches">
             <div class="container">
+                <h4 class="text-white text-center pt-5">Тренировките за всички групи са с продължителност 90 до 120 мин. Възможност за децата да станат картотекирани състезатели на клуба и да участват на държавните първенства през годината. Всички деца независимо от нивото си могат да участват на веригата турнири, която БК Ракет Спийд организира през годината и спортните лагери на клуба за всички групи.</h4>
                 <div class="row d-flex justify-content-center">
                     @await Html.PartialAsync(@"~/Views/Shared/_TrainingSchedulePartialView.cshtml", Model)
                 </div>
             </div>
         </section>
+
+        @await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
     }
 }

@@ -81,6 +81,8 @@ else if (Model != null && Model.Players.Count() > 0)
             </div>
         </div>
     </div>
+
+    @await Html.PartialAsync(@"~/Views/Shared/_FooterRedToBlackPartialView.cshtml")
 }
 else
 {
