@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using RacketSpeed.Infrastructure.Utilities;
 
@@ -22,12 +21,17 @@ namespace RacketSpeed.Infrastructure.Data.Entities
         /// <summary>
         /// Last name of the User.
         /// </summary>
-        ///  [Required]
+        [Required]
         [StringLength(DataConstants.UserLastNameMaxLength,
             MinimumLength = DataConstants.UserLastNameMinLength,
             ErrorMessage = DataConstants.UserLastNameErrorMessage)]
         public string LastName { get; set; } = null!;
 
+        /// <summary>
+        /// Deposit used to book a court.
+        /// </summary>
+        public decimal Deposit { get; set; }
+        
         /// <summary>
         /// Navigation property for UserReservations entity.
         /// </summary>

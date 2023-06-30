@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="login-box col-lg-8 mt-5">
-                <h2 class="text-center text-white mb-5">Запишите детето си</h2>
+                <h2 class="text-center text-white mb-5">Запишите детето си на тренировка</h2>
                 <form asp-controller="News" asp-action="Add" method="post">
                     <span class="text-center text-white">@Html.ValidationMessage("PrivacyPolicy")</span>
                     <div class="mb-3">
@@ -97,3 +97,5 @@
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterRedToBlackPartialView.cshtml")

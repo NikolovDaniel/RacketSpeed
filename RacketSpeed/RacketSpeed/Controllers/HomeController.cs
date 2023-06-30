@@ -51,7 +51,24 @@ namespace RacketSpeed.Controllers
             return View(model);
         }
 
-        public IActionResult Privacy()
+        /// <summary>
+        /// Displays a /Home/AboutUs page.
+        /// </summary>
+        /// <returns>/Home/AboutUs page.</returns>
+        public async Task<IActionResult> AboutUs()
+        {
+            var memberCount = await this.playerService.PlayersCountAsync();
+
+            ViewData["memberCount"] = memberCount;
+
+            return View();
+        }
+
+        /// <summary>
+        /// Displays a /Home/History page.
+        /// </summary>
+        /// <returns>/Home/History page.</returns>
+        public IActionResult History()
         {
             return View();
         }

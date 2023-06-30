@@ -28,11 +28,13 @@
                         <div class="table-responsive">
                             @await Html.PartialAsync(@"~/Views/Shared/_CoachTrainingTablePartialView.cshtml", Model)
                         </div>
-                        <hr />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
+
 
