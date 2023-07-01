@@ -1,0 +1,154 @@
+﻿@model BookingFormModel
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Резервиране на корт";
+}
+
+<section class="bookingFormSection">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="login-box col-lg-8 mt-5">
+                <p class="lead" style="color: #FFA202;">* Депозита се взима при всяко резервиране на корт и се връща при успешно посещение, в противен случай депозита не се връща.</p>
+                <p class="lead" style="color: #FFA202;">* За момента предлагаме резервиране на корт само в "Зала ИЧС".</p>
+                <form asp-controller="Booking" asp-action="Book" method="post">
+                    <span class="text-center text-white">@Html.ValidationMessage("PrivacyPolicy")</span>
+                    <span class="text-center text-white">@Html.ValidationMessage("InvalidTotalPrice")</span>
+                    <span class="text-center text-white">@Html.ValidationMessage("InvalidHour")</span>
+                    <span class="text-center text-white">@Html.ValidationMessage("NoDeposit")</span>
+                    <input type="hidden" asp-for="@Model.UserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+                    <div class="mb-3">
+                        <div class="form-floating mb-3">
+                            <input asp-for="@Model.FullName" placeholder="FullName" class="form-control"
+                                   aria-required="true" id="fullNameFloatingInput" />
+                            <label for="fullNameFloatingInput" asp-for="FullName" class="form-label-add-edit">
+                                Име и
+                                фамилия
+                            </label>
+                            <span asp-validation-for="FullName" class="text-dark"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="@Model.PhoneNumber" placeholder="PhoneNumber" class="form-control"
+                                           aria-required="true" id="phoneNumberFloatingInput" />
+                                    <label for="phoneNumberFloatingInput" asp-for="@Model.PhoneNumber"
+                                           class="form-label-add-edit">Телефон за връзка</label>
+                                    <span asp-validation-for="@Model.PhoneNumber" class="text-dark"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mt-1 mt-md-0">
+                                <div class="form-floating mb-3">
+                                    <input type="hidden" asp-for="@Model.Location" value="Зала ИЧС" />
+                                    <input placeholder="Location" class="form-control"
+                                           aria-required="true" id="phoneNumberFloatingInput" value="Зала ИЧС" readonly />
+                                    <label for="locationFloatingInput"
+                                           class="form-label-add-edit">Обект</label>
+                                    <span asp-validation-for="@Model.Location" class="text-dark"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <div class="form-floating mb-3">
+                                    <select required asp-for="@Model.CourtNumber" id="courtSelect" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    <label for="trainingTypeFloatingInput" class="form-label-add-edit">
+                                        Номер на корт
+                                    </label>
+                                    <span asp-validation-for="@Model.CourtNumber" class="text-dark"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="form-floating mb-3">
+                                    <select id="dateSelect" asp-for="@Model.Date" class="form-select">
+                                        <option selected value="@DateTime.Now.Date">@DateTime.Now.ToShortDateString()</option>
+                                        <option value="@DateTime.Now.Date.AddDays(1).Date">@DateTime.Now.AddDays(1).ToShortDateString()</option>
+                                        <option value="@DateTime.Now.Date.AddDays(2).Date">@DateTime.Now.AddDays(2).ToShortDateString()</option>
+                                        <option value="@DateTime.Now.Date.AddDays(3).Date">@DateTime.Now.AddDays(3).ToShortDateString()</option>
+                                        <option value="@DateTime.Now.Date.AddDays(4).Date">@DateTime.Now.AddDays(4).ToShortDateString()</option>
+                                        <option value="@DateTime.Now.Date.AddDays(5).Date">@DateTime.Now.AddDays(5).ToShortDateString()</option>
+                                        <option value="@DateTime.Now.Date.AddDays(6).Date">@DateTime.Now.AddDays(6).ToShortDateString()</option>
+                                    </select>
+                                    <label for="trainingTypeFloatingInput" class="form-label-add-edit">
+                                        Дата
+                                    </label>
+                                    <span asp-validation-for="@Model.Date" class="text-dark"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="form-floating mb-3">
+                                    <select id="hourSelect" asp-for="@Model.Hour" class="form-select">
+                                    </select>
+                                    <label for="trainingTypeFloatingInput" class="form-label-add-edit">
+                                        Свободни часове
+                                    </label>
+                                    <span asp-validation-for="@Model.Hour" class="text-dark"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <select id="peopleCount" asp-for="@Model.PeopleCount" class="form-select">
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    <label for="trainingTypeFloatingInput" class="form-label-add-edit">
+                                        Играчи
+                                    </label>
+                                    <span asp-validation-for="@Model.PeopleCount" class="text-dark"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <select id="racketsCount" asp-for="@Model.RacketsBooked" class="form-select">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    <label for="trainingTypeFloatingInput" class="form-label-add-edit">
+                                        Ракети под наем
+                                    </label>
+                                    <span asp-validation-for="@Model.RacketsBooked" class="text-dark"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="form-floating mb-3">
+                                    <input type="hidden" id="totalPriceReservation" name="ReservationTotalSum" value="@Model.ReservationTotalSum" />
+                                    <input id="totalPriceDisplay" readonly placeholder="ReservationTotalSum" class="form-control" aria-required="true" />
+                                    <label for="reservationTotalSumFloatingInput" class="form-label-add-edit">Крайна цена</label>
+                                    <span asp-validation-for="ReservationTotalSum" class="text-dark"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button asp-controller="Booking" asp-action="Book" type="submit" formmethod="post">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Запиши
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterRedToBlackPartialView.cshtml")
