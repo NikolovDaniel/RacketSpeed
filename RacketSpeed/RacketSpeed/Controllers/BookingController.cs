@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Booking;
+using RacketSpeed.Core.Models.Post;
+using RacketSpeed.Core.Services;
 using RacketSpeed.Infrastructure.Data.Entities;
 
 
@@ -115,7 +117,10 @@ namespace RacketSpeed.Controllers
             return Json(result);
         }
 
-        // Action to return bookings for the employee for today.
+        /// <summary>
+        /// Display a /Booking/TodayBookings page for the employee.
+        /// </summary>
+        /// <returns>/Booking/TodayBookings page.</returns>
         [HttpGet]
         [Authorize(Roles = "Employee")]
         public async Task<IActionResult> TodayBookings()
@@ -125,7 +130,13 @@ namespace RacketSpeed.Controllers
             return View(bookings);
         }
 
-        // Action to retrieve the last 5 user bookings for the user.
+        /// <summary>
+        /// Display a /Booking/UserBookings page with the current user's reservations.
+        /// </summary>
+        /// <param name="userId">User identificator.</param>
+        /// <returns>/Booking/UserBookings page.</returns>
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UserBookings(string userId)
         {
             var userBookings = await this.bookingService.UserBookingsAsync(userId);
@@ -133,14 +144,75 @@ namespace RacketSpeed.Controllers
             return View(userBookings);
         }
 
-        // Action to get all bookings for the administrator + pagination.
-        public IActionResult AllBookings()
+        /// <summary>
+        /// Displays a /Booking/BookingsByKeyword page with 8 reservations by phone number.
+        /// </summary>
+        /// <returns>/Booking/BookingsByKeyword/{keyword} page.</returns>
+        /// <param name="phoneNumber">Phone number used to filter Reservation Entities.</param>
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> BookingsByKeyword(string phoneNumber, string pageCount = "1")
         {
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                ModelState.AddModelError("KeywordError", "Полето трябва да съдържа поне 1 символ.");
+                return View();
+            }
 
-            return View();
+            int pageNum = int.Parse(pageCount);
+
+            int bookingsPerPage = 8;
+
+            var pagesCount = this.bookingService.BookingsPageCount(bookingsPerPage);
+
+            pageNum = CalculateValidPageNum(pageNum, pagesCount);
+
+            var bookings = await bookingService.AllAsync(pageNum, bookingsPerPage, phoneNumber);
+
+            ViewData["phoneNumber"] = phoneNumber;
+            ViewData["pageNum"] = pageNum;
+
+            return View(new BookingsPaginationCountViewModel()
+            {
+                Bookings = bookings,
+                PageCount = pagesCount
+            });
         }
 
-        // Action to change the status of the booking and return the customer's money if its approved.
+        /// <summary>
+        /// Displays a /News/All page with three posts.
+        /// </summary>
+        /// <returns>/News/All page.</returns>
+        /// <param name="pageCount">Int for page index.</param>
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> AllBookings(string pageCount = "1")
+        {
+            int pageNum = int.Parse(pageCount);
+
+            int bookingsPerPage = 8;
+
+            var pagesCount = this.bookingService.BookingsPageCount(bookingsPerPage);
+
+            pageNum = CalculateValidPageNum(pageNum, pagesCount);
+            ViewData["pageNum"] = pageNum;
+
+            var bookings = await bookingService.AllAsync(pageNum, bookingsPerPage);
+
+            return View(new BookingsPaginationCountViewModel()
+            {
+                Bookings = bookings,
+                PageCount = pagesCount
+            });
+        }
+
+        /// <summary>
+        /// Changes the Booking status.
+        /// </summary>
+        /// <param name="bookingId">Booking identificator.</param>
+        /// <param name="userId">User identificator.</param>
+        /// <param name="status">Status of the booking.</param>
+        /// <returns>/Booking/TodayBookings page.</returns>
         [HttpPost]
         [Authorize(Roles = "Employee")]
         public async Task<IActionResult> ChangeBookingStatus(Guid bookingId, string userId, string status)
@@ -148,6 +220,27 @@ namespace RacketSpeed.Controllers
             await this.bookingService.ChangeStatusAsync(bookingId, userId, status);
 
             return RedirectToAction("TodayBookings", "Booking");
+        }
+
+        /// <summary>
+        /// Method to calculate the right page number.
+        /// </summary>
+        /// <param name="pageNum">Page number that the user wants.</param>
+        /// <param name="pagesCount">All pages available.</param>
+        /// <returns>Integer which is the correct page number.</returns>
+        private int CalculateValidPageNum(int pageNum, int pagesCount)
+        {
+            if (pageNum <= 0)
+            {
+                return 1;
+            }
+
+            if (pageNum > pagesCount)
+            {
+                return pagesCount;
+            }
+
+            return pageNum;
         }
     }
 }

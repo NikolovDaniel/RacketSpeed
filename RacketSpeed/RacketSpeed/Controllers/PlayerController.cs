@@ -31,8 +31,10 @@ namespace RacketSpeed.Controllers
         /// <returns>/Player/All page.</returns>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All(string pageCount = "1")
+        public async Task<IActionResult> All(bool isAdministrator, string pageCount = "1")
         {
+            ViewData["IsAdministrator"] = isAdministrator;
+
             int pageNum = int.Parse(pageCount);
 
             if (pageNum < 1)
@@ -67,8 +69,10 @@ namespace RacketSpeed.Controllers
         /// <param name="keyword">String used to filter Player Entities.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> AllPlayersByKeyword(string keyword, string pageCount = "1")
+        public async Task<IActionResult> AllPlayersByKeyword(string keyword, bool isAdministrator, string pageCount = "1")
         {
+            ViewData["IsAdministrator"] = isAdministrator;
+
             if (string.IsNullOrEmpty(keyword))
             {
                 ModelState.AddModelError("KeywordError", "Полето трябва да съдържа поне 1 символ.");
