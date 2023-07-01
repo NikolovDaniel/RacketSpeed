@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
@@ -15,14 +14,14 @@ namespace RacketSpeed.Infrastructure.Data.Entities
 		public Guid Id { get; set; }
 
 		/// <summary>
+		/// Court number.
+		/// </summary>
+		public int Number { get; set; }
+
+		/// <summary>
 		/// Delete flag.
 		/// </summary>
 		public bool IsDeleted { get; set; }
-
-		/// <summary>
-		/// Navigation property for CourtSchedule entity.
-		/// </summary>
-		public IEnumerable<CourtSchedule> CourtSchedules { get; set; } = null!;
 	}
 }
 
