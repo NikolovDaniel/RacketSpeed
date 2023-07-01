@@ -23,6 +23,14 @@ body {
     display: block;
 }
 
+.dropdown-menu .yellowAnchor {
+    color: #FFA202;
+}
+
+.dropdown-menu .redAnchor {
+    color: #BB2C3B;
+}
+
 /*Animated headers*/
 .title {
     background-color: #BB2C3B;

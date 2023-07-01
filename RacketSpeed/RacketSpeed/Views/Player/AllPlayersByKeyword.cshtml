@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Състезатели";
+    bool isAdministrator = (bool)ViewData["IsAdministrator"] ? true : false;
 }
 
-@if (User?.IsInRole("Administrator") ?? false)
+@if (isAdministrator && (User?.IsInRole("Administrator") ?? false))
 {
     ViewData["Title"] = "Състезатели (Админ)";
     @await Html.PartialAsync(@"~/Views/Shared/_PlayersAdminPartial.cshtml", Model);
@@ -54,7 +55,7 @@ else if (Model != null && Model.Players.Count() > 0)
                             </div>
                             <div class="col-12 col-lg-4">
                                 <div class="image ratio ratio-4x3">
-                                    <img class="img-fluid rounded border border-danger" src="@player.ImageUrl" />
+                                    <img class="img-fluid rounded" src="@player.ImageUrl" />
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4">
