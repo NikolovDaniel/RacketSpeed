@@ -134,6 +134,25 @@
         public const int SignKidMessageMinLength = 5;
         public const int SignKidMessageMaxLength = 200;
         public const string SignKidMessageErrorMessage = "Съобщението трябва да съдържа между 5 и 200 символа.";
+
+        /// <summary>
+        /// Data constants for Reservation Entity.  
+        /// </summary>
+        public const int ReservationPeopleCountMinValue = 2;
+        public const int ReservationPeopleCountMaxValue = 4;
+        public const string ReservationPeopleCountErrorMessage = "Играчите трябва да бъдат между 2 и 4.";
+
+        public const int ReservationRacketsBookedMinValue = 0;
+        public const int ReservationRacketsBookedMaxValue = 4;
+        public const string ReservationRacketsBookedErrorMessage = "Ракетите под наем трябва да бъдат между 0 и 4.";
+
+        public const int ReservationLocationMinValue = 5;
+        public const int ReservationLocationMaxValue = 30;
+        public const string ReservationLocationErrorMessage = "Името на обекта трябва да съдържа между 5 и 30 символа.";
+
+        public const int ReservationCourtNumberMinValue = 1;
+        public const int ReservationCourtNumberMaxValue = 4;
+        public const string ReservationCourtNumberErrorMessage = "Корта може да бъде между 1 и 4 номер.";
     }
 }
 

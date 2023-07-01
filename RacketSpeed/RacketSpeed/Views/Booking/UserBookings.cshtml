@@ -1,0 +1,85 @@
+﻿@using System.Globalization
+
+@model IEnumerable<BookingUserViewModel>
+
+@{
+    ViewData["Title"] = "Моите Резервации";
+}
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="animatedHeader bg-danger">
+        <h1 class="text-center">Моите Резервации</h1>
+    </div>
+    <section class="userBookingsSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                @foreach (var booking in Model.OrderBy(b => b.Date).ThenBy(b => b.Hour))
+                                {
+                                    <li class="position-relative booking">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h5 class="mb-4">
+                                                    Tип на резервацията: Корт
+                                                </h5>
+                                                <div class="mb-3">
+                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Дата и час на резервацията:</span>
+                                                    <span class="bg-light-blue">@booking.Date.ToString("dd MMM yyyy", new CultureInfo("bg")), @booking.Hour.ToString(@"hh\:mm")</span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">
+                                                        Детайли на резервацията:
+                                                    </span>
+                                                    <span class="bg-light-blue">@booking.PeopleCount човека</span>
+                                                    <span class="bg-light-blue">@booking.RacketsBooked ракети</span>
+                                                    <span class="bg-light-blue">Корт @booking.CourtNumber</span>
+                                                    <span class="bg-light-blue">@booking.Location</span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Цена:</span>
+                                                    <span class="bg-light-blue">@booking.ReservationTotalSum лева</span>
+                                                </div>
+                                                <div class="mb-5">
+                                                    <span class="mr-2 d-block d-sm-inline-block mb-1 mb-sm-0">Клиент:</span>
+                                                    <span class="border-right pr-2 mr-2 bg-light-blue">@booking.UserBookingName</span>
+                                                    <span class="bg-light-blue">@booking.PhoneNumber</span>
+                                                </div>
+                                                <div class="mb-5">
+                                                    <span class="mr-2 d-block d-sm-inline-block mb-1 mb-sm-0">Статут на резервацията:</span>
+                                                    @if (booking.Status == "В разработка")
+                                                    {
+                                                        <span class="border-right pr-2 mr-2 bg-light-blue">@booking.Status</span>
+                                                    }
+                                                    else if (booking.Status == "Одобрена")
+                                                    {
+                                                        <span class="border-right pr-2 mr-2 bg-light-green">@booking.Status</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="border-right pr-2 mr-2 bg-light-red">@booking.Status</span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
+}
+else
+{
+    ViewData["contentType"] = "Резервации";
+    @await Html.PartialAsync(@"~/Views/Shared/_NoContentPartialView.cshtml", ViewData["contentType"]);
+}
