@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RacketSpeed.Infrastructure.Data.Entities
 {
     /// <summary>
-    /// Mapping table for Court and Schedule Entities.
+    /// Availability Entity used to retrieve the free courts.
     /// </summary>
-    public class CourtSchedule
+    public class Availability
     {
         /// <summary>
         /// Identificator.
@@ -22,20 +21,24 @@ namespace RacketSpeed.Infrastructure.Data.Entities
         public Guid CourtId { get; set; }
 
         /// <summary>
-        /// Navigation property for Court entity.
+        /// Navigation property.
         /// </summary>
         public Court Court { get; set; } = null!;
 
         /// <summary>
-        /// Foreign key for Schedule Entity.
+        /// Date to check if the court is free.
         /// </summary>
-        [ForeignKey(nameof(Schedule))]
-        public Guid ScheduleId { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
-        /// Navigation property for Schedule entity.
+        /// Start hour to check if the court is free for that hour.
         /// </summary>
-        public Schedule Schedule { get; set; } = null!;
+        public TimeSpan StartTime { get; set; }
+
+        /// <summary>
+        /// End hour for the training session.
+        /// </summary>
+        public TimeSpan EndTime { get; set; }
     }
 }
 

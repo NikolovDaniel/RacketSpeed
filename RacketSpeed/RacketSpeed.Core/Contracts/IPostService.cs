@@ -1,5 +1,4 @@
-﻿using System;
-using RacketSpeed.Core.Models.Post;
+﻿using RacketSpeed.Core.Models.Post;
 namespace RacketSpeed.Core.Contracts
 {
     /// <summary>

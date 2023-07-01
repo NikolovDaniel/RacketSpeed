@@ -15,11 +15,9 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
         public DbSet<Coach> Coaches { get; set; } = null!;
         public DbSet<Court> Courts { get; set; } = null!;
-        public DbSet<CourtSchedule> CourtSchedules { get; set; } = null!;
         public DbSet<Player> Players { get; set; } = null!;
         public DbSet<Post> Posts { get; set; } = null!;
         public DbSet<Reservation> Reservations { get; set; } = null!;
-        public DbSet<Schedule> Schedules { get; set; } = null!;
         public DbSet<Training> Trainings { get; set; } = null!;
         public DbSet<PostImageUrl> PostImageUrls { get; set; } = null!;
         public DbSet<PlayerImageUrl> PlayerImageUrls { get; set; } = null!;
@@ -27,6 +25,7 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<Event> Events { get; set; } = null!;
         public DbSet<EventImageUrl> EventImageUrls { get; set; } = null!;
         public DbSet<SignKid> SignedKids { get; set; } = null!;
+        public DbSet<Schedule> Schedule { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,16 +40,9 @@ namespace RacketSpeed.Infrastructure.Data
             // Fluent API to configure an Event to always come with its ImageUrls.
             builder.Entity<Event>().Navigation(img => img.EventImageUrls).AutoInclude();
 
-            // Fluent API to configure Court and Schedule Entities for Many-To-Many.
-            builder.Entity<CourtSchedule>()
-               .HasOne(ur => ur.Court)
-               .WithMany(u => u.CourtSchedules)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<CourtSchedule>()
-              .HasOne(ur => ur.Schedule)
-              .WithMany(u => u.CourtSchedules)
-              .OnDelete(DeleteBehavior.Restrict);
+            // Fluent API to configure an Reservation to always come with its User and Court.
+            builder.Entity<Reservation>().Navigation(r => r.Court).AutoInclude();
+            builder.Entity<Reservation>().Navigation(r => r.User).AutoInclude();
 
             // Fluent API to configure ApplicationUser and Reservation Entities for One-To-Many.
             builder.Entity<ApplicationUser>()
