@@ -32,11 +32,13 @@ namespace RacketSpeed.Controllers
         /// <returns>/Event/All/Category page.</returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> All(string category)
+        public async Task<IActionResult> All(string category, bool isAdministrator)
         {
-            bool isAdministrator = User.IsInRole("Administrator");
+            ViewData["IsAdministrator"] = isAdministrator;
 
-            var posts = await eventService.AllAsync(category, isAdministrator);
+            bool isInRoleAdministrator = User.IsInRole("Administrator");
+
+            var posts = await eventService.AllAsync(category, isInRoleAdministrator);
 
             ViewData["Title"] = category;
 

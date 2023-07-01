@@ -1,0 +1,22 @@
+﻿<nav class="navbar navbar-expand-lg navbar-toggleable-lg box-shadow" style="background-color: black;">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="https://racketspeedbg.com/wp-content/uploads/2019/11/logo-raket-spiyd-page-0-300x160.jpg"
+                 alt="RacketSpeed" width="120" height="50" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+            </span>
+        </button>
+        <div class="navbar-collapse collapse d-lg-inline-flex" style="background-color:black;">
+            <ul class="navbar-nav ms-auto align-items-center" style="font-weight: 500;">
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Booking" asp-action="TodayBookings">Резервации за днес</a>
+                </li>
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>

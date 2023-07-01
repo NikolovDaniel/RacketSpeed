@@ -1,5 +1,4 @@
-﻿@using System.Security.Claims
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,7 +11,25 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-toggleable-lg box-shadow" style="background-color: black;">
+        @{
+            if (User?.IsInRole("Administrator") ?? false)
+            {
+                @await Html.PartialAsync(@"~/Views/Shared/_AdminNavbar.cshtml");
+            }
+            else if (User?.IsInRole("Employee") ?? false)
+            {
+                @await Html.PartialAsync(@"~/Views/Shared/_EmployeeUserNavbar.cshtml");
+            }
+            else if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                @await Html.PartialAsync(@"~/Views/Shared/_RegularLoggedInUserNavbar.cshtml");
+            }
+            else
+            {
+               @await Html.PartialAsync(@"~/Views/Shared/_AnonymousUserNavbar.cshtml");
+            }
+        }
+        @*<nav class="navbar navbar-expand-lg navbar-toggleable-lg box-shadow" style="background-color: black;">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="https://racketspeedbg.com/wp-content/uploads/2019/11/logo-raket-spiyd-page-0-300x160.jpg" alt="RacketSpeed" width="120" height="50" />
@@ -138,10 +155,10 @@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
-        </nav>
+        </nav>*@
     </header>
     @*<main role="main" class="pb-0">*@
-        @RenderBody()
+    @RenderBody()
     @*</main>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
