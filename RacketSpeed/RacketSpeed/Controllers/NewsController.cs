@@ -32,8 +32,10 @@ namespace RacketSpeed.Controllers
         /// <param name="pageCount">Int for page index.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All(string pageCount = "1")
+        public async Task<IActionResult> All(bool isAdministrator, string pageCount = "1")
         {
+            ViewData["IsAdministrator"] = isAdministrator;
+
             int pageNum = int.Parse(pageCount);
 
             int postsPerPage = 3;
@@ -41,7 +43,7 @@ namespace RacketSpeed.Controllers
             var pagesCount = this.postService.PostsPageCount(postsPerPage);
 
             pageNum = CalculateValidPageNum(pageNum, pagesCount);
-           
+
             ViewData["pageNum"] = pageNum;
 
             var posts = await postService.AllAsync(pageNum, postsPerPage);
@@ -60,8 +62,10 @@ namespace RacketSpeed.Controllers
         /// <param name="keyword">String used to filter Post Entities.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> AllPostsByKeyword(string keyword, string pageCount = "1")
+        public async Task<IActionResult> AllPostsByKeyword(string keyword, bool isAdministrator, string pageCount = "1")
         {
+            ViewData["IsAdministrator"] = isAdministrator;
+
             if (string.IsNullOrEmpty(keyword))
             {
                 ModelState.AddModelError("KeywordError", "Полето трябва да съдържа поне 1 символ.");

@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<EventViewModel>
 @using System.Globalization
 
-@if (User?.IsInRole("Administrator") ?? false)
+@{
+    bool isAdministrator = (bool)ViewData["IsAdministrator"] ? true : false;
+}
+
+@if (isAdministrator && (User?.IsInRole("Administrator") ?? false))
 {
     ViewData["Category"] = ViewData["Title"];
     ViewData["Title"] += " (Админ)";

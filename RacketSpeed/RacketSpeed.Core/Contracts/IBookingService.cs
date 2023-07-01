@@ -24,6 +24,15 @@ namespace RacketSpeed.Core.Contracts
         Task<ICollection<BookingViewModel>> AllAsync(int start, int bookingsPerPage);
 
         /// <summary>
+        /// Async method to retrieve all Reservations with expression.
+        /// </summary>
+        /// <param name="start">Page number.</param>
+        /// <param name="bookingsPerPage">Reservation Entities per page.</param>
+        /// <param name="keyword">Keyword for filtering purpose.</param>
+        /// <returns>Collection of BookingViewModel.</returns>
+        Task<ICollection<BookingViewModel>> AllAsync(int start, int bookingsPerPage, string keyword);
+
+        /// <summary>
         /// Async method to retrieve all Bookings for specific date.
         /// </summary>
         /// <returns>Collection of BookingViewModel.</returns>

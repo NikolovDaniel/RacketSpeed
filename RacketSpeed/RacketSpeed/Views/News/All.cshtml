@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Новини";
+    bool isAdministrator = (bool)ViewData["IsAdministrator"] ? true : false;
 }
 
-@if (User?.IsInRole("Administrator") ?? false)
+@if (isAdministrator && (User?.IsInRole("Administrator") ?? false))
 {
     ViewData["Title"] = "Новини (Админ)";
     @await Html.PartialAsync(@"~/Views/Shared/_NewsAdminPartial.cshtml", Model);

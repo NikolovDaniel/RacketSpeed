@@ -13,6 +13,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <form asp-controller="Player" asp-action="AllPlayersByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                    <input name="isAdministrator" type="hidden" value="true">
                     <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Състезател" aria-label="Search">
                     <button class="btn btn-outline-danger" type="submit">Търси</button>
                 </form>
@@ -33,6 +34,7 @@ else
             </div>
             <div class="col-12 col-lg-6">
                 <form asp-controller="Player" asp-action="AllPlayersByKeyword" method="get" class="d-flex mt-2" role="search" style="width:100%">
+                    <input name="isAdministrator" type="hidden" value="true">
                     <input name="keyword" class="form-control me-2 border-danger" type="text" placeholder="Търси Състезател" aria-label="Search">
                     <button class="btn btn-outline-danger" type="submit">Търси</button>
                 </form>
@@ -83,12 +85,12 @@ else
         <div class="row">
             <div class="col-12">
                 <ul class="pagination pagination-md justify-content-center">
-                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-isAdministrator="true" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value - 1)">Предишна</a></li>
                     @for (int i = 1; i <= Model.PageCount; i++)
                     {
-                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@i">@i</a></li>
+                        <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-isAdministrator="true" asp-route-pageCount="@i">@i</a></li>
                     }
-                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
+                    <li class="page-item"><a class="page-link text-dark" asp-controller="Player" asp-action="All" asp-route-isAdministrator="true" asp-route-pageCount="@((int)ViewData.First(x => x.Key == "pageNum").Value + 1)">Следваща</a></li>
                 </ul>
             </div>
         </div>

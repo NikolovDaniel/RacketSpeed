@@ -1,0 +1,103 @@
+﻿<nav class="navbar navbar-expand-lg navbar-toggleable-lg box-shadow" style="background-color: black;">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="https://racketspeedbg.com/wp-content/uploads/2019/11/logo-raket-spiyd-page-0-300x160.jpg"
+                 alt="RacketSpeed" width="120" height="50" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+            </span>
+        </button>
+        <div class="navbar-collapse collapse d-lg-inline-flex" style="background-color:black;">
+            <ul class="navbar-nav ms-auto align-items-center" style="font-weight: 500;">
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="News" asp-action="All">Новини</a>
+                </li>
+                <li class="nav-item dropdown text-center">
+                    <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown">Събития</a>
+                    <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" aria-expanded="false"
+                        style="background-color:black;">
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Event"
+                               asp-action="All" asp-route-category="Турнири за Деца">Турнири за Деца</a>
+                        </li>
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Event"
+                               asp-action="All" asp-route-category="Турнири за Любители">Турнири за Любители</a>
+                        </li>
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Event"
+                               asp-action="All" asp-route-category="Лагери">Лагери</a>
+                        </li>
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Event"
+                               asp-action="All" asp-route-category="Развлечения">Развлечения</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown text-center">
+                    <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Index">
+                        Информация за
+                        Клуба
+                    </a>
+                    <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" aria-expanded="false"
+                        style="background-color:black;">
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Coach"
+                               asp-action="All">Треньори</a>
+                        </li>
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Player"
+                               asp-action="All">Състезатели</a>
+                        </li>
+                        <li>
+                            <a class="yellowAnchor dropdown-item" asp-area="" asp-controller="Home"
+                               asp-action="History">История на Клуба</a>
+                        </li>
+                        <li class="menu-item dropdown-submenu">
+                            <a tabindex="-1" class="yellowAnchor nav-link dropdown-toggle"
+                               id="navbarDropdownSubmenu" role="button" data-bs-toggle="dropdown">
+                                График на
+                                тренировките
+                            </a>
+                            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdownSubmenu"
+                                aria-expanded="false" style="background-color: black; width: 100%;">
+                                <li>
+                                    <a class="redAnchor dropdown-item" asp-area="" asp-controller="Training"
+                                       asp-action="All" asp-route-trainingName="Деца до 7">Деца до 7</a>
+                                </li>
+                                <li>
+                                    <a class="redAnchor dropdown-item" asp-area="" asp-controller="Training"
+                                       asp-action="All" asp-route-trainingName="Деца до 11">Деца до 11</a>
+                                </li>
+                                <li>
+                                    <a class="redAnchor dropdown-item" asp-area="" asp-controller="Training"
+                                       asp-action="All" asp-route-trainingName="Деца до 15">Деца до 15</a>
+                                </li>
+                                <li>
+                                    <a class="redAnchor dropdown-item" asp-area="" asp-controller="Training"
+                                       asp-action="All" asp-route-trainingName="Деца до 19">Деца до 19</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="AboutUs">За нас</a>
+                </li>
+                <li>
+                    <a class="nav-link" asp-area="" asp-controller="SignKid" asp-action="SignForm"
+                       style="color: #FFA202;">
+                        Форма за
+                        записване
+                    </a>
+                </li>
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>
