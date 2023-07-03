@@ -1,61 +1,107 @@
 ﻿@model IEnumerable<TrainingViewModel>
-    <style>
-        h2 {
-            color: white;
-        }
+<style>
+    h2 {
+        color: white;
+    }
 
-        .lead {
-            color: #DC5B67;
-        }
-    </style>
-    <div class="row w-100 min-vh-100 d-flex justify-content-center align-items-center mt-5">
-        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
-            <h2 class="card-title text-center">Понеделник</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4" style="color: #DC5B67;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    .lead {
+        color: #DC5B67;
+    }
+
+    .trainingDropdown {
+        position: absolute;
+    }
+</style>
+<div class="row w-100 min-vh-100 d-flex justify-content-center align-items-center mt-5">
+    <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Понеделник
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Понеделник").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-md-0 mt-lg-0">
-            <h2 class="card-title text-center">Вторник</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Вторник").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Вторник
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Вторник").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <h2 class="card-title text-center">Сряда</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Сряда").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Сряда
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Сряда").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <h2 class="card-title text-center">Четвъртък</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Четвъртък").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Четвъртък
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Четвъртък").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <h2 class="card-title text-center">Петък</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Петък").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Петък
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Петък").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <h2 class="card-title text-center">Събота</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Събота").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Събота
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Събота").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <h2 class="card-title text-center">Неделя</h2>
-            @foreach (var training in Model.Where(t => t.DayOfWeek == "Неделя").OrderBy(t => t.Start.Hour))
-            {
-                <p class="lead text-center fs-4"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p>
-            }
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div class="dropdown">
+            <button class="btn btn-lg btn-danger text-white dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Неделя
+            </button>
+            <ul class="trainingDropdown dropdown-menu text-center bg-danger w-100">
+                @foreach (var training in Model.Where(t => t.DayOfWeek == "Неделя").OrderBy(t => t.Start.Hour))
+                {
+                    <li><p class="lead text-center fs-4" style="color: white;"> @($"{training.Start.ToString("HH:mm")} - {training.End.ToString("HH:mm")}")</p></li>
+                }
+            </ul>
         </div>
-    </div>   
+    </div>
+</div>   
