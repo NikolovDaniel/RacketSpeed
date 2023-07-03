@@ -36,6 +36,7 @@
     <None Remove="Views\Training\" />
     <None Remove="Views\Event\" />
     <None Remove="Views\SignKid\" />
+    <None Remove="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\News\" />
@@ -44,6 +45,7 @@
     <Folder Include="Views\Training\" />
     <Folder Include="Views\Event\" />
     <Folder Include="Views\SignKid\" />
+    <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Achievements\Achievements\Add.cshtml" />

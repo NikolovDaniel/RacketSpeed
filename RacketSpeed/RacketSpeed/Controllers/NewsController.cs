@@ -7,8 +7,10 @@ namespace RacketSpeed.Controllers
 {
     /// <summary>
     /// Provides functionality to the /News/ route.
+    /// Keeps cache for 30 minutes.
     /// </summary>
     [Authorize(Roles = "Administrator")]
+    [ResponseCache(Duration = 1800)] 
     public class NewsController : Controller
     {
         /// <summary>
