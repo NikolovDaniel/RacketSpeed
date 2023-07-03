@@ -7,7 +7,9 @@ namespace RacketSpeed.Controllers
 {
     /// <summary>
     /// Provides functionality to the /Trainingx/ route.
+    /// Keeps cache for 10 minutes.
     /// </summary>
+    [ResponseCache(Duration = 600)]
     [Authorize(Roles = "Administrator")]
     public class TrainingController : Controller
     {

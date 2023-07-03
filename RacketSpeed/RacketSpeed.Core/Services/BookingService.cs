@@ -81,7 +81,8 @@ namespace RacketSpeed.Core.Services
                     Location = b.Location,
                     ReservationTotalSum = b.ReservationTotalSum
                 })
-                .OrderBy(r => r.Date)
+                .OrderByDescending(r => r.Date.Year)
+                .ThenBy(r => r.Date.Date)
                 .ThenBy(r => r.Hour)
                 .ToListAsync();
         }
