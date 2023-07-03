@@ -1,4 +1,6 @@
 ﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> _userManager;
 
 <nav class="navbar navbar-expand-lg navbar-toggleable-lg box-shadow" style="background-color: black;">
     <div class="container-fluid">
@@ -94,7 +96,7 @@
                 <li class="nav-item dropdown text-center">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                        asp-area="" asp-controller="Home" asp-action="Index" style="color: #FFA202;">Резервации</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" aria-expanded="false"
+                    <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" aria-expanded="false"
                         style="background-color: black;">
                         <li>
                             <a class="redAnchor dropdown-item" asp-area="" asp-controller="Booking"
@@ -116,6 +118,30 @@
                         Форма за
                         записване
                     </a>
+                </li>
+                <li class="nav-item dropdown text-center">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                       asp-area="" asp-controller="Home" asp-action="Index" style="color: #FFA202;">Депозит</a>
+                    <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown" aria-expanded="false"
+                        style="background-color: black;">
+                        <li>
+                            @{
+                                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                                decimal deposit = 0M;
+
+                                if (userId != null)
+                                {
+                                    var user = await _userManager.FindByIdAsync(userId);
+                                    deposit = user != null ? user.Deposit : 0M;
+                                }
+                            }
+                            <a class="redAnchor dropdown-item">Текущ депозит: @deposit лв.</a>
+                        </li>
+                        <li>
+                            <a class="redAnchor dropdown-item" asp-area="" asp-controller="Users"
+                               asp-action="Deposit">Направи депозит</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <partial name="_LoginPartial" />

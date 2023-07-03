@@ -7,7 +7,9 @@ namespace RacketSpeed.Controllers
 {
     /// <summary>
     /// Provides functionality to the /Event/ route.
+    /// Keeps cache for 30 minutes.
     /// </summary>
+    [ResponseCache(Duration = 1800)]
     [Authorize(Roles = "Administrator")]
     public class EventController : Controller
     {

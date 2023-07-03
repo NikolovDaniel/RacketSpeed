@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Services;
@@ -32,6 +33,8 @@ namespace RacketSpeed
 
             builder.Services.AddControllersWithViews();
 
+            //builder.Services.AddMvc(options =>
+            //    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
             builder.Services.AddScoped<IRepository, Repository>();
             builder.Services.AddScoped<IPostService, PostService>();
             builder.Services.AddScoped<ICoachService, CoachService>();

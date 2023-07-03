@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Booking;
-using RacketSpeed.Core.Models.Post;
-using RacketSpeed.Core.Services;
 using RacketSpeed.Infrastructure.Data.Entities;
 
 
@@ -57,8 +55,10 @@ namespace RacketSpeed.Controllers
         /// <param name="model">BookingFormModel.</param>
         /// <returns>/Booking/UserBooking Page.</returns>
         [HttpPost]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Book(BookingFormModel model)
         {
+            
             if (!ModelState.IsValid)
             {
                 var courts = await this.bookingService.GetAllCourtsAsync();
