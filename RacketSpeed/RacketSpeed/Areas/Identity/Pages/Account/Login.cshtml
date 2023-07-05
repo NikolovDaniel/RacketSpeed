@@ -2,83 +2,56 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Вход";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Username" class="form-label"></label>
-                    <span asp-validation-for="Input.Username" class="text-danger"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div>
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    @*<div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+<section class="pt-5 pb-5" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-2 col-md-4 pt-5 justify-content-center" style="background-color: #BB2C3B; border-radius: 10px;">
+                <h4 class="pb-3 mb-5 text-center" style="color: black;">Вход</h4>
+                <form id="account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-light"></div>
+                    <div class="row">
+                        <span asp-validation-for="Input.Username" class="text-light"></span>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="background-color: black;"><i class="fa-regular fa-user" style="color:#ffa200"></i></span>
+                            <input asp-for="Input.Username" class="form-control" aria-describedby="inputGroup-sizing-default" placeholder="Потребителско име">
                         </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>*@
-</div>
+                        <span asp-validation-for="Input.Password" class="text-light"></span>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="background-color: black;"><i class="fa-solid fa-lock" style="color: #ffa200;"></i></span>
+                            <input asp-for="Input.Password" type="password" class="form-control" aria-describedby="inputGroup-sizing-default" placeholder="Парола">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column align-items-end">
+                        <a class="link-dark" href="/Account/ResendConfirmationEmail">Изпрати нов код за потвърждение!</a>
+                        <a class="link-dark" href="/Account/ResendForgotPassword">Забравена парола?</a>
+                    </div>
+                    <div class="d-flex justify-content-center pt-2 pb-2">
+                        <button id="login-submit" type="submit" class="btn btn-lg"
+                                style="background-color: black; color:#ffa200;">
+                            Влез
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6" style="background-color: black;">
+                <div class="content text-center">
+                    <div class="border-bottom pb-5 mb-5 text-white">
+                        <h3>Нямаш акаунт?</h3>
+                        <a href="/Identity/Account/Register" class="btn btn-link" style="color:#ffa200;">Регистрирай се</a>
+                    </div>
+                    <img src="https://racketspeedbg.com/wp-content/uploads/2019/11/logo-raket-spiyd-page-0-300x160.jpg"
+                         width="200">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
