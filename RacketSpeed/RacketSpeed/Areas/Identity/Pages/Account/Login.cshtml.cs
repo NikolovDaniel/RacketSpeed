@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RacketSpeed.Infrastructure.Data.Entities;
+using RacketSpeed.Infrastructure.Utilities;
 
 namespace RacketSpeed.Areas.Identity.Pages.Account
 {
@@ -42,10 +43,10 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
        
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
             public string Username { get; set; }
           
-            [Required]
+            [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -87,7 +88,7 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Грешка при влизане.");
                     return Page();
                 }
             }

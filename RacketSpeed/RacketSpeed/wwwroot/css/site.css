@@ -81,26 +81,17 @@ div.animatedHeader {
     font-size: 14px;
     color: #fff;
     background: linear-gradient(90deg, #000000 0%, #000000 100%);
-    padding: 15px 30px;
+/*    padding: 15px 30px;*/
     border: solid #000000 1px;
     box-shadow: none;
     border-radius: 50px;
-    transition: 912ms;
+/*    transition: 912ms;
     transform: translateY(0);
     display: flex;
     flex-direction: row;
     align-items: center;
-    cursor: pointer;
+    cursor: pointer;*/
 }
-
-/*    .noContentButton:hover {
-        transition: 912ms;
-        padding: 10px 50px;
-        transform: translateY(-0px);
-        background: linear-gradient(90deg, #000000 50%, #000000 100%);
-        color: #ede6e6;
-        border: solid 1px #000000;
-    }*/
 
 div.noContentHeader {
     color: white;
@@ -274,6 +265,9 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+/*Login Page CSS*/
+
 
 /*Footer CSS*/
 .footerSectionBlackToRed {
