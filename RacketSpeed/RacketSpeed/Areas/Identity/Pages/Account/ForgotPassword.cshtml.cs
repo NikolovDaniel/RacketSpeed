@@ -59,10 +59,12 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
+                var emailSubject = string.Format(EmailBuilder.ForgotPassword, user.FirstName, HtmlEncoder.Default.Encode(callbackUrl));
+
                 await _sendGridEmailSender.SendEmailAsync(
                     Input.Email,
-                    "Промени паролата си",
-                    $"Променете паролата си като кликнете на този линк: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>линк</a>.");
+                       $"{user.FirstName}, потвърждение за промяна на парола.",
+                       emailSubject);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

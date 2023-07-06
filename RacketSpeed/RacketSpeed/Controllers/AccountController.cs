@@ -8,6 +8,9 @@ using RacketSpeed.Infrastructure.Data.Entities;
 
 namespace RacketSpeed.Controllers
 {
+    /// <summary>
+    /// Provides functionality to the /Account/ route.
+    /// </summary>
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -21,12 +24,21 @@ namespace RacketSpeed.Controllers
             _sendGridEmailSender = sendGridEmailSender;
         }
 
+        /// <summary>
+        /// Displays /Account/ResendConfirmationEmail page.
+        /// </summary>
+        /// <returns>/Account/ResendConfirmationEmail page.</returns>
         [HttpGet]
         public IActionResult ResendConfirmationEmail()
         {
             return View();
         }
 
+        /// <summary>
+        /// Gets the data from a HttpPost request and proccesses it.
+        /// </summary>
+        /// <param name="email">User's email.</param>
+        /// <returns>/Account/ResendConfirmationEmail Page.</returns>
         [HttpPost]
         public async Task<IActionResult> ResendConfirmationEmail(string email)
         {
@@ -54,11 +66,12 @@ namespace RacketSpeed.Controllers
              values: new { area = "Identity", userId = user.Id, code = token },
              protocol: Request.Scheme);
 
+            var resendEmailConfirmation = string.Format(EmailBuilder.EmailConfirmation, user.UserName, HtmlEncoder.Default.Encode(callBackUrl));
+
             await _sendGridEmailSender.SendEmailAsync(
                  user.Email,
-                 "Потвърди емайла си",
-                 $"Потвърди акаунта си като <a href='{HtmlEncoder.Default.Encode(callBackUrl)}'>кликнеш тук!</a>."
-             );
+                  $"{user.FirstName}, потвърждение за емайл адрес",
+                 resendEmailConfirmation);
 
             ViewData["IsResended"] = true;
 
