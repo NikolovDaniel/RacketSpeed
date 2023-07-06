@@ -136,7 +136,6 @@ namespace RacketSpeed.Controllers
         /// <param name="userId">User identificator.</param>
         /// <returns>/Booking/UserBookings page.</returns>
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UserBookings(string userId)
         {
             var userBookings = await this.bookingService.UserBookingsAsync(userId);

@@ -1,84 +1,113 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Регистрация";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.UserName"></label>
-                <span asp-validation-for="Input.UserName" class="text-danger"></span>
-            </div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.FirstName" class="form-control" autocomplete="on" aria-required="true" />
-                <label asp-for="Input.FirstName"></label>
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-            </div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.LastName" class="form-control" autocomplete="on" aria-required="true" />
-                <label asp-for="Input.LastName"></label>
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
-            </div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input type="password" asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input type="password" asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
+<div class="animatedHeader bg-danger">
+    <h2 class="text-center">Регистрация</h2>
 </div>
+<section class="sectionCoaches">
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-6 text-center">
+                <h3 style="color: #ffa200;">
+                    Регистрирай се сега и получи достъп до резервация на корт и други
+                    функционалности!
+                </h3>
+                <div class="card" style="background-color: black;">
+                    <div class="card-body">
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                            <div class="mb-3 d-flex justify-content-center">
+                                <img class="img-fluid rounded"
+                                     src="https://racketspeedbg.com/wp-content/uploads/2019/11/logo-raket-spiyd-page-0-300x160.jpg" alt="racketSpeedLogo" />
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.UserName" placeholder="Username" class="form-control"
+                                           aria-required="true" id="usernameFloatingInput" />
+                                    <label for="usernameFloatingInput" class="form-label-add-edit">
+                                        Потребителско
+                                        име
+                                    </label>
+                                    <span asp-validation-for="Input.UserName" class="text-light"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.FirstName" placeholder="FistName" class="form-control"
+                                                   aria-required="true" id="firstNameFloatingInput" />
+                                            <label for="firstNameFloatingInput" class="form-label-add-edit">
+                                                Първо
+                                                име
+                                            </label>
+                                            <span asp-validation-for="Input.FirstName" class="text-light"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-floating mb-3">
+                                            <input asp-for="Input.LastName" placeholder="FamilyName" class="form-control"
+                                                   aria-required="true" id="familyNameFloatingInput" />
+                                            <label for="familyNameFloatingInput"
+                                                   class="form-label-add-edit">Фамилия</label>
+                                            <span asp-validation-for="Input.LastName" class="text-light"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.PhoneNumber" placeholder="PhoneNumber" class="form-control"
+                                           aria-required="true" id="phoneNumberFloatingInput" />
+                                    <label for="phoneNumberFloatingInput" class="form-label-add-edit">
+                                        Телефонен
+                                        номер
+                                    </label>
+                                    <span asp-validation-for="Input.PhoneNumber" class="text-light"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Email" placeholder="Email" class="form-control"
+                                           aria-required="true" id="emailFloatingInput" />
+                                    <label for="emailFloatingInput" class="form-label-add-edit">Емайл</label>
+                                    <span asp-validation-for="Input.Email" class="text-light"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Password" placeholder="Password" autocomplete="new-password" class="form-control"
+                                           aria-required="true" id="passwordFloatingInput" type="password" />
+                                    <label for="passwordFloatingInput" class="form-label-add-edit">Парола</label>
+                                    <span asp-validation-for="Input.Password" class="text-light"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.ConfirmPassword" placeholder="ConfirmPassword" autocomplete="new-password" class="form-control"
+                                           aria-required="true" id="confirmPasswordFloatingInput" type="password" />
+                                    <label for="confirmPasswordFloatingInput" class="form-label-add-edit">
+                                        Потвърди
+                                        парола
+                                    </label>
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-light"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input id="registerSubmit" class="btn btn-danger mb-2 w-100 p-3 fs-5" type="submit"
+                                       value="Регистрирай се" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

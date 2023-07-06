@@ -1,7 +1,7 @@
 ﻿@page
-@model ConfirmEmailModel
+@model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Успешно потвърден емайл";
+    ViewData["Title"] = "Успешна регистрация";
 }
 
 <section>
@@ -11,7 +11,7 @@
                 <h1 class="text-center">@ViewData["Title"]!</h1>
             </div>
             <div class="col-12 mb-5">
-                <h1 class="text-center">Успешно потвърдихте емайла си и вече може да влезете в акаунта си.</h1>
+                <h1 class="text-center">Моля проверете емайл адреса си за да потвърдите акаунта си.</h1>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <a class="noContentButton btn w-50 form-control me-2 fs-3 text-center" style="background-color: black;" href="/Identity/Account/Login">Вход</a>
@@ -21,3 +21,5 @@
 </section>
 
 @await Html.PartialAsync(@"~/Views/Shared/_FooterRedToBlackPartialView.cshtml")
+
+
