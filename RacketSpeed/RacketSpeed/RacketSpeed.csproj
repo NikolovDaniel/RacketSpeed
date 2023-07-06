@@ -22,6 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.16" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,24 +33,32 @@
   <ItemGroup>
     <None Remove="Views\News\" />
     <None Remove="Views\Coach\" />
-    <None Remove="TestStrings\" />
     <None Remove="Views\Training\" />
     <None Remove="Views\Event\" />
     <None Remove="Views\SignKid\" />
     <None Remove="Views\Users\" />
+    <None Remove="Email\" />
+    <None Remove="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\News\" />
     <Folder Include="Views\Coach\" />
-    <Folder Include="TestStrings\" />
     <Folder Include="Views\Training\" />
     <Folder Include="Views\Event\" />
     <Folder Include="Views\SignKid\" />
     <Folder Include="Views\Users\" />
+    <Folder Include="Email\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Achievements\Achievements\Add.cshtml" />
     <Content Remove="Views\Achievements\Achievements\All.cshtml" />
     <Content Remove="Views\Achievements\Achievements\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\Account\ResendConfirmationEmail">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 </Project>

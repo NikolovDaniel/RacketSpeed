@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Препрати емайл за потвърждение";
+}
+
+<section class="pt-5 pb-5" style="background-color: black;">
+    <div class="container">
+        <div class="row pt-5 pb-5">
+            @if (ViewData["IsResended"] != null && (bool)ViewData["IsResended"] ? true : false)
+            {
+                <h3 class="text-center text-white">Изпратихме Ви успешно емайл за повторно потвърждение.</h3>
+            }
+            <div class="col-lg-6 offset-lg-3 col-12 text-white">
+                <div style="background-color: #BB2D3B;border-radius: 10px;">
+                    <h3 class="text-center pt-2">Не сте получили емайл за потвърждение?</h3>
+                    <ul class="pt-4 pb-2 pe-2">
+                        <li>
+                            <p>Въведете същия емайл, с който се регистрирахте за да получите нов емайл за потвърждение!</p>
+                        </li>
+                        <li>
+                            <p>Процеса може да отнеме няколко минути.</p>
+                        </li>
+                        <li>
+                            <p>Aко не намирате емайла си в пощата, проверете спам папката.</p>
+                        </li>
+                    </ul>
+                </div>
+                <form asp-controller="Account" asp-action="ResendConfirmationEmail" method="post">
+                    <span class="text-center text-white">@Html.ValidationMessage("InvalidEmail")</span>
+                    <div class="input-group w-auto">
+                        <input name="email" type="email" class="form-control" placeholder="Емайл адрес" aria-label="Email Address"
+                               aria-describedby="button-addon1" autocomplete="off" />
+                        <button class="btn btn-lg text-white" style="background-color: #BB2D3B;" type="submit" id="button-addon1">
+                            Изпрати
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync(@"~/Views/Shared/_FooterBlackToRedPartialView.cshtml")
