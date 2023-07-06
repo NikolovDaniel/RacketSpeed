@@ -18,7 +18,7 @@ namespace RacketSpeed.Controllers
         /// Booking service.
         /// </summary>
         private readonly IBookingService bookingService;
-        UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 
         /// <summary>

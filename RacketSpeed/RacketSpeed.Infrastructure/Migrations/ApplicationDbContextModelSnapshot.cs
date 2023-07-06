@@ -263,7 +263,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Coaches");
+                    b.ToTable("Coaches", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.CoachImageUrl", b =>
@@ -284,7 +284,7 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.HasIndex("CoachId")
                         .IsUnique();
 
-                    b.ToTable("CoachImageUrls");
+                    b.ToTable("CoachImageUrls", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Court", b =>
@@ -301,7 +301,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courts");
+                    b.ToTable("Courts", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Event", b =>
@@ -341,7 +341,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.EventImageUrl", b =>
@@ -361,7 +361,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("EventImageUrls");
+                    b.ToTable("EventImageUrls", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Player", b =>
@@ -414,7 +414,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PlayerImageUrl", b =>
@@ -435,7 +435,7 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.HasIndex("PlayerId")
                         .IsUnique();
 
-                    b.ToTable("PlayerImageUrls");
+                    b.ToTable("PlayerImageUrls", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Post", b =>
@@ -459,7 +459,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.PostImageUrl", b =>
@@ -479,7 +479,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("PostImageUrls");
+                    b.ToTable("PostImageUrls", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Reservation", b =>
@@ -535,7 +535,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Reservations", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Schedule", b =>
@@ -549,7 +549,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Schedule");
+                    b.ToTable("Schedule", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.SignKid", b =>
@@ -595,7 +595,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SignedKids");
+                    b.ToTable("SignedKids", (string)null);
                 });
 
             modelBuilder.Entity("RacketSpeed.Infrastructure.Data.Entities.Training", b =>
@@ -630,7 +630,7 @@ namespace RacketSpeed.Infrastructure.Migrations
 
                     b.HasIndex("CoachId");
 
-                    b.ToTable("Trainings");
+                    b.ToTable("Trainings", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
