@@ -52,17 +52,252 @@ namespace RacketSpeed.Infrastructure.Data
                 .WithOne(r => r.User)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            SeedUsers(builder);
+            //SeedUsers(builder);
 
-            SeedPostsAndImages(builder);
+            //SeedPostsAndImages(builder);
 
-            SeedCoachAndImages(builder);
+            //SeedCoachAndImages(builder);
 
-            SeedCoachTrainings(builder);
+            //SeedCoachTrainings(builder);
 
-            SeedEventsAndImages(builder);
+            //SeedEventsAndImages(builder);
+
+            //SeedCourts(builder);
+
+            //SeedPlayersAndImages(builder);
+
+            //SeedSchedule(builder);
+
+            //SeedReservations(builder);
+
+            //SeedSignForms(builder);
 
             base.OnModelCreating(builder);
+        }
+
+        private void SeedSignForms(ModelBuilder builder)
+        {
+            builder.Entity<SignKid>()
+                .HasData(
+                new SignKid()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.SignFormId1),
+                    FullName = SeedPropertyConstants.SignFormFullName1,
+                    PhoneNumber = SeedPropertyConstants.SignFormPhoneNumber1,
+                    EmailAddress = SeedPropertyConstants.SignFormEmailAddress1,
+                    SignOn = DateTime.Parse(SeedPropertyConstants.SignFormSignOn1),
+                    TrainingType = SeedPropertyConstants.SignFormTrainingType1,
+                    Location = SeedPropertyConstants.SignFormLocation1,
+                    Message = SeedPropertyConstants.SignFormMessage1,
+                    PrivacyPolicyIsAccepted = true,
+                    IsDeleted = false
+                },
+                new SignKid()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.SignFormId2),
+                    FullName = SeedPropertyConstants.SignFormFullName2,
+                    PhoneNumber = SeedPropertyConstants.SignFormPhoneNumber2,
+                    EmailAddress = SeedPropertyConstants.SignFormEmailAddress2,
+                    SignOn = DateTime.Parse(SeedPropertyConstants.SignFormSignOn2),
+                    TrainingType = SeedPropertyConstants.SignFormTrainingType2,
+                    Location = SeedPropertyConstants.SignFormLocation2,
+                    Message = SeedPropertyConstants.SignFormMessage2,
+                    PrivacyPolicyIsAccepted = true,
+                    IsDeleted = false
+                },
+                new SignKid()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.SignFormId3),
+                    FullName = SeedPropertyConstants.SignFormFullName3,
+                    PhoneNumber = SeedPropertyConstants.SignFormPhoneNumber3,
+                    EmailAddress = SeedPropertyConstants.SignFormEmailAddress3,
+                    SignOn = DateTime.Parse(SeedPropertyConstants.SignFormSignOn3),
+                    TrainingType = SeedPropertyConstants.SignFormTrainingType3,
+                    Location = SeedPropertyConstants.SignFormLocation3,
+                    Message = SeedPropertyConstants.SignFormMessage3,
+                    PrivacyPolicyIsAccepted = true,
+                    IsDeleted = false
+                });
+        }
+
+        private void SeedReservations(ModelBuilder builder)
+        {
+            builder.Entity<Reservation>()
+                .HasData(
+                new Reservation()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.ReservationId1),
+                    CourtId = Guid.Parse("AC0AEA93-5277-4992-9F4B-5C1A8CBB8395"),
+                    UserId = "2a5434f2-4e92-44ee-8b8b-115b943e0ccf",
+                    PeopleCount = SeedPropertyConstants.ReservationPeopleCount1,
+                    RacketsBooked = SeedPropertyConstants.ReservationRacketsBooked1,
+                    CreatedOn = DateTime.Parse(SeedPropertyConstants.ReservationCreatedOn1),
+                    ReservationTotalSum = SeedPropertyConstants.ReservationTotalSum1,
+                    Date = DateTime.Parse(SeedPropertyConstants.ReservationDate1),
+                    Hour = TimeSpan.Parse(SeedPropertyConstants.ReservationHour1),
+                    Status = SeedPropertyConstants.ReservationStatus1,
+                    Location = SeedPropertyConstants.ReservationLocation1,
+                    PhoneNumber = SeedPropertyConstants.ReservationPhoneNumber1,
+                    IsDeleted = false
+                },
+                new Reservation()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.ReservationId2),
+                    CourtId = Guid.Parse("81CFCBBD-6411-4E43-974F-625C2DB5B9AC"),
+                    UserId = "2a5434f2-4e92-44ee-8b8b-115b943e0ccf",
+                    PeopleCount = SeedPropertyConstants.ReservationPeopleCount2,
+                    RacketsBooked = SeedPropertyConstants.ReservationRacketsBooked2,
+                    CreatedOn = DateTime.Parse(SeedPropertyConstants.ReservationCreatedOn2),
+                    ReservationTotalSum = SeedPropertyConstants.ReservationTotalSum2,
+                    Date = DateTime.Parse(SeedPropertyConstants.ReservationDate2),
+                    Hour = TimeSpan.Parse(SeedPropertyConstants.ReservationHour2),
+                    Status = SeedPropertyConstants.ReservationStatus2,
+                    Location = SeedPropertyConstants.ReservationLocation2,
+                    PhoneNumber = SeedPropertyConstants.ReservationPhoneNumber2,
+                    IsDeleted = false
+                },
+                new Reservation()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.ReservationId3),
+                    CourtId = Guid.Parse("D4A6A62B-6695-486A-B81E-C60DA83BA6F2"),
+                    UserId = "2a5434f2-4e92-44ee-8b8b-115b943e0ccf",
+                    PeopleCount = SeedPropertyConstants.ReservationPeopleCount3,
+                    RacketsBooked = SeedPropertyConstants.ReservationRacketsBooked3,
+                    CreatedOn = DateTime.Parse(SeedPropertyConstants.ReservationCreatedOn3),
+                    ReservationTotalSum = SeedPropertyConstants.ReservationTotalSum3,
+                    Date = DateTime.Parse(SeedPropertyConstants.ReservationDate3),
+                    Hour = TimeSpan.Parse(SeedPropertyConstants.ReservationHour3),
+                    Status = SeedPropertyConstants.ReservationStatus3,
+                    Location = SeedPropertyConstants.ReservationLocation3,
+                    PhoneNumber = SeedPropertyConstants.ReservationPhoneNumber3,
+                    IsDeleted = false
+                });
+        }
+
+        private void SeedSchedule(ModelBuilder builder)
+        {
+            // Define the start and end times for the availability slots
+            TimeSpan startTime = TimeSpan.FromHours(9); // Start time: 09:00 AM
+            TimeSpan endTime = TimeSpan.FromHours(21); // End time: 21:00 PM
+
+            // Define the duration of each availability slot
+            TimeSpan timeSlotDuration = TimeSpan.FromHours(1); // 1-hour time slots
+
+            while (startTime <= endTime)
+            {
+                startTime = startTime.Add(timeSlotDuration);
+
+                builder.Entity<Schedule>()
+                .HasData(
+                    new Schedule()
+                    {
+                        Id = Guid.NewGuid(),
+                        Hour = startTime
+                    });
+            }
+        }
+
+        private void SeedPlayersAndImages(ModelBuilder builder)
+        {
+            builder.Entity<Player>()
+                .HasData(
+                new Player()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.PlayerId1),
+                    FirstName = SeedPropertyConstants.PlayerFirstName1,
+                    LastName = SeedPropertyConstants.PlayerLastName1,
+                    WorldRanking = SeedPropertyConstants.PlayerWorldRanking1,
+                    Biography = SeedPropertyConstants.PlayerBiography1,
+                    BirthDate = DateTime.Parse(SeedPropertyConstants.PlayerBirthDate1),
+                    CreatedOn = DateTime.Parse(SeedPropertyConstants.PlayerCreatedOn1),
+                    NationalRanking = SeedPropertyConstants.PlayerNationalRanking1,
+                    BirthPlace = SeedPropertyConstants.PlayerBirthPlace1,
+                    Height = SeedPropertyConstants.PlayerHeight1,
+                    PlayingHand = SeedPropertyConstants.PlayerPlayingHand1,
+                    IsDeleted = false
+                },
+                new Player()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.PlayerId2),
+                    FirstName = SeedPropertyConstants.PlayerFirstName2,
+                    LastName = SeedPropertyConstants.PlayerLastName2,
+                    WorldRanking = SeedPropertyConstants.PlayerWorldRanking2,
+                    Biography = SeedPropertyConstants.PlayerBiography2,
+                    BirthDate = DateTime.Parse(SeedPropertyConstants.PlayerBirthDate2),
+                    CreatedOn = DateTime.Parse(SeedPropertyConstants.PlayerCreatedOn2),
+                    NationalRanking = SeedPropertyConstants.PlayerNationalRanking2,
+                    BirthPlace = SeedPropertyConstants.PlayerBirthPlace2,
+                    Height = SeedPropertyConstants.PlayerHeight2,
+                    PlayingHand = SeedPropertyConstants.PlayerPlayingHand2,
+                    IsDeleted = false
+                },
+                new Player()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.PlayerId3),
+                    FirstName = SeedPropertyConstants.PlayerFirstName3,
+                    LastName = SeedPropertyConstants.PlayerLastName3,
+                    WorldRanking = SeedPropertyConstants.PlayerWorldRanking3,
+                    Biography = SeedPropertyConstants.PlayerBiography3,
+                    BirthDate = DateTime.Parse(SeedPropertyConstants.PlayerBirthDate3),
+                    CreatedOn = DateTime.Parse(SeedPropertyConstants.PlayerCreatedOn3),
+                    NationalRanking = SeedPropertyConstants.PlayerNationalRanking3,
+                    BirthPlace = SeedPropertyConstants.PlayerBirthPlace3,
+                    Height = SeedPropertyConstants.PlayerHeight3,
+                    PlayingHand = SeedPropertyConstants.PlayerPlayingHand3,
+                    IsDeleted = false
+                });
+
+            builder.Entity<PlayerImageUrl>()
+                .HasData(
+                new PlayerImageUrl()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.Player1Img1Id),
+                    PlayerId = Guid.Parse(SeedPropertyConstants.PlayerId1),
+                    Url = SeedPropertyConstants.Player1Img1Url
+                },
+                new PlayerImageUrl()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.Player2Img1Id),
+                    PlayerId = Guid.Parse(SeedPropertyConstants.PlayerId2),
+                    Url = SeedPropertyConstants.Player2Img1Url
+                },
+                new PlayerImageUrl()
+                {
+                    Id = Guid.Parse(SeedPropertyConstants.Player3Img1Id),
+                    PlayerId = Guid.Parse(SeedPropertyConstants.PlayerId3),
+                    Url = SeedPropertyConstants.Player3Img1Url
+                });
+        }
+
+        private void SeedCourts(ModelBuilder builder)
+        {
+            builder.Entity<Court>()
+                .HasData(
+
+                new Court()
+                {
+                    Id = Guid.Parse("AC0AEA93-5277-4992-9F4B-5C1A8CBB8395"),
+                    Number = 1,
+                    IsDeleted = false
+                },
+                new Court()
+                {
+                    Id = Guid.Parse("81CFCBBD-6411-4E43-974F-625C2DB5B9AC"),
+                    Number = 2,
+                    IsDeleted = false
+                },
+                new Court()
+                {
+                    Id = Guid.Parse("D4A6A62B-6695-486A-B81E-C60DA83BA6F2"),
+                    Number = 3,
+                    IsDeleted = false
+                },
+                new Court()
+                {
+                    Id = Guid.Parse("6E00F7D0-9549-4404-9385-1213D5764C91"),
+                    Number = 4,
+                    IsDeleted = false
+                });
         }
 
         private void SeedEventsAndImages(ModelBuilder builder)
@@ -149,7 +384,7 @@ namespace RacketSpeed.Infrastructure.Data
                         Content = SeedPropertyConstants.EventCampContent2,
                         Location = SeedPropertyConstants.EventCampLocation2,
                         IsDeleted = false
-                   });
+                    });
 
             builder.Entity<EventImageUrl>()
                 .HasData(
@@ -632,7 +867,8 @@ namespace RacketSpeed.Infrastructure.Data
                     PasswordHash = passwordHasher.HashPassword(null, "adminUser123"),
                     SecurityStamp = Guid.NewGuid().ToString(),
                     ConcurrencyStamp = Guid.NewGuid().ToString(),
-                    PhoneNumber = "+359883008292"
+                    PhoneNumber = "+359883008292",
+                    Deposit = 0
                 },
                  new ApplicationUser()
                  {
@@ -647,7 +883,8 @@ namespace RacketSpeed.Infrastructure.Data
                      PasswordHash = passwordHasher.HashPassword(null, "regularUser123"),
                      SecurityStamp = Guid.NewGuid().ToString(),
                      ConcurrencyStamp = Guid.NewGuid().ToString(),
-                     PhoneNumber = "+359881008822"
+                     PhoneNumber = "+359881008822",
+                     Deposit = 30M
                  },
                   new ApplicationUser()
                   {
@@ -662,7 +899,8 @@ namespace RacketSpeed.Infrastructure.Data
                       PasswordHash = passwordHasher.HashPassword(null, "employeeUser123"),
                       SecurityStamp = Guid.NewGuid().ToString(),
                       ConcurrencyStamp = Guid.NewGuid().ToString(),
-                      PhoneNumber = "+359893009911"
+                      PhoneNumber = "+359893009911",
+                      Deposit = 0
                   }
                 );
 
