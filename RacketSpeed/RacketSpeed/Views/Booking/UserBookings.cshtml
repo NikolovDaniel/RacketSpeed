@@ -19,7 +19,7 @@
                     <div class="card mb-5">
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                @foreach (var booking in Model.OrderBy(b => b.Date).ThenBy(b => b.Hour))
+                                @foreach (var booking in Model)
                                 {
                                     <li class="position-relative booking">
                                         <div class="media">

@@ -127,7 +127,7 @@ namespace RacketSpeed.Core.Services
             int bookingsCount = 5;
 
             var userBookings = this.repository.AllReadonly<Reservation>(expression)
-                .OrderBy(ub => ub.Date)
+                .OrderByDescending(ub => ub.Date)
                 .ThenBy(ub => ub.Hour)
                 .Take(bookingsCount);
 

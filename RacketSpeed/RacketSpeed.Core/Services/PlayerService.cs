@@ -62,6 +62,23 @@ namespace RacketSpeed.Core.Services
             return pageCount;
         }
 
+        public int PlayersPageCount(int playersPerPage, string keyword)
+        {
+            Expression<Func<Player, bool>> expression
+             = p => p.IsDeleted == false &&
+                    p.FirstName.ToUpper().Contains(keyword.ToUpper()) ||
+                    p.LastName.ToUpper().Contains(keyword.ToUpper());
+
+            int allPlayersCount = this.repository
+                .All<Player>(expression)
+                .Where(p => p.IsDeleted == false)
+                .Count();
+
+            int pageCount = (int)Math.Ceiling((allPlayersCount / (double)playersPerPage));
+
+            return pageCount;
+        }
+
         public async Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage)
         {
             int currPage = start;

@@ -16,17 +16,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RacketSpeed.Infrastructure.Data.Entities;
 using RacketSpeed.Infrastructure.Utilities;
+using System.Security.Claims;
 
 namespace RacketSpeed.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
         }
 
@@ -40,12 +45,12 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
-       
+
         public class InputModel
         {
             [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
             public string Username { get; set; }
-          
+
             [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
@@ -83,6 +88,14 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    if (User.Claims.FirstOrDefault(x => x.Type == "FirstName") == null)
+                    {
+                        var user = await _userManager.FindByNameAsync(Input.Username);
+
+                        await _userManager.AddClaimAsync(user,
+                       new Claim("FirstName", $"{user.FirstName}"));
+                    }
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

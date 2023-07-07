@@ -60,11 +60,12 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
 
             Email = email;
 
+            var confirmationEmailBuilder = string.Format(EmailBuilder.EmailConfirmation, user.FirstName, HtmlEncoder.Default.Encode(callBackUrl));
+
             await _sendGridEmailSender.SendEmailAsync(
                 Email,
-                 "Потвърди емайла си",
-                 $"Потвърди акаунта си като <a href='{HtmlEncoder.Default.Encode(callBackUrl)}'>кликнеш тук!</a>."
-             );
+                  $"{user.FirstName}, потвърждение за емайл адрес",
+                 confirmationEmailBuilder);
 
             return Page();
         }

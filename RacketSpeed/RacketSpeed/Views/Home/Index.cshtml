@@ -111,10 +111,10 @@
 </section>
 <section class="eventsSection">
     <div class="container pb-5 pt-5">
-        <div class="row d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-center">
             @foreach (var eventModel in Model.RecentEvents)
             {
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 mt-2 mt-lg-0">
                     <div class="image ratio ratio-4x3">
                         <img class="img-fluid rounded"
                              src="@eventModel.ImageUrl" />
