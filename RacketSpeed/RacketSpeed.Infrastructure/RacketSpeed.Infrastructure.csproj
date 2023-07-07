@@ -24,10 +24,12 @@
     <None Remove="Utilities\" />
     <None Remove="Data\Entities\" />
     <None Remove="Data\Repositories\" />
+    <None Remove="Data\Seed\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utilities\" />
     <Folder Include="Data\Entities\" />
     <Folder Include="Data\Repositories\" />
+    <Folder Include="Data\Seed\" />
   </ItemGroup>
 </Project>

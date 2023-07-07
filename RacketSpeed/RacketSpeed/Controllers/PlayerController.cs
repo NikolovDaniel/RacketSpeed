@@ -85,7 +85,7 @@ namespace RacketSpeed.Controllers
 
             int playersPerPage = 5;
 
-            var pagesCount = this.playerService.PlayersPageCount(playersPerPage);
+            var pagesCount = this.playerService.PlayersPageCount(playersPerPage, keyword);
             pageNum = CalculateValidPageNum(pageNum, pagesCount);
 
             var players = await playerService.AllAsync(pageNum, playersPerPage, keyword);
