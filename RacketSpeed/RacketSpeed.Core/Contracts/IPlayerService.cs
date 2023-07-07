@@ -21,6 +21,7 @@ namespace RacketSpeed.Core.Contracts
         /// </summary>
         /// <param name="start">Page number.</param>
         /// <param name="playersPerPage">Player Entities per page.</param>
+        /// <param name="keyword">Keyword used to search for particular players.</param>
         /// <returns>Collection of PlayerViewModel.</returns>
         Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage, string keyword);
 
@@ -56,6 +57,14 @@ namespace RacketSpeed.Core.Contracts
         /// <param name="playersPerPage">Player count for pagination.</param>
         /// <returns>Integer for Page number.</returns>
         public int PlayersPageCount(int playersPerPage);
+
+        /// <summary>
+        /// Overload Method to get the Count of all Player Entities with particular keyword and help for the pagination.
+        /// </summary>
+        /// <param name="playersPerPage">Player count for pagination.</param>
+        /// <param name="keyword">Keyword used to search for particular players.</param>
+        /// <returns>Integer for Page number.</returns>
+        public int PlayersPageCount(int playersPerPage, string keyword);
 
         /// <summary>
         /// Async method to get the players count. 
