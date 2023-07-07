@@ -1,8 +1,127 @@
-﻿using System;
-namespace RacketSpeed.Infrastructure.Data.Seed
+﻿namespace RacketSpeed.Infrastructure.Data.Seed
 {
     public class SeedPropertyConstants
     {
+        // Kid sign forms property constants
+        // Sign form 1
+        public const string SignFormId1 = "BA0A6E69-35C5-4680-A32D-A05A5DFC2F22";
+        public const string SignFormFullName1 = "Десислава Жикова";
+        public const string SignFormPhoneNumber1 = "+359893008911";
+        public const string SignFormEmailAddress1 = "desislavamother@abv.bg";
+        public const string SignFormSignOn1 = "2023-07-04 00:00:00.000";
+        public const string SignFormTrainingType1 = "Деца до 15";
+        public const string SignFormLocation1 = "Зала ИЧС";
+        public const string SignFormMessage1 = "Моля, при разглеждане на формата да се свържете с мен.";
+
+        // Sign form 2
+        public const string SignFormId2 = "4E206F2F-51AB-4ED8-A176-3BCA70F60AC9";
+        public const string SignFormFullName2 = "Мария Йорданова";
+        public const string SignFormPhoneNumber2 = "+359883401321";
+        public const string SignFormEmailAddress2 = "mariamother@abv.bg";
+        public const string SignFormSignOn2 = "2023-07-05 00:00:00.000";
+        public const string SignFormTrainingType2 = "Деца до 11";
+        public const string SignFormLocation2 = "Зала ИЧС";
+        public const string SignFormMessage2 = "Имам допълнителни въпроси за графика на тренировки.";
+
+        // Sign form 3
+        public const string SignFormId3 = "972D0F35-AEDA-404C-B8BB-284971D77A56";
+        public const string SignFormFullName3 = "Павел Димитров";
+        public const string SignFormPhoneNumber3 = "+359886009889";
+        public const string SignFormEmailAddress3 = "pavelmother@abv.bg";
+        public const string SignFormSignOn3 = "2023-07-06 00:00:00.000";
+        public const string SignFormTrainingType3 = "Деца до 7";
+        public const string SignFormLocation3 = "Зала ИЧС";
+        public const string SignFormMessage3 = "Колко деца присъстват на тренировка и има ли достатъчно треньори да обръщат внимание на детето ми?";
+
+        // Reservations property constants
+        // Reservation 1
+        public const string ReservationId1 = "2910EBDE-8BF9-430D-AFBD-3D6D10A0B17D";
+        public const int ReservationPeopleCount1 = 2;
+        public const int ReservationRacketsBooked1 = 2;
+        public const string ReservationCreatedOn1 = "2023-07-01 14:24:44.723";
+        public const decimal ReservationTotalSum1 = 14.00M;
+        public const string ReservationDate1 = "2023-07-01 00:00:00.000";
+        public const string ReservationHour1 = "16:00:00";
+        public const string ReservationStatus1 = "В разработка";
+        public const string ReservationLocation1 = "Зала ИЧС";
+        public const string ReservationPhoneNumber1 = "+359883024522";
+
+        // Reservation 2
+        public const string ReservationId2 = "96D4067B-E876-43E5-84EF-578638799C69";
+        public const int ReservationPeopleCount2 = 3;
+        public const int ReservationRacketsBooked2 = 3;
+        public const string ReservationCreatedOn2 = "2023-07-03 14:24:44.723";
+        public const decimal ReservationTotalSum2 = 21.00M;
+        public const string ReservationDate2 = "2023-07-05 00:00:00.000";
+        public const string ReservationHour2 = "10:00:00";
+        public const string ReservationStatus2 = "Одобрена";
+        public const string ReservationLocation2 = "Зала ИЧС";
+        public const string ReservationPhoneNumber2 = "+359883024522";
+
+        // Reservation 3
+        public const string ReservationId3 = "6F1F8ABC-09AA-4894-8040-4EE9D7FA8710";
+        public const int ReservationPeopleCount3 = 4;
+        public const int ReservationRacketsBooked3 = 4;
+        public const string ReservationCreatedOn3 = "2023-06-24 14:24:44.723";
+        public const decimal ReservationTotalSum3 = 28.00M;
+        public const string ReservationDate3 = "2023-06-28 00:00:00.000";
+        public const string ReservationHour3 = "20:00:00";
+        public const string ReservationStatus3 = "Отказана";
+        public const string ReservationLocation3 = "Зала ИЧС";
+        public const string ReservationPhoneNumber3 = "+359883024522";
+
+        // Player and Player images property constants
+        // Player 1
+        public const string PlayerId1 = "75328FFA-D42E-4FE1-A6F9-AA7518D185BE";
+        public const string PlayerFirstName1 = "Даниел";
+        public const string PlayerLastName1 = "Николов";
+        public const int PlayerWorldRanking1 = 93;
+        public const int PlayerNationalRanking1 = 1;
+        public const string PlayerBirthDate1 = "1998-08-26 00:00:00.000";
+        public const string PlayerCreatedOn1 = "2023-06-21 12:15:32.825";
+        public const string PlayerPlayingHand1 = "Дясна";
+        public const string PlayerBirthPlace1 = "гр. Хасково";
+        public const int PlayerHeight1 = 170;
+        public const string PlayerBiography1 = "Даниел Николов, опитен бадминтонист, нашумя както на родна, така и на международна сцена. С впечатляваща колекция от национални титли, многобройни триумфи в международни турнири и участие в престижни събития като Европейските игри, Европейските първенства и Световните първенства, мъжеството на Даниел е неоспоримо. Светкавичните рефлекси и пъргавата работа на Даниел му позволяват да покрива корта без усилие, докато прецизното му изпълнение на удара държи опонентите на крака.";
+
+        // Image for player 1
+        public const string Player1Img1Id = "1CE120A6-A20B-4B70-A45B-68DAC3D842B9";
+        public const string Player1Img1Url = "https://i.ibb.co/kX77v9b/daniel-nikolov-player4-removebg-preview.jpg";
+
+        // Player 2
+        public const string PlayerId2 = "652A9F2B-341E-4C2A-8509-A95A9151D6C8";
+        public const string PlayerFirstName2 = "Димитър";
+        public const string PlayerLastName2 = "Янакиев";
+        public const int PlayerWorldRanking2 = 147;
+        public const int PlayerNationalRanking2 = 2;
+        public const string PlayerBirthDate2 = "1998-11-05 00:00:00.000";
+        public const string PlayerCreatedOn2 = "2023-06-13 12:15:32.825";
+        public const string PlayerPlayingHand2 = "Лява";
+        public const string PlayerBirthPlace2 = "гр. София";
+        public const int PlayerHeight2 = 176;
+        public const string PlayerBiography2 = "Димитър Янакиев, забележителен състезател по бадминтон, се е превърнал в изявена фигура както на национална, така и на международна сцена. С впечатляващ репертоар от национални титли, множество победи в международни турнири и активно участие в престижни събития като Европейски игри, Европейски първенства и Световни първенства, Димитър затвърди статута си на играч от най-високо ниво. Неговите изключителни умения, фино настроени чрез години всеотдайно обучение, го тласнаха да доминира на корта за бадминтон. ";
+
+        // Image for player 2
+        public const string Player2Img1Id = "76228AC9-EEDB-4417-BE15-269056B60FF2";
+        public const string Player2Img1Url = "https://i.ibb.co/M1SsZvC/dimitar-yanakiev-player1-removebg-preview.jpg";
+
+        // Player 3
+        public const string PlayerId3 = "24A38056-DCF3-4F5A-979E-75E6EEE44B89";
+        public const string PlayerFirstName3 = "Кристина";
+        public const string PlayerLastName3 = "Желева";
+        public const int PlayerWorldRanking3 = 240;
+        public const int PlayerNationalRanking3 = 4;
+        public const string PlayerBirthDate3 = "1998-11-26 00:00:00.000";
+        public const string PlayerCreatedOn3 = "2023-06-13 12:15:32.825";
+        public const string PlayerPlayingHand3 = "Дясна";
+        public const string PlayerBirthPlace3 = "гр. Хасково";
+        public const int PlayerHeight3 = 161;
+        public const string PlayerBiography3 = "Кристина Желева, страхотна състезателка по бадминтон, се е утвърдила като видна фигура както в национални, така и в международни кръгове. С впечатляваща колекция от национални титли, многобройни триумфи в международни турнири и активно участие в уважавани събития като Европейските игри, Европейските първенства и Световните първенства, Кристина затвърди позицията си на спортист от най-висок клас.\nЗабележителните умения на Кристина, усъвършенствани с години на безмилостно обучение, са я тласнали да се отличава на корта за бадминтон.";
+
+        // Image for player 3
+        public const string Player3Img1Id = "B1080CEB-B345-41F1-9301-64E78EF34C6A";
+        public const string Player3Img1Url = "https://i.ibb.co/qRBj2C8/kristina-zheleva-player2-removebg-preview.jpg";
+
         // Event and Event images property constants
         // Kids tournament events
         // Event 1
