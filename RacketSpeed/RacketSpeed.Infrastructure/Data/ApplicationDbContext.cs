@@ -29,6 +29,13 @@ namespace RacketSpeed.Infrastructure.Data
         public DbSet<SignKid> SignedKids { get; set; } = null!;
         public DbSet<Schedule> Schedule { get; set; } = null!;
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("racketspeedtests");
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             // This might be a problem in the future if any of the entities come with
@@ -52,6 +59,28 @@ namespace RacketSpeed.Infrastructure.Data
                 .WithOne(r => r.User)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            if (Database.IsInMemory())
+            {
+                SeedUsers(builder);
+
+                SeedPostsAndImages(builder);
+
+                SeedCoachAndImages(builder);
+
+                SeedCoachTrainings(builder);
+
+                SeedEventsAndImages(builder);
+
+                SeedCourts(builder);
+
+                SeedPlayersAndImages(builder);
+
+                SeedSchedule(builder);
+
+                SeedReservations(builder);
+
+                SeedSignForms(builder);
+            }
             //SeedUsers(builder);
 
             //SeedPostsAndImages(builder);
