@@ -80,7 +80,10 @@ namespace RacketSpeed.Core.Services
             Expression<Func<Post, bool>> expression
              = p => p.IsDeleted == false && p.Title.ToUpper().Contains(keyword.ToUpper());
 
-            var allPosts = this.repository.All<Post>(expression);
+            var allPosts = this.repository
+                .All<Post>(expression)
+                .Skip(start)
+                .Take(postsPerPage);
 
             return await allPosts
                 .Select(p => new PostViewModel()
@@ -115,14 +118,9 @@ namespace RacketSpeed.Core.Services
 
         public async Task EditAsync(PostFormModel model)
         {
-            if (model.ImageUrls == null)
-            {
-                return;
-            }
-
             var post = await this.repository.GetByIdAsync<Post>(model.Id);
 
-            if (post == null)
+            if (model.ImageUrls == null || post == null)
             {
                 return;
             }
@@ -157,6 +155,18 @@ namespace RacketSpeed.Core.Services
             post.IsDeleted = true;
 
             await this.repository.SaveChangesAsync();
+        }
+
+        public int PostsPageCount(int postsPerPage, string keyword)
+        {
+            int allPostsCount = this.repository
+                .AllReadonly<Post>()
+                .Where(p => p.IsDeleted == false && p.Title.ToUpper().Contains(keyword.ToUpper()))
+                .Count();
+
+            int pageCount = (int)Math.Ceiling((allPostsCount / (double)postsPerPage));
+
+            return pageCount == 0 ? 1 : pageCount;
         }
 
         public int PostsPageCount(int postsPerPage)
