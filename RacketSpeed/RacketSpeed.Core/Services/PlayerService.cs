@@ -59,7 +59,7 @@ namespace RacketSpeed.Core.Services
 
             int pageCount = (int)Math.Ceiling((allPlayersCount / (double)playersPerPage));
 
-            return pageCount;
+            return pageCount == 0 ? 1 : pageCount;
         }
 
         public int PlayersPageCount(int playersPerPage, string keyword)
@@ -76,7 +76,7 @@ namespace RacketSpeed.Core.Services
 
             int pageCount = (int)Math.Ceiling((allPlayersCount / (double)playersPerPage));
 
-            return pageCount;
+            return pageCount == 0 ? 1 : pageCount;
         }
 
         public async Task<ICollection<PlayerViewModel>> AllAsync(int start, int playersPerPage)
@@ -120,7 +120,11 @@ namespace RacketSpeed.Core.Services
                     p.FirstName.ToUpper().Contains(keyword.ToUpper()) ||
                     p.LastName.ToUpper().Contains(keyword.ToUpper());
 
-            var allPlayers = this.repository.All<Player>(expression);
+            var allPlayers = this.repository
+                .All<Player>(expression)
+                .OrderBy(p => p.CreatedOn)
+                .Skip(start)
+                .Take(playersPerPage);
 
             return await allPlayers
                 .Select(p => new PlayerViewModel()

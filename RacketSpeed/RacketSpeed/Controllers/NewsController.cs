@@ -78,7 +78,7 @@ namespace RacketSpeed.Controllers
 
             int postsPerPage = 5;
 
-            var pagesCount = this.postService.PostsPageCount(postsPerPage);
+            var pagesCount = this.postService.PostsPageCount(postsPerPage, keyword);
 
             pageNum = CalculateValidPageNum(pageNum, pagesCount);
 

@@ -47,12 +47,12 @@ namespace RacketSpeed.UnitTests.Services
         public async Task MostRecentEventsAsync_ReturnsEventsInCorrectOrder()
         {
             // Arrange
-            var numberOfPosts = 3;
+            var numberOfEvents = 3;
             var allEvents = await this.context.Events.ToListAsync();
             var expectedEventEntities = allEvents
                 .Where(e => e.IsDeleted == false)
                 .OrderByDescending(e => e.Start)
-                .Take(numberOfPosts)
+                .Take(numberOfEvents)
                 .Select(e => new EventHomePageViewModel()
                 {
                     Id = e.Id,
@@ -116,7 +116,6 @@ namespace RacketSpeed.UnitTests.Services
                 End = DateTime.Parse(SeedPropertyConstants.EventAdultsEnd1),
                 Category = SeedPropertyConstants.EventAdultsCategory1,
                 Location = SeedPropertyConstants.EventAdultsLocation1,
-                ImageUrls = new string[3] { "url 1", "url 2", "url 3" }
             };
 
             // Act
@@ -133,13 +132,16 @@ namespace RacketSpeed.UnitTests.Services
 
 
         [Test]
-        public async Task EditAsync_WithValidId_EditsCorrectly()
+        [TestCase(SeedPropertyConstants.EventAdultsId1)]
+        [TestCase(SeedPropertyConstants.EventKidsId1)]
+        [TestCase(SeedPropertyConstants.EventCampId1)]
+        [TestCase(SeedPropertyConstants.EventForFunId1)]
+        public async Task EditAsync_WithValidId_EditsCorrectly(Guid eventId)
         {
             // Arrange
-            var eventId = SeedPropertyConstants.EventAdultsId1;
             var model = new EventFormModel()
             {
-                Id = Guid.Parse(eventId),
+                Id = eventId,
                 Title = SeedPropertyConstants.EventAdultsTitle1,
                 Content = SeedPropertyConstants.EventAdultsContent1,
                 Start = DateTime.Parse(SeedPropertyConstants.EventAdultsStart1),
@@ -155,9 +157,10 @@ namespace RacketSpeed.UnitTests.Services
             // Assert
             var modifiedEntity = await this.context.Events
                 .Include(e => e.EventImageUrls)
-                .FirstOrDefaultAsync(e => e.Id == Guid.Parse(eventId));
+                .FirstOrDefaultAsync(e => e.Id == eventId);
 
             modifiedEntity.Should().NotBeNull();
+            modifiedEntity.Id.Should().Be(model.Id);
             modifiedEntity.Title.Should().Be(model.Title);
             modifiedEntity.Content.Should().Be(model.Content);
             modifiedEntity.Start.Should().Be(model.Start);
@@ -181,7 +184,7 @@ namespace RacketSpeed.UnitTests.Services
             await this.eventService.DeleteAsync(eventId);
 
             // Assert
-            eventEntity.Should().Match<Event>(c => c.IsDeleted == true, "we deleted the coach");
+            eventEntity.Should().Match<Event>(c => c.IsDeleted == true, "we deleted the event");
         }
 
         [Test]
