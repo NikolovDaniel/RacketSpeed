@@ -63,10 +63,14 @@ namespace RacketSpeed.Core.Services
 
             if (isAdministartor)
             {
+                // We take all for the administrator, because we want him to have the option to check all events,
+                // in case he wants to copy some template or take an existing picture and so on.
                 events = this.repository.All<Event>(expression);
             }
             else
             {
+                // We take 3, because there is no need for more, considering event is something
+                // that is about to happen, so it is pointless to show the user a lot of events that are expired.
                 int recentPostsNum = 3;
 
                 events = this.repository.All<Event>(expression).Take(recentPostsNum);
@@ -104,7 +108,7 @@ namespace RacketSpeed.Core.Services
 
         public async Task EditAsync(EventFormModel model)
         {
-            if (model.ImageUrls == null)
+            if (model.ImageUrls == null || !model.ImageUrls.Any())
             {
                 return;
             }
@@ -168,7 +172,8 @@ namespace RacketSpeed.Core.Services
 
             var mostRecentPosts = await this.repository
                 .AllReadonly<Event>()
-                .OrderBy(e => e.Start)
+                .Where(e => e.IsDeleted == false)
+                .OrderByDescending(e => e.Start)
                 .Take(numberOfPosts)
                 .Select(e => new EventHomePageViewModel()
                 {

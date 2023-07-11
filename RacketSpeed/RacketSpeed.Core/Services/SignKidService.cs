@@ -51,12 +51,12 @@ namespace RacketSpeed.Core.Services
 
             var allForms = this.repository
                 .AllReadonly<SignKid>()
+                .OrderBy(skf => skf.SignOn)
                 .Where(skf => skf.IsDeleted == false)
                 .Skip(start)
                 .Take(formsPerPage);
 
             return await allForms
-                .OrderBy(skf => skf.SignOn)
                 .Select(skf => new SignKidFormViewModel()
                 {
                     Id = skf.Id,

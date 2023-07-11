@@ -10,6 +10,11 @@ namespace RacketSpeed.Email
     {
         private readonly SendGridConfiguration _sendGridOptions;
 
+        public SendGridEmailSender()
+        {
+
+        }
+
         public SendGridEmailSender(IOptions<SendGridConfiguration> optionsAccessor)
         {
             _sendGridOptions = optionsAccessor.Value;

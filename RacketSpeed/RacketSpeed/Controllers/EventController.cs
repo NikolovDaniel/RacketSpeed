@@ -34,11 +34,10 @@ namespace RacketSpeed.Controllers
         /// <returns>/Event/All/Category page.</returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> All(string category, bool isAdministrator)
+        public async Task<IActionResult> All(string category)
         {
-            ViewData["IsAdministrator"] = isAdministrator;
-
             bool isInRoleAdministrator = User.IsInRole("Administrator");
+            ViewData["IsAdministrator"] = isInRoleAdministrator;
 
             var posts = await eventService.AllAsync(category, isInRoleAdministrator);
 
@@ -137,6 +136,13 @@ namespace RacketSpeed.Controllers
             if(model.Start > model.End)
             {
                 ModelState.AddModelError("InvalidDates", "Датата за начало на събитието трябва да бъде по-рано от датата на края.");
+
+                return View(model);
+            }
+
+            if (model.ImageUrls.Contains(null))
+            {
+                ModelState.AddModelError("UrlEmpty", "Всички адреси на снимки трябва да бъдат попълнени.");
 
                 return View(model);
             }

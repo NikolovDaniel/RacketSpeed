@@ -51,7 +51,7 @@ namespace RacketSpeed.Core.Services
 
             await this.repository.AddAsync<Reservation>(reservation);
             await this.repository.SaveChangesAsync();
-        }
+            }
 
         public async Task<ICollection<BookingViewModel>> AllAsync(int start, int bookingsPerPage)
         {
@@ -61,6 +61,9 @@ namespace RacketSpeed.Core.Services
             var allBookings = this.repository
                 .AllReadonly<Reservation>()
                 .Where(p => p.IsDeleted == false)
+                .OrderByDescending(r => r.Date.Year)
+                .ThenBy(r => r.Date.Date)
+                .ThenBy(r => r.Hour)
                 .Skip(start)
                 .Take(bookingsPerPage);
 
@@ -81,9 +84,6 @@ namespace RacketSpeed.Core.Services
                     Location = b.Location,
                     ReservationTotalSum = b.ReservationTotalSum
                 })
-                .OrderByDescending(r => r.Date.Year)
-                .ThenBy(r => r.Date.Date)
-                .ThenBy(r => r.Hour)
                 .ToListAsync();
         }
 
@@ -95,7 +95,13 @@ namespace RacketSpeed.Core.Services
             Expression<Func<Reservation, bool>> expression
              = r => r.IsDeleted == false && r.PhoneNumber.Contains(phoneNumber);
 
-            var allBookings = this.repository.All<Reservation>(expression);
+            var allBookings = this.repository
+                .All<Reservation>(expression)
+                .OrderByDescending(r => r.Date.Year)
+                .ThenBy(r => r.Date.Date)
+                .ThenBy(r => r.Hour)
+                .Skip(start)
+                .Take(bookingsPerPage);
 
             return await allBookings
                .Select(b => new BookingViewModel()
@@ -114,8 +120,6 @@ namespace RacketSpeed.Core.Services
                    Location = b.Location,
                    ReservationTotalSum = b.ReservationTotalSum
                })
-               .OrderBy(r => r.Date)
-               .ThenBy(r => r.Hour)
                .ToListAsync();
         }
 
@@ -163,8 +167,8 @@ namespace RacketSpeed.Core.Services
         public async Task ChangeStatusAsync(Guid bookingId, string userId, string status)
         {
             var reservation = await this.repository.GetByIdAsync<Reservation>(bookingId);
-
-            if (reservation == null)
+            
+            if (reservation == null || reservation.UserId != userId)
             {
                 return;
             }
@@ -190,8 +194,7 @@ namespace RacketSpeed.Core.Services
             var reservations = this.repository
                 .All<Reservation>(expression);
 
-
-            if (reservations.Count() <= 0 || reservations == null)
+            if (reservations == null || !reservations.Any())
             {
                 return await this.repository.AllReadonly<Schedule>().ToListAsync();
             }
