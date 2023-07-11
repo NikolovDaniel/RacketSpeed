@@ -35,6 +35,11 @@ namespace RacketSpeed.Controllers
         [HttpGet]
         public async Task<IActionResult> All(bool isAdministrator)
         {
+            if (!User.IsInRole("Administrator"))
+            {
+                return Unauthorized();
+            }
+
             var models = await this.coachService.AllAsync();
 
             ViewData["IsAdministrator"] = isAdministrator;

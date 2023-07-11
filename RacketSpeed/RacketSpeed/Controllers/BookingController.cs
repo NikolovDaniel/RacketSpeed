@@ -58,8 +58,9 @@ namespace RacketSpeed.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Book(BookingFormModel model)
         {
+            // later on, validation for location might be needed
             
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || model.Date.Date < DateTime.Now.Date)
             {
                 var courts = await this.bookingService.GetAllCourtsAsync();
 
@@ -73,6 +74,7 @@ namespace RacketSpeed.Controllers
             if (model.ReservationTotalSum != totalPrice)
             {
                 ModelState.AddModelError("InvalidTotalPrice", "Цената не отговаря на истинската.");
+                model.ReservationTotalSum = totalPrice;
                 return View(model);
             }
 
@@ -87,7 +89,7 @@ namespace RacketSpeed.Controllers
 
             var user = await _userManager.FindByIdAsync(model.UserId);
 
-            if (user.Deposit != 30)
+            if (user.Deposit < 30)
             {
                 ModelState.AddModelError("NoDeposit", "За да запазите корт Ви е нужен депозит на стойност 30 лева.");
                 return View(model);
@@ -125,6 +127,11 @@ namespace RacketSpeed.Controllers
         [Authorize(Roles = "Employee")]
         public async Task<IActionResult> TodayBookings()
         {
+            if(!User.IsInRole("Employee"))
+            {
+                return Unauthorized();
+            }
+
             var bookings = await this.bookingService.TodayBookingsAsync();
 
             return View(bookings);
@@ -152,6 +159,11 @@ namespace RacketSpeed.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> BookingsByKeyword(string phoneNumber, string pageCount = "1")
         {
+            if (!User.IsInRole("Administrator"))
+            {
+                return Unauthorized();
+            }
+
             if (string.IsNullOrEmpty(phoneNumber))
             {
                 ModelState.AddModelError("KeywordError", "Полето трябва да съдържа поне 1 символ.");
@@ -187,6 +199,11 @@ namespace RacketSpeed.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> AllBookings(string pageCount = "1")
         {
+            if (!User.IsInRole("Administrator"))
+            {
+                return Unauthorized();
+            }
+
             int pageNum = int.Parse(pageCount);
 
             int bookingsPerPage = 8;
@@ -216,6 +233,11 @@ namespace RacketSpeed.Controllers
         [Authorize(Roles = "Employee")]
         public async Task<IActionResult> ChangeBookingStatus(Guid bookingId, string userId, string status)
         {
+            if (!User.IsInRole("Employee"))
+            {
+                return Unauthorized();
+            }
+
             await this.bookingService.ChangeStatusAsync(bookingId, userId, status);
 
             return RedirectToAction("TodayBookings", "Booking");

@@ -8,7 +8,9 @@ namespace RacketSpeed.Controllers
 {
     /// <summary>
     /// Provides functionality to the /Home/ route.
+    /// Keeps cache for 15 minutes.
     /// </summary>
+    [ResponseCache(Duration = 900)]
     public class HomeController : Controller
     {
         /// <summary>
@@ -71,12 +73,6 @@ namespace RacketSpeed.Controllers
         public IActionResult History()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
