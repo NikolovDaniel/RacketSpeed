@@ -31,7 +31,7 @@ namespace RacketSpeed.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase("racketspeedtests");
+            //optionsBuilder.UseInMemoryDatabase("racketspeedtests");
 
             base.OnConfiguring(optionsBuilder);
         }

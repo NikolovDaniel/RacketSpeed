@@ -18,7 +18,7 @@ namespace RacketSpeed.Core.Models.Booking
         /// <summary>
         /// Number of the court.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = DataConstants.RequiredFieldErrorMessage)]
         [Range(DataConstants.ReservationCourtNumberMinValue, DataConstants.ReservationCourtNumberMaxValue,
             ErrorMessage = DataConstants.ReservationCourtNumberErrorMessage)]
         public int CourtNumber { get; set; }

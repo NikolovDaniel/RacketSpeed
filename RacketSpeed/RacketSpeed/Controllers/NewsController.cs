@@ -34,9 +34,9 @@ namespace RacketSpeed.Controllers
         /// <param name="pageCount">Int for page index.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All(bool isAdministrator, string pageCount = "1")
+        public async Task<IActionResult> All(string pageCount = "1")
         {
-            ViewData["IsAdministrator"] = isAdministrator;
+            ViewData["IsAdministrator"] = User.IsInRole("Administrator");
 
             int pageNum = int.Parse(pageCount);
 
@@ -64,9 +64,9 @@ namespace RacketSpeed.Controllers
         /// <param name="keyword">String used to filter Post Entities.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> AllPostsByKeyword(string keyword, bool isAdministrator, string pageCount = "1")
+        public async Task<IActionResult> AllPostsByKeyword(string keyword, string pageCount = "1")
         {
-            ViewData["IsAdministrator"] = isAdministrator;
+            ViewData["IsAdministrator"] = User.IsInRole("Administrator");
 
             if (string.IsNullOrEmpty(keyword))
             {
