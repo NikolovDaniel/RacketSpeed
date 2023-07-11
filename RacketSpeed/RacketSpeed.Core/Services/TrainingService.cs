@@ -45,7 +45,9 @@ namespace RacketSpeed.Core.Services
 
         public async Task<ICollection<TrainingViewModel>> AllAsync()
         {
-            var trainings = this.repository.AllReadonly<Training>();
+            var trainings = this.repository
+                .AllReadonly<Training>()
+                .Where(t => t.IsDeleted == false);
 
             return await  trainings
                 .Select(t => new TrainingViewModel()
@@ -59,7 +61,7 @@ namespace RacketSpeed.Core.Services
         public async Task<ICollection<TrainingViewModel>> AllAsync(string trainingName)
         {
             Expression<Func<Training, bool>> expression
-                = t => t.Name == trainingName && t.IsDeleted == false;
+                = t => t.Name.ToUpper() == trainingName.ToUpper() && t.IsDeleted == false;
 
             var trainings = this.repository.All<Training>(expression);
 
@@ -103,7 +105,6 @@ namespace RacketSpeed.Core.Services
             training.Start = model.Start;
             training.End = model.End;
             training.DayOfWeek = model.DayOfWeek;
-            training.CoachId = model.CoachId;
 
             await this.repository.SaveChangesAsync();
         }

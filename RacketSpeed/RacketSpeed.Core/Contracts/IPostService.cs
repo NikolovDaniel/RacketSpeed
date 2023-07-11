@@ -50,6 +50,14 @@ namespace RacketSpeed.Core.Contracts
         Task DeleteAsync(Guid postId);
 
         /// <summary>
+        /// Method to get the Count of all Post Entities with certain keyword and help for the pagination.
+        /// </summary>
+        /// <param name="postsPerPage">Post count for pagination.</param>
+        /// <param name="keyword">Keyword used to filter the posts.</param>
+        /// <returns>Integer for Page number.</returns>
+        public int PostsPageCount(int postsPerPage, string keyword);
+
+        /// <summary>
         /// Method to get the Count of all Post Entities and help for the pagination.
         /// </summary>
         /// <param name="postsPerPage">Post count for pagination.</param>

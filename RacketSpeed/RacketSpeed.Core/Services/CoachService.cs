@@ -68,10 +68,10 @@ namespace RacketSpeed.Core.Services
             var coachTrainings = this.repository.All(expression);
 
             bool hasTraining
-                = coachTrainings.FirstOrDefault(t => t.DayOfWeek == dayOfWeek && t.Start == start) != null ? true : false;
+                = coachTrainings.FirstOrDefault(t => t.DayOfWeek == dayOfWeek && t.Start.Hour == start.Hour) != null ? true : false;
 
             bool hasTrainingBefore
-                = coachTrainings.FirstOrDefault(t => t.DayOfWeek == dayOfWeek && t.End > start) != null ? true : false;
+                = coachTrainings.FirstOrDefault(t => t.DayOfWeek == dayOfWeek && t.End.Hour > start.Hour) != null ? true : false;
 
 
             return hasTraining || hasTrainingBefore;
@@ -112,6 +112,11 @@ namespace RacketSpeed.Core.Services
         {
             var coach = await this.repository.GetByIdAsync<Coach>(coachId);
 
+            if (coach == null)
+            {
+                return null;
+            }
+
             return new CoachFormModel()
             {
                 Id = coach.Id,
@@ -126,15 +131,15 @@ namespace RacketSpeed.Core.Services
         {
             var coach = await this.repository.GetByIdAsync<Coach>(coachId);
 
-            Expression<Func<Training, bool>> expression
-                = ct => ct.CoachId == coachId && ct.IsDeleted == false;
-
-            var coachTrainings = this.repository.All(expression);
-
             if (coach == null)
             {
                 return null;
             }
+
+            Expression<Func<Training, bool>> expression
+                = ct => ct.CoachId == coachId && ct.IsDeleted == false;
+
+            var coachTrainings = this.repository.All(expression);
 
             var model = new CoachTrainingsViewModel()
             {
