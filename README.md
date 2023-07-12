@@ -9,7 +9,7 @@
 website link: [to be announced] <br />
 
 A web application for managing badminton club's content, players, coaches, etc. with additional functionality for users to book courts to play. <br />
-
+The target audience is people that love badminton and want to be a part of a family of one of the biggest badminton clubs in Bulgaria.
 ## General Info
 The application is Mobile, Tablet, Desktop Responsive.
 
