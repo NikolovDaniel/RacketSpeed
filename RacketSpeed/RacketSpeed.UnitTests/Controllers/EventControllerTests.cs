@@ -38,7 +38,7 @@ namespace RacketSpeed.UnitTests.Controllers
             _controller.ControllerContext.HttpContext = new DefaultHttpContext { User = user };
 
             // Act
-            var result = await _controller.All("Лагери");
+            var result = await _controller.All("Лагери", false);
 
             // Assert
             result.Should().BeOfType<ViewResult>();

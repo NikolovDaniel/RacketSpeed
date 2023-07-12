@@ -41,7 +41,7 @@ namespace RacketSpeed.UnitTests.Controllers
                 }, "mock"))
             };
             // Act
-            var result = await _controller.All();
+            var result = await _controller.All(true);
 
             // Assert
             result.Should().BeOfType<ViewResult>();
@@ -67,7 +67,7 @@ namespace RacketSpeed.UnitTests.Controllers
             };
 
             // Act
-            var result = await _controller.All();
+            var result = await _controller.All(false);
 
             // Assert
             result.Should().BeOfType<ViewResult>();
