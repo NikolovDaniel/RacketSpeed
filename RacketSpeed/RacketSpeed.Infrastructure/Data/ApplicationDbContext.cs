@@ -59,47 +59,47 @@ namespace RacketSpeed.Infrastructure.Data
                 .WithOne(r => r.User)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            if (Database.IsInMemory())
-            {
-                SeedUsers(builder);
+            //if (Database.IsInMemory())
+            //{
+            //    SeedUsers(builder);
 
-                SeedPostsAndImages(builder);
+            //    SeedPostsAndImages(builder);
 
-                SeedCoachAndImages(builder);
+            //    SeedCoachAndImages(builder);
 
-                SeedCoachTrainings(builder);
+            //    SeedCoachTrainings(builder);
 
-                SeedEventsAndImages(builder);
+            //    SeedEventsAndImages(builder);
 
-                SeedCourts(builder);
+            //    SeedCourts(builder);
 
-                SeedPlayersAndImages(builder);
+            //    SeedPlayersAndImages(builder);
 
-                SeedSchedule(builder);
+            //    SeedSchedule(builder);
 
-                SeedReservations(builder);
+            //    SeedReservations(builder);
 
-                SeedSignForms(builder);
-            }
-            //SeedUsers(builder);
+            //    SeedSignForms(builder);
+            //}
+            SeedUsers(builder);
 
-            //SeedPostsAndImages(builder);
+            SeedPostsAndImages(builder);
 
-            //SeedCoachAndImages(builder);
+            SeedCoachAndImages(builder);
 
-            //SeedCoachTrainings(builder);
+            SeedCoachTrainings(builder);
 
-            //SeedEventsAndImages(builder);
+            SeedEventsAndImages(builder);
 
-            //SeedCourts(builder);
+            SeedCourts(builder);
 
-            //SeedPlayersAndImages(builder);
+            SeedPlayersAndImages(builder);
 
-            //SeedSchedule(builder);
+            SeedSchedule(builder);
 
-            //SeedReservations(builder);
+            SeedReservations(builder);
 
-            //SeedSignForms(builder);
+            SeedSignForms(builder);
 
             base.OnModelCreating(builder);
         }
