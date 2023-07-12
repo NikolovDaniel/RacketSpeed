@@ -108,7 +108,7 @@ There are 3 layers, which are:
 [All Views](https://github.com/NikolovDaniel/SoftUniProject/tree/main/Documentation/Views) 
 
 ## Usage
-In order to run the project successfully, you have to uncomment the seeding in the [ApplicationDbContext](https://github.com/NikolovDaniel/SoftUniProject/blob/main/RacketSpeed/RacketSpeed.Infrastructure/Data/ApplicationDbContext.cs) and update the appsettings.json with your own Connection String and SendGrid API Key.
+In order to run the project successfully, you have to uncomment the seeding in the [ApplicationDbContext](https://github.com/NikolovDaniel/SoftUniProject/blob/main/RacketSpeed/RacketSpeed.Infrastructure/Data/ApplicationDbContext.cs) and apply the database migrations. Also you should createa new appsettings.json file with your own Connection String and SendGrid API Key.
 
 ## License
 This project is licensed under the [MIT License](LICENSE)
