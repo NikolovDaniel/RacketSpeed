@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 # Custom
 .DS_Store
+appsettings.json
