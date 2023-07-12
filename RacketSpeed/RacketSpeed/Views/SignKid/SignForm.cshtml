@@ -10,6 +10,10 @@
                 <h2 class="text-center text-white mb-5">Запишите детето си на тренировка</h2>
                 <form asp-controller="News" asp-action="Add" method="post">
                     <span class="text-center text-white">@Html.ValidationMessage("PrivacyPolicy")</span>
+                    @if (ViewData["SuccessfullyAdded"] != null)
+                    {
+                        <span class="text-center text-white">@ViewData["SuccessfullyAdded"]</span>
+                    }
                     <div class="mb-3">
                         <div class="form-floating mb-3">
                             <input asp-for="@Model.FullName" placeholder="FullName" class="form-control" aria-required="true"
