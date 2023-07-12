@@ -124,10 +124,10 @@ namespace RacketSpeed.Controllers
         /// </summary>
         /// <returns>/Booking/TodayBookings page.</returns>
         [HttpGet]
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee, Administrator")]
         public async Task<IActionResult> TodayBookings()
         {
-            if(!User.IsInRole("Employee"))
+            if(!User.IsInRole("Employee") && !User.IsInRole("Administrator"))
             {
                 return Unauthorized();
             }
@@ -230,10 +230,10 @@ namespace RacketSpeed.Controllers
         /// <param name="status">Status of the booking.</param>
         /// <returns>/Booking/TodayBookings page.</returns>
         [HttpPost]
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee, Administrator")]
         public async Task<IActionResult> ChangeBookingStatus(Guid bookingId, string userId, string status)
         {
-            if (!User.IsInRole("Employee"))
+            if (!User.IsInRole("Employee") && !User.IsInRole("Administrator"))
             {
                 return Unauthorized();
             }

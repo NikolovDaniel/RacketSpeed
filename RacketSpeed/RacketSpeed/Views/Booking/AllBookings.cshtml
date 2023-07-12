@@ -75,8 +75,8 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                                                                <form>
-                                                                    <button class="btn btn-danger" type="submit" formmethod="post" asp-controller="Booking" asp-action="ChangeBookingStatus" asp-route-bookingId="@booking.Id" asp-route-userId="@booking.UserId" asp-route-status="Отказана">Откажи</button>
+                                                                <form method="post" asp-controller="Booking" asp-action="ChangeBookingStatus" asp-route-bookingId="@booking.Id" asp-route-userId="@booking.UserId" asp-route-status="Отказана">
+                                                                    <button class="btn btn-danger" type="submit">Откажи</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -97,8 +97,8 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                                                                <form>
-                                                                    <button class="btn btn-success" type="submit" formmethod="post" asp-controller="Booking" asp-action="ChangeBookingStatus" asp-route-bookingId="@booking.Id" asp-route-userId="@booking.UserId" asp-route-status="Одобрена">Одобри</button>
+                                                                <form method="post" asp-controller="Booking" asp-action="ChangeBookingStatus" asp-route-bookingId="@booking.Id" asp-route-userId="@booking.UserId" asp-route-status="Одобрена">
+                                                                    <button class="btn btn-success" type="submit">Одобри</button>
                                                                 </form>
                                                             </div>
                                                         </div>
