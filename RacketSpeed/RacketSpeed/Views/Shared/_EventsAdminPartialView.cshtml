@@ -49,8 +49,8 @@ else
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                                            <form>
-                                                <button type="submit" formmethod="post" asp-controller="Event" asp-action="Delete" asp-route-eventId="@eventModel.Id" class="btn btn-danger">Изтрий</button>
+                                            <form asp-controller="Event" asp-action="Delete" asp-route-eventId="@eventModel.Id" method="post">
+                                                <button type="submit" formmethod="post" class="btn btn-danger">Изтрий</button>
                                             </form>
                                         </div>
                                     </div>
