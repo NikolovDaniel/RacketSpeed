@@ -20,11 +20,6 @@ namespace RacketSpeed.UnitTests.Controllers
                 new Claim(ClaimTypes.Name, "Username"),
                 new Claim(ClaimTypes.Role, "Administrator")
             }, "mock"));
-        private ClaimsPrincipal RegularUser = new ClaimsPrincipal(new ClaimsIdentity(new[]
-          {
-                new Claim(ClaimTypes.Name, "Username"),
-                new Claim(ClaimTypes.Role, "RegularUser")
-            }, "mock"));
 
         [SetUp]
         public void Setup()
