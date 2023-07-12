@@ -41,7 +41,7 @@ namespace RacketSpeed.UnitTests.Controllers
                 }, "mock"))
             };
             // Act
-            var result = await _controller.All(true);
+            var result = await _controller.All();
 
             // Assert
             result.Should().BeOfType<ViewResult>();
@@ -54,16 +54,26 @@ namespace RacketSpeed.UnitTests.Controllers
         public async Task All_WithInvalidUser_ReturnsUnauthorizedResult()
         {
             // Arrange
+            var models = new List<CoachViewModel>
+            {
+                new CoachViewModel { Id = Guid.NewGuid(), FirstName = "Даниел" },
+                new CoachViewModel { Id = Guid.NewGuid(), FirstName = "Даниел Н." }
+            };
+
+            _coachServiceMock.Setup(service => service.AllAsync()).ReturnsAsync(models);
             _controller.ControllerContext.HttpContext = new DefaultHttpContext()
             {
                 User = new ClaimsPrincipal(new ClaimsIdentity())
             };
 
             // Act
-            var result = await _controller.All(false);
+            var result = await _controller.All();
 
             // Assert
-            result.Should().BeOfType<UnauthorizedResult>();
+            result.Should().BeOfType<ViewResult>();
+            var viewResult = result.As<ViewResult>();
+            viewResult.Model.Should().BeEquivalentTo(models);
+            viewResult.ViewData["IsAdministrator"].Should().Be(false);
         }
 
         [Test]
