@@ -269,7 +269,7 @@ namespace RacketSpeed.Infrastructure.Migrations
                         {
                             Id = "a27b0f94-b45b-4c9b-8043-25ef63ddd217",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f5348ddf-dab7-453e-a68e-f3929940a5f4",
+                            ConcurrencyStamp = "ec517875-64a1-4dc2-8285-b3ddfbeee71d",
                             Deposit = 0m,
                             Email = "ivan@abv.bg",
                             EmailConfirmed = true,
@@ -277,19 +277,19 @@ namespace RacketSpeed.Infrastructure.Migrations
                             LastName = "Димитров",
                             LockoutEnabled = false,
                             NormalizedEmail = "IVAN@ABV.BG",
-                            NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL2W7sxsPqHFl062qRd+3CTaSRqyXd7lVsU4z6ZQMuXRuIUF5inhsVH5xWbT1N8uZQ==",
+                            NormalizedUserName = "ADMINISTRATOR123",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG1BQ+iaoagxAuRJ0tFYYZAJbiYbYctCaT4xlj2KPBMlk/OcD5wccWTrCirsZorTlg==",
                             PhoneNumber = "+359883008292",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "25a9c3e2-13a4-45db-9677-8186d4825dff",
+                            SecurityStamp = "c6655a9a-39bb-447b-8afb-1554904b314a",
                             TwoFactorEnabled = false,
-                            UserName = "adminUser"
+                            UserName = "administrator123"
                         },
                         new
                         {
                             Id = "2a5434f2-4e92-44ee-8b8b-115b943e0ccf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "42ecfa08-5e50-42df-b693-70fe4b5b755e",
+                            ConcurrencyStamp = "4794fe93-7da0-41ab-84b9-c89b13343302",
                             Deposit = 30m,
                             Email = "daniel@abv.bg",
                             EmailConfirmed = true,
@@ -298,10 +298,10 @@ namespace RacketSpeed.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DANIEL@ABV.BG",
                             NormalizedUserName = "REGULARUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMy5y4eHNxX47aRObocdntVgFu9vxFnnZbM2nSWdP6cM3pAPL+n/O3NoyY/l5UvYig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAROp8xlJvQtYquO/zl5NfDd/MtXYQcUh5TftVsPntfLUc+8+TIAfz8MW0uUEwJN6Q==",
                             PhoneNumber = "+359881008822",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "54e35ce9-ad90-43bc-8bf2-2cec47527ded",
+                            SecurityStamp = "829d648a-e37c-42e4-b8a0-911129f3d7db",
                             TwoFactorEnabled = false,
                             UserName = "regularUser"
                         },
@@ -309,7 +309,7 @@ namespace RacketSpeed.Infrastructure.Migrations
                         {
                             Id = "78ce134c-d04f-4aa9-aa2e-59a2c63e80a8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6d2e55e2-2d1e-480f-a177-8a4088fa5ef3",
+                            ConcurrencyStamp = "c78e14ae-5024-4d9d-afad-86abc930836c",
                             Deposit = 0m,
                             Email = "kristina@abv.bg",
                             EmailConfirmed = true,
@@ -317,13 +317,13 @@ namespace RacketSpeed.Infrastructure.Migrations
                             LastName = "Желева",
                             LockoutEnabled = false,
                             NormalizedEmail = "KRISTINA@ABV.BG",
-                            NormalizedUserName = "EMPLOYEEUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAENy3AVIaF76SBwsva30AQ1gHJopE3geEzfbm0J/miyVEASCAz/yWOl5jRI5h+uiW6Q==",
+                            NormalizedUserName = "EMPLOYEE123",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEKFQJqQasXqL7WPFvevxhxBQtvq/MXN0P9NHcDVa3fSbIBqfIzIBAjrQeIorlxU5w==",
                             PhoneNumber = "+359893009911",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4b07de6-6eec-442c-a354-ba667ffac009",
+                            SecurityStamp = "482db283-e9ea-47ea-8f7b-9fd5351db768",
                             TwoFactorEnabled = false,
-                            UserName = "employeeUser"
+                            UserName = "employee123"
                         });
                 });
 
@@ -858,19 +858,19 @@ namespace RacketSpeed.Infrastructure.Migrations
                         {
                             Id = new Guid("1ce120a6-a20b-4b70-a45b-68dac3d842b9"),
                             PlayerId = new Guid("75328ffa-d42e-4fe1-a6f9-aa7518d185be"),
-                            Url = "https://ibb.co/PGykVTx"
+                            Url = "https://i.ibb.co/kX77v9b/daniel-nikolov-player4-removebg-preview.jpg"
                         },
                         new
                         {
                             Id = new Guid("76228ac9-eedb-4417-be15-269056b60ff2"),
                             PlayerId = new Guid("652a9f2b-341e-4c2a-8509-a95a9151d6c8"),
-                            Url = "https://ibb.co/PTBMD25"
+                            Url = "https://i.ibb.co/M1SsZvC/dimitar-yanakiev-player1-removebg-preview.jpg"
                         },
                         new
                         {
                             Id = new Guid("b1080ceb-b345-41f1-9301-64e78ef34c6a"),
                             PlayerId = new Guid("24a38056-dcf3-4f5a-979e-75e6eee44b89"),
-                            Url = "https://ibb.co/GT4Qx0r"
+                            Url = "https://i.ibb.co/qRBj2C8/kristina-zheleva-player2-removebg-preview.jpg"
                         });
                 });
 
@@ -1119,67 +1119,67 @@ namespace RacketSpeed.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a1dfe2ea-08e7-4289-a556-279c32ae1a23"),
+                            Id = new Guid("268ae707-8680-4b3b-bfc9-e73441cc8153"),
                             Hour = new TimeSpan(0, 10, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("0073535e-8e6b-4930-b732-39b2bdbde9e8"),
+                            Id = new Guid("3a78d78f-86dd-4c9e-b2c0-6f1b4517448d"),
                             Hour = new TimeSpan(0, 11, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("5ebbb9c0-d7f8-4174-92f7-ca90d9616ed9"),
+                            Id = new Guid("2b00d3d6-1f5d-448e-9eee-bb0c86d32d22"),
                             Hour = new TimeSpan(0, 12, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("f6487de6-1bdd-4533-b242-1af07e4a1448"),
+                            Id = new Guid("be591263-4446-4a19-871e-e17988349524"),
                             Hour = new TimeSpan(0, 13, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("e456b429-0c49-4cf5-a20a-33d49937bf94"),
+                            Id = new Guid("5549617c-2898-484b-a8a7-ea9f01c83bb2"),
                             Hour = new TimeSpan(0, 14, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("c1fe1e06-ee3d-4ac7-8b4b-4783008dca79"),
+                            Id = new Guid("f44599f4-8bb3-41ec-bb62-6a5ef8a90932"),
                             Hour = new TimeSpan(0, 15, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("d75e250d-ace9-437c-9783-dd6a9286e0bd"),
+                            Id = new Guid("615c2831-cf21-49fd-99a7-d8f96d81b7ac"),
                             Hour = new TimeSpan(0, 16, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("30ea0b52-ca9e-4036-99f9-43fd83771bb2"),
+                            Id = new Guid("8ba15b2d-baf9-4af8-8434-52d1d5041dee"),
                             Hour = new TimeSpan(0, 17, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("5e47e8da-5a05-43ec-80f1-d2b677743b45"),
+                            Id = new Guid("3d6716d8-1428-4263-94f5-00d7ab8bad8c"),
                             Hour = new TimeSpan(0, 18, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("28edf187-44ca-4182-8a51-89e9a8dcfbe7"),
+                            Id = new Guid("2e87302f-a343-4ca6-a6ba-bb1603dce232"),
                             Hour = new TimeSpan(0, 19, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("305275be-ab17-429d-a583-094439d6ecad"),
+                            Id = new Guid("9b440315-76f0-49b8-bd40-71648031d306"),
                             Hour = new TimeSpan(0, 20, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("a2634599-ca33-4785-8afb-4e036d634860"),
+                            Id = new Guid("90f2a039-0147-4f52-a249-05a4134a8234"),
                             Hour = new TimeSpan(0, 21, 0, 0, 0)
                         },
                         new
                         {
-                            Id = new Guid("afbb4ff2-ea82-4199-9dbd-ef3036157187"),
+                            Id = new Guid("b0ff2335-b73b-4b4b-ae77-b012307dd626"),
                             Hour = new TimeSpan(0, 22, 0, 0, 0)
                         });
                 });
