@@ -59,8 +59,8 @@ namespace RacketSpeed.Controllers
             }
 
             await this.signKidService.AddAsync(model);
-
-            return View(); // return succesfull page
+            ViewData["SuccessfullyAdded"] = $"Успешно изпратихте запитващата форма за тренировки.";
+            return View(); 
         }
 
         /// <summary>

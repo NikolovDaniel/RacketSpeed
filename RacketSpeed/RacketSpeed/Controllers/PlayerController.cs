@@ -33,25 +33,17 @@ namespace RacketSpeed.Controllers
         /// <returns>/Player/All page.</returns>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All(bool isAdministrator, string pageCount = "1")
+        public async Task<IActionResult> All(string pageCount = "1")
         {
-            ViewData["IsAdministrator"] = isAdministrator;
+            ViewData["IsAdministrator"] = User.IsInRole("Administrator");
 
             int pageNum = int.Parse(pageCount);
-
-            if (pageNum < 1)
-            {
-                pageNum = 1;
-            }
 
             int playersPerPage = 4;
 
             var pagesCount = this.playerService.PlayersPageCount(playersPerPage);
 
-            if (pageNum > pagesCount)
-            {
-                pageNum = pagesCount;
-            }
+            pageNum = CalculateValidPageNum(pageNum, pagesCount);
 
             ViewData["pageNum"] = pageNum;
 
@@ -71,9 +63,9 @@ namespace RacketSpeed.Controllers
         /// <param name="keyword">String used to filter Player Entities.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> AllPlayersByKeyword(string keyword, bool isAdministrator, string pageCount = "1")
+        public async Task<IActionResult> AllPlayersByKeyword(string keyword, string pageCount = "1")
         {
-            ViewData["IsAdministrator"] = isAdministrator;
+            ViewData["IsAdministrator"] = User.IsInRole("Administrator");
 
             if (string.IsNullOrEmpty(keyword))
             {

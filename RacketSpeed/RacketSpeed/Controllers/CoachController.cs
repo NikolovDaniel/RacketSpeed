@@ -33,16 +33,11 @@ namespace RacketSpeed.Controllers
         /// <returns>/Coach/All page.</returns>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> All(bool isAdministrator)
+        public async Task<IActionResult> All()
         {
-            if (!User.IsInRole("Administrator"))
-            {
-                return Unauthorized();
-            }
-
             var models = await this.coachService.AllAsync();
 
-            ViewData["IsAdministrator"] = isAdministrator;
+            ViewData["IsAdministrator"] = User.IsInRole("Administrator");
 
             return View(models);
         }
