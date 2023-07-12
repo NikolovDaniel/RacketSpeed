@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using RacketSpeed.Controllers;
 using RacketSpeed.Core.Contracts;
 using RacketSpeed.Core.Models.Post;
-using RacketSpeed.Infrastructure.Data.Entities;
 using RacketSpeed.Infrastructure.Data.Seed;
 
 namespace RacketSpeed.UnitTests.Controllers
@@ -52,7 +51,7 @@ namespace RacketSpeed.UnitTests.Controllers
             _controller.ControllerContext.HttpContext = new DefaultHttpContext { User = Administrator };
 
             // Act
-            var result = await _controller.All(pageCount);
+            var result = await _controller.All(true, pageCount);
 
             // Assert
             result.Should().BeOfType<ViewResult>();
@@ -92,7 +91,7 @@ namespace RacketSpeed.UnitTests.Controllers
             _controller.ControllerContext.HttpContext = new DefaultHttpContext { User = Administrator };
 
             // Act
-            var result = await _controller.AllPostsByKeyword(keyword, pageCount);
+            var result = await _controller.AllPostsByKeyword(keyword, false, pageCount);
 
             // Assert
             result.Should().BeOfType<ViewResult>();
@@ -125,7 +124,7 @@ namespace RacketSpeed.UnitTests.Controllers
             _controller.ControllerContext.HttpContext = new DefaultHttpContext { User = Administrator };
 
             // Act
-            var result = await _controller.AllPostsByKeyword(keyword, pageCount);
+            var result = await _controller.AllPostsByKeyword(keyword, true, pageCount);
 
             // Assert
             result.Should().BeOfType<ViewResult>();

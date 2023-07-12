@@ -56,7 +56,7 @@ namespace RacketSpeed.UnitTests.Controllers
             _controller.ControllerContext.HttpContext = new DefaultHttpContext { User = RegularUser };
 
             // Act
-            var result = await _controller.All(pageCount);
+            var result = await _controller.All(false, pageCount);
 
             // Assert
             result.Should().BeOfType<ViewResult>();
@@ -102,7 +102,7 @@ namespace RacketSpeed.UnitTests.Controllers
             _controller.ControllerContext.HttpContext = new DefaultHttpContext { User = RegularUser };
 
             // Act
-            var result = await _controller.AllPlayersByKeyword(keyword, pageCount);
+            var result = await _controller.AllPlayersByKeyword(keyword, false, pageCount);
 
             // Assert
             result.Should().BeOfType<ViewResult>();
