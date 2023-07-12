@@ -73,6 +73,7 @@
                                     <input asp-for="Input.Email" placeholder="Email" class="form-control"
                                            aria-required="true" id="emailFloatingInput" />
                                     <label for="emailFloatingInput" class="form-label-add-edit">Емайл</label>
+                                    <span class="text-light">@Html.ValidationMessage("ExistingEmailAddress")</span>
                                     <span asp-validation-for="Input.Email" class="text-light"></span>
                                 </div>
                             </div>

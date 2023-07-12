@@ -51,7 +51,7 @@ namespace RacketSpeed.Controllers
 
             if (user == null)
             {
-                return RedirectToAction("ResendConfirmationEmail");
+                return RedirectToPage("/Account/Register", new { area = "Identity" });
             }
 
             if (user.EmailConfirmed)

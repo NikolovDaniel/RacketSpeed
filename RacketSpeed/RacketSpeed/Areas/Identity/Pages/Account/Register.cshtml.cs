@@ -115,6 +115,14 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                var existingEmail = await _userManager.FindByEmailAsync(Input.Email);
+
+                if (existingEmail != null)
+                {
+                    ModelState.AddModelError("ExistingEmailAddress", "Изберете друг емайл адрес");
+                    return Page();
+                }
+
                 var user = new ApplicationUser()
                 {
                     UserName = Input.UserName,
@@ -126,6 +134,8 @@ namespace RacketSpeed.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
