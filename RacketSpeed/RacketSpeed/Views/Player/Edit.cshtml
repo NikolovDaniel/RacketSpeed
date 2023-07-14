@@ -32,11 +32,8 @@
                 <div class="row mb-3">
                     <div class="col-12 col-lg-6">
                         <div class="form-floating">
-                            @{
-                                Model.BirthDate = DateTime.Now;
-                            }
                             <input asp-for="@Model.BirthDate" placeholder="BirthDate" class="form-control" aria-required="true"
-                                   type="date" id="birthDateFloatingInput" />
+                                    type="date" id="birthDateFloatingInput" />
                             <label for="birthDateFloatingInput" class="form-label-add-edit">Дата на раждане</label>
                             <span asp-validation-for="@Model.BirthDate" class="text-danger"></span>
                         </div>
