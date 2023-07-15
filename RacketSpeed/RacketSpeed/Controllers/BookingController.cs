@@ -59,7 +59,6 @@ namespace RacketSpeed.Controllers
         public async Task<IActionResult> Book(BookingFormModel model)
         {
             // later on, validation for location might be needed
-            
             if (!ModelState.IsValid || model.Date.Date < DateTime.Now.Date)
             {
                 var courts = await this.bookingService.GetAllCourtsAsync();
@@ -127,7 +126,7 @@ namespace RacketSpeed.Controllers
         [Authorize(Roles = "Employee, Administrator")]
         public async Task<IActionResult> TodayBookings()
         {
-            if(!User.IsInRole("Employee") && !User.IsInRole("Administrator"))
+            if (!User.IsInRole("Employee") && !User.IsInRole("Administrator"))
             {
                 return Unauthorized();
             }
@@ -233,12 +232,18 @@ namespace RacketSpeed.Controllers
         [Authorize(Roles = "Employee, Administrator")]
         public async Task<IActionResult> ChangeBookingStatus(Guid bookingId, string userId, string status)
         {
-            if (!User.IsInRole("Employee") && !User.IsInRole("Administrator"))
+            bool isAdministrator = User.IsInRole("Administrator");
+            if (!User.IsInRole("Employee") && !isAdministrator)
             {
                 return Unauthorized();
             }
 
             await this.bookingService.ChangeStatusAsync(bookingId, userId, status);
+
+            if (isAdministrator)
+            {
+                return RedirectToAction("AllBookings", "Booking");
+            }
 
             return RedirectToAction("TodayBookings", "Booking");
         }
