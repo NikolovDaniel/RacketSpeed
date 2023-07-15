@@ -46,8 +46,8 @@ else
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                                                <form>
-                                                    <button type="submit" formmethod="post" asp-controller="SignKid" asp-action="Delete" asp-route-signKidFormId="@signKidForm.Id" class="btn btn-danger">Изтрий</button>
+                                                <form method="post" asp-controller="SignKid" asp-action="Delete" asp-route-signKidFormId="@signKidForm.Id">
+                                                    <button type="submit" class="btn btn-danger">Изтрий</button>
                                                 </form>
                                             </div>
                                         </div>
