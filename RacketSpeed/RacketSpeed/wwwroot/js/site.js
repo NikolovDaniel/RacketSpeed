@@ -6,9 +6,9 @@
         const totalPriceDisplayInput = document.getElementById("totalPriceDisplay");
         const totalPriceReservationInput = document.getElementById("totalPriceReservation");
 
-        // Calculate the price based on your pricing logic
-        let playerPrice = parseInt(playersSelect.value) * 5;  // Assuming 5 leva per player
-        let racketPrice = parseInt(racketsSelect.value) * 2;   // Assuming 2 leva per racket
+        // Calculate the price based on pricing logic
+        let playerPrice = parseInt(playersSelect.value) * 5;  // 5 leva per player
+        let racketPrice = parseInt(racketsSelect.value) * 2;   // 2 leva per racket
         totalPriceDisplayInput.value = `${playerPrice + racketPrice} лв.`;
         totalPriceReservationInput.value = playerPrice + racketPrice;
 
@@ -23,8 +23,8 @@
             const selectedRackets = parseInt(racketsSelect.value);
 
             // Calculate the price based on your pricing logic
-            const playerPrice = selectedPlayers * 5;  // Assuming 5 leva per player
-            const racketPrice = selectedRackets * 2;   // Assuming 2 leva per racket
+            const playerPrice = selectedPlayers * 5;  // 5 leva per player
+            const racketPrice = selectedRackets * 2;   // 2 leva per racket
 
             const totalPrice = playerPrice + racketPrice;
 
@@ -45,7 +45,7 @@ function populateHours() {
 
         // Make an AJAX request to retrieve the available hours
         $.ajax({
-            url: "/Booking/GetAvailableHours", // Replace with your server endpoint
+            url: "/Booking/GetAvailableHours",
             method: "GET",
             data: { courtNumber: courtId, date: selectedDate },
             success: function (response) {
@@ -78,45 +78,3 @@ $("#courtSelect").change(function () {
 $("#dateSelect").change(function () {
     populateHours();
 });
-
-//document.addEventListener("DOMContentLoaded", function () {
-//    var dateSelect = document.getElementById("dateSelect");
-//    var hourSelect = document.getElementById("hourSelect");
-
-//    dateSelect.addEventListener("change", function () {
-//        var selectedDate = dateSelect.value;
-
-//        // Make an AJAX request to the server to retrieve available hours for the selected date
-//        var xhr = new XMLHttpRequest();
-//        xhr.open("GET", "/Booking/getAvailableHours?date=" + selectedDate, true);
-
-//        xhr.onreadystatechange = function () {
-//            if (xhr.readyState === XMLHttpRequest.DONE) {
-//                if (xhr.status === 200) {
-//                    var response = JSON.parse(xhr.responseText);
-
-//                    // Clear the existing options
-//                    hourSelect.innerHTML = "";
-
-//                    // Get the available hours for the selected court
-//                    var selectedCourtId = courtSelect.value;
-//                    var availableHours = response[selectedCourtId];
-
-//                    // Populate the hour options
-//                    for (var i = 0; i < availableHours.length; i++) {
-//                        var hour = availableHours[i];
-//                        var option = document.createElement("option");
-//                        option.value = hour;
-//                        option.textContent = hour;
-//                        hourSelect.appendChild(option);
-//                    }
-//                } else {
-//                    // Handle error
-//                    console.log(xhr.responseText);
-//                }
-//            }
-//        };
-
-//        xhr.send();
-//    });
-//});
