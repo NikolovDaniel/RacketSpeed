@@ -1,12 +1,12 @@
 ## Project Introduction
 
-**"Racket Speed Badminton Club"** is a Web application which has two main points: <br />
+**Racket Speed Badminton Club** is a Web application which has two main points: <br />
    ★ **Reservation System**  <br />
    ★ **Informational Platform**
 
 ## Racket Speed Badminton Club
 
-[Website Link](https://kace123-001-site1.itempurl.com/)
+[Website Link](https://kace123-001-site1.itempurl.com/) Currently Unavailable
 
 A web application for managing badminton club's content, players, coaches, etc. with additional functionality for users to book courts to play. <br />
 The target audience is people that love badminton and want to be a part of a family of one of the biggest badminton clubs in Bulgaria.
@@ -32,7 +32,7 @@ A guest account has been set-up for free use. <br />
 
 Username: **regularUser** <br />
 Password: **regularUser123** <br />
-[Website Link](https://kace123-001-site1.itempurl.com/)<br />
+[Website Link](https://kace123-001-site1.itempurl.com/) Currently Unavailable<br />
 
 ## Navbars and footers
 * [2 footers](https://github.com/NikolovDaniel/SoftUniProject/tree/main/Documentation/Views/Footers)
