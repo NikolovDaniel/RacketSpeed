@@ -6,7 +6,7 @@
 
 ## Racket Speed Badminton Club
 
-[Website Link](https://kace123-001-site1.itempurl.com/) Currently Unavailable
+[Website Link](https://danidens-001-site1.atempurl.com/)
 
 A web application for managing badminton club's content, players, coaches, etc. with additional functionality for users to book courts to play. <br />
 The target audience is people that love badminton and want to be a part of a family of one of the biggest badminton clubs in Bulgaria.
@@ -32,7 +32,8 @@ A guest account has been set-up for free use. <br />
 
 Username: **regularUser** <br />
 Password: **regularUser123** <br />
-[Website Link](https://kace123-001-site1.itempurl.com/) Currently Unavailable<br />
+[Website Link](https://danidens-001-site1.atempurl.com/) 
+<br />
 
 ## Navbars and footers
 * [2 footers](https://github.com/NikolovDaniel/SoftUniProject/tree/main/Documentation/Views/Footers)
